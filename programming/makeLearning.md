@@ -1,3 +1,9 @@
+**Note: this is the notes when learning `make`. Because I use `cmake` more, this note is not resonable enough, and I just put some commands down and don't explain the basic methodology of make.**
+
+**Note: even you can use `cmake` to build `C/C++` projects, learning `make` is still necessary. Because you can use `make` to do other builds when necessary, especially when the projects are not well-supported by tools.**
+
+**Note: the code blocks' commands are not started with TAB, if you want to run these codes, you may need to replace the spaces with TAB.**
+
 # Basic Knowledge of Makefile
 
 ## Variables
@@ -35,7 +41,7 @@ a := $($($(x)))
 ```
 
 ### Target Variables
-You can set variable only valid for the specified target
+You can set variables only valid for the specified target:
 
 ```Makefile
 prog : CFLAGS = -g
@@ -59,11 +65,11 @@ There are many equal signs in `make`, but they are very different with each othe
 * `?=`: this will check if the variable is assigned before, if it is, this will not work, otherwise it is similar with `=`.
 
 For the `+=`:
-* if the variable has not been defined, it will be `=`.
-* if the variable has been define, it will follow the last equal sign. If the last equal is `=`, `+=` will use `=`; if the last equal sign is `:=`, `+=` will use `:=`.
+* If the variable has not been defined, it will be `=`.
+* If the variable has been define, it will follow the last equal sign. If the last equal is `=`, `+=` will use `=`; if the last equal sign is `:=`, `+=` will use `:=`.
 
 ### override
-When the variable is defined by the `make` command, for example `make a=12` will define a variable called `a` and its value is `12`, the variable define and assigned in you `Makefile` will be replaced by the command line. If you don't want the variable be replaced, you can use `override`:
+When the variable is defined by the `make` command, for example `make a=12` will define a variable called `a` whose value is `12`, the variable defined and assigned in your `Makefile` will be replaced by the command line's. If you don't want the variable be replaced, you can use `override`:
 
 ```Makefile
 # you can use other equal signs
@@ -71,7 +77,7 @@ override a := 0
 ```
 
 ### Multi Line Variables
-You can define multi line variables by `define`, the signature after `define` is the name with variable. Note that commands in macro must start with tab, so if the lines are not started with tab, they will be treat as a multi line variable's value. There is an example below:
+You can define multi line variables by `define`, the signature after `define` is the name of the variable. Note that commands in macro must start with tab, so if the lines are not started with tab, they will be treated as a multi line variable's value. There is an example below:
 
 ```Makefile
 define two-lines
@@ -102,10 +108,10 @@ You can use `Makefile` with auto deduction. Auto deduction looks like this:
 main.o: header1 header2 header3
 ```
 
-The example above will add `main.c` or `main.cpp` for target `main.o`, and the command `$(CC) -c main.cpp header1 header2 header3 -o main.o` will be added automatically too.
+The example above will add `main.c` or `main.cpp` for target `main.o`, and the command `$(CC) $(CPPFLAGS) $(CFLAGS) -c main.cpp header1 header2 header3 -o main.o` will be added automatically too.
 
 ## PHONY
-`.PHONY` is to specify the target is a pseudo target. This is usually used for `clean` and `all`. `PHONY` will let `make` not treat the target as a file:
+`.PHONY` is to specify the target is a pseudo target. This is usually used for `clean` and `all`. `.PHONY` will let `make` not treat the target as a file:
 
 ```Makefile
 .PHONY: clean
@@ -135,7 +141,7 @@ clean:
 objects = *.o
 ```
 
-Note that `objects = *.o` will let the variable's value is `*.o` rather than the exact object files found.
+Note that `objects = *.o` will let the variable's value be `*.o` rather than the exact object files found.
 
 If you want `objects` to be the exact object files found, you can use `objects := $(wildcard *.o)`.
 
@@ -256,7 +262,7 @@ In `make`, you can use `define` to define macros:
 define name
     command1
     command2
-...
+    ...
 endef
 ```
 
