@@ -515,7 +515,7 @@ Sometimes, you want to input something like options but not options actually. Fo
 - [ ] Learn something about `Daemons` in `Linux`.
 - [ ] Learn and use [Tarsnap](https://www.tarsnap.com/documentation.html) and [BorgBase](https://www.borgbase.com).
 - [ ] Maybe learn more about `rsyn` and `rclone`.
-- [ ] Learn something about [WireGuard](cmake .. -DUSE_DIST_KVSTORE=on -DUSE_CUDA=off -DLEMETHOD_NO_DEBUG=on).
+- [ ] Learn something about [WireGuard](https://www.wireguard.com/).
 - [ ] Learn more about `Docker`. **This is important.**
 
 # Q&A
