@@ -260,7 +260,7 @@ ffmpeg -loglevel panic -i /dev/video0 -frames 1 -f image2 - \
 ```
 
 ## Exercises
-Find the number of words (in `/usr/share/dict/words`) that contain at least three `a`s and don’t have a `'s` ending. What are the three most common last two letters of those words? `sed`’s `y` command, or the `tr` program, may help you with case insensitivity. How many of those two-letter combinations are there? And for a challenge: which combinations do not occur?
+Find the number of words (in `/usr/share/dict/words`) that contain at least three `a`s and don't have a `'s` ending. What are the three most common last two letters of those words? `sed`'s `y` command, or the `tr` program, may help you with case insensitivity. How many of those two-letter combinations are there? And for a challenge: which combinations do not occur?
 
 ```bash
 # get number
@@ -372,7 +372,7 @@ git checkout <revision>
 git remote add <name> <url>
 # set up correspondence between local and remote branch
 git branch --set-upstream-to=<remote>/<remote branch>
-# edit a commit’s contents/message
+# edit a commit's contents/message
 git commit --amend
 # unstage a file,
 # --hard will remove all the contents,
@@ -474,8 +474,8 @@ You can use hash functions to map data of arbitrary size to a fixed size. `git` 
 There are some properties that hash functions will obey:
 * `Deterministic`: the same input always generates the same output.
 * `Non-invertible`: it is hard to find an input `m` such that `hash(m) = h` for some desired output `h`.
-* `Target collision resistant`: given an input `m_1`, it’s hard to find a different input `m_2` such that `hash(m_1) = hash(m_2)`.
-* `Collision resistant`: it’s hard to find two inputs `m_1` and `m_2` such that `hash(m_1) = hash(m_2)` (note that this is a strictly stronger property than target collision resistance).
+* `Target collision resistant`: given an input `m_1`, it's hard to find a different input `m_2` such that `hash(m_1) = hash(m_2)`.
+* `Collision resistant`: it's hard to find two inputs `m_1` and `m_2` such that `hash(m_1) = hash(m_2)` (note that this is a strictly stronger property than target collision resistance).
 
 ## Key Derivation Functions
 These functions are similar with hash functions except that they are slower than hash functions. These functions are usually used in encrypting passwords, because for user login, the time can hardly be felt, but for the hackers it is hard to get the passwords by brute force. For example, you can generate a random `salt` for every user, when user login, we'll check `KDF(password + salt)` to make it harder to hack.
@@ -521,7 +521,7 @@ Sometimes, you want to input something like options but not options actually. Fo
 # Q&A
 
 ## What is the difference between Docker and a Virtual Machine?
-Docker is based on a more general concept called containers. The main difference between containers and virtual machines is that virtual machines will execute an entire OS stack, including the kernel, even if the kernel is the same as the host machine. Unlike VMs, containers avoid running another instance of the kernel and instead share the kernel with the host. In Linux, this is achieved through a mechanism called LXC, and it makes use of a series of isolation mechanisms to spin up a program that thinks it’s running on its own hardware but it’s actually sharing the hardware and kernel with the host. Thus, containers have a lower overhead than a full VM. On the flip side, containers have a weaker isolation and only work if the host runs the same kernel. For instance if you run Docker on macOS, Docker needs to spin up a Linux virtual machine to get an initial Linux kernel and thus the overhead is still significant. Lastly, Docker is a specific implementation of containers and it is tailored for software deployment. Because of this, it has some quirks: for example, Docker containers will not persist any form of storage between reboots by default.
+Docker is based on a more general concept called containers. The main difference between containers and virtual machines is that virtual machines will execute an entire OS stack, including the kernel, even if the kernel is the same as the host machine. Unlike VMs, containers avoid running another instance of the kernel and instead share the kernel with the host. In Linux, this is achieved through a mechanism called LXC, and it makes use of a series of isolation mechanisms to spin up a program that thinks it's running on its own hardware but it's actually sharing the hardware and kernel with the host. Thus, containers have a lower overhead than a full VM. On the flip side, containers have a weaker isolation and only work if the host runs the same kernel. For instance if you run Docker on macOS, Docker needs to spin up a Linux virtual machine to get an initial Linux kernel and thus the overhead is still significant. Lastly, Docker is a specific implementation of containers and it is tailored for software deployment. Because of this, it has some quirks: for example, Docker containers will not persist any form of storage between reboots by default.
 
 ## Contents
 
