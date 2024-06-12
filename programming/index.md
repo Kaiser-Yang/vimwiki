@@ -9,3 +9,5 @@ There notes below are sorted by lexicographically.
 # t/T
 [the missing semester](theMissingSemesterNotes)
 
+# u/U
+[undefined behavior in C++](undefinedBehaviorInCpp)
