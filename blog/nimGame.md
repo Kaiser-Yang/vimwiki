@@ -97,3 +97,18 @@ We can calculate the difference between the adjacent piles. For example, the dif
 There are several buckets from 0 to n, some buckets are empty, and some buckets have one cookie. You and your friend will take turns to move one cookie from a bucket that is not the bucket 0 to any one which is at the left side of the bucket, but you can not jump over any buckets that contains cookies. The one who moves the last cookie will be the winner. You will take the first turn to move the cookie.
 
 This one is similar with [variation 2](#variation-2). For each cookie, we just need to consider it as a pile of stones, and the number of the stones is the index of the bucket. Then this one becomes exactly the same as `variation 2`.
+
+## Variation 4
+### Description
+There are several coins on a line, some coins are heads up, and some coins are tails up. You and your friend will take turns to choose one head-up coin and any other coin that is at the left side of the chosen coin, and flip them. The one who flips the last coin will be the winner. You will take the first turn to flip the coins.
+
+### Solution
+This one is similar with the [multiple piles](#multiple-piles) problem. We consider the head-up coins as the stones, and the number of the stones are the index of the coins. For the chosen two head-up coins, it is same with removing the whole two piles of stones. If the left chosen coin is tail-up, the result is we remove some stones from a pile.
+
+With this conversion, we can find that we can not make any two piles of stones with the same number. This looks different from [multiple piles](#multiple-piles), but actually they are the same, we have two claims below:
+* Claim 7: If the `Nim Sum` of a set of numbers is 0, any move will make the `Nim Sum` of the rest numbers not 0.
+* Claim 8: If the `Nim Sum` of a set of numbers is not 0, we can make a move to make the `Nim Sum` of the rest numbers 0.
+
+For the `claim 7`, we only need consider if we can make the `Nim Sum` 0 by removing two piles at the times. For any two piles x and y, they must have different numbers of stones. So after removing, the `Nim Sum` is not 0.
+
+For the `Claim 8`, suppose we can make two piles same, and if after one move that make the `Nim Sum` 0 and two same piles, actually we can remove the two same piles when take the move, so the `Nim Sum` is still 0.
