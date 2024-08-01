@@ -5,3 +5,5 @@
 [A brief introduction of the Nim Game](nimGame)
 
 [A brief introduction of the Waiting Move and the SG Theorem](SGTheorem)
+
+[git center server开发实录](gcs)
