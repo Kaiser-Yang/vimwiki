@@ -48,13 +48,42 @@ TODO:
 # Provide Python scripts to process Json files
 `pr`的链接：[gcs-pull-6](https://github.com/CMIPT/gcs-back-end/pull/6)
 
+本次的`pr`提供了处理`Json`文件的`Python`脚本，脚本接受一个参数，表示文件所在目录。默认值为
+`../config.json`。脚本内置函数将`Json`文件的内容值存入对象`a`, 并可以通过点操作符`.`访问对象属性来
+获取对应内容值。
+
+```python
+def loadJsonAsObject(file_path: str):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    # transmit dictronary into object
+    return json.loads(json.dumps(data), object_hook=lambda d: SimpleNamespace(**d))
+
+
+parser = argparse.ArgumentParser(description="Process JSON file.")
+parser.add_argument('file_path', nargs='?', default='../config.json', help="Path to the JSON file")
+args = parser.parse_args()
+```
+
+下面介绍一下上述代码使用的`argparse`功能：
+* `argparse.ArgumentParser`：该类用于创建一个参数解析器对象。`description`参数可以用于设置命令行工具的简短描述。
+* `parser.add_argument`：定义程序可以接受的命令行参数。
+    - `file_path`：这是定义的命令行参数名。它将接受用户输入的文件路径。
+    - `nargs='?'`：表示该参数是可选的。如果用户没有提供该参数，则使用默认值。
+    - `default='../config.json'`：如果用户没有提供`file_path`参数，则默认使用`../config.json`作为文件路径。
+    - `help="Path to the JSON file"`：提供该参数的帮助信息，当用户使用`--help`选项时会显示这些信息。
+* `args = parser.parse_args()`：解析命令行参数，并将结果存储在`args`对象中。
+
+函数`loadJsonAsObject()`使用`json.loads()`时默认将内容解析成字典对象`dict`, 使用`SimpleNamespace`参数
+后，允许像访问对象属性一样访问字典键。
+
 # Add spring-doc for restful api
 `pr`的链接：[gcs-pull-7](https://github.com/CMIPT/gcs-back-end/pull/7)
 
 本次的`pr`主要是添加了`spring-doc`的依赖，用于生成`restful api`的文档。
 
 集成文档的时候开始在尝试使用`spring-fox`和`spring-swagger`。结果发现和`spring3.x`的版本不兼容，然后
-搜索资料发现了`spring-doc`这个依赖，然后就使用了这个依赖。`
+搜索资料发现了`spring-doc`这个依赖，然后就使用了这个依赖。
 
 TODO:
 - [ ] 添加`spring-doc`的使用介绍
@@ -125,10 +154,10 @@ WantedBy=multi-user.target
 ```
 
 上面的大部分字段是不用解释的，这里给出一些注意事项：
-* 路径全部使用绝对路径
-* `systemctl enable gcs`表示将服务设置为开机启动，但是如果当前的服务并没有启动，那么这个命令并不会启动服务
-* `systemctl start gcs`表示启动当前的服务，这与`gcs`是否被设置为开机启动无关
-* `systemctl disable gcs`和`systemctl stop gcs`的关系与上述类似
+* 路径全部使用绝对路径。
+* `systemctl enable gcs`表示将服务设置为开机启动，但是如果当前的服务并没有启动，那么这个命令并不会启动服务。
+* `systemctl start gcs`表示启动当前的服务，这与`gcs`是否被设置为开机启动无关。
+* `systemctl disable gcs`和`systemctl stop gcs`的关系与上述类似。
 
 NOTE: 简单解释一下`systemctl enable gcs`和`systemctl disable gcs`的原理。两者只做了一件事情：
 根据`[Install]`部分的内容创建或者删除软连接，例如上面的例子中，`systemctl enable gcs`会在
