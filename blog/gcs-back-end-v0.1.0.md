@@ -112,7 +112,7 @@ TODO:
 
 Issues: 
 - [x] 这个脚本在某些环境使用的时候出现了问题，详见[gcs-issues-14](https://github.com/CMIPT/gcs-back-end/issues/14)
-- [ ] 错误的添加使用了`spring-boot-test`导致添加了`spring-boot-starter-webflux`依赖，这个依赖目前应该是不用的。
+- [x] 错误的添加使用了`spring-boot-test`导致添加了`spring-boot-starter-webflux`依赖，这个依赖目前应该是不用的。
 
 # Add MIT license and developers info
 `pr`的链接：[gcs-pull-13](https://github.com/CMIPT/gcs-back-end/pull/13)
@@ -164,3 +164,10 @@ NOTE: 简单解释一下`systemctl enable gcs`和`systemctl disable gcs`的原�
 `/etc/systemd/system/multi-user.target.wants/`目录下创建一个`gcs.service`的软连接，而
 `systemctl disable gcs`会删除这个软连接。这个软连接的作用是在`multi-user.target`启动的时候启动`gcs`
 而`Linux`系统启动的时候会启动`multi-user.target`，所以`gcs`也能在开机的时候自动启动。
+
+# Remove unsed dependency and add doc for configuration
+`pr`的链接：[gcs-pull-22](https://github.com/CMIPT/gcs-back-end/pull/22)
+
+本次`pr`主要是将`spring-boot-starter-webflux`依赖删除，因为这个依赖是多余的。同时添加了一个`README-zh.md`
+文件，用于存储配置文件的说明。
+
