@@ -3,5 +3,8 @@
 
 仓库地址：[gcs-back-end](https://github.com/CMIPT/gcs-back-end)
 
+# 重要知识介绍
+* [spring](spring-intro)
+
 # 项目开发进展
 - [ ] [后端v0.1.0开发实录](gcs-back-end-v0.1.0)
