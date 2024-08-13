@@ -166,3 +166,27 @@ public class XXXConfig {
 
 通过上述的操作后，可以在任何地方使用 `@Value` 读取到配置文件中的值，新版的 `Spring` (我测试了 `Spring 6`)
 现在支持自动解析 `yml` 文件，不再需要指定 `@PropertySource` 中的 `factory`。
+
+#  其他注解
+## `@Description`
+该注解可以为 `Bean` 添加描述信息，这样的话可以通过 `Spring` 的 `BeanFactory` 获取到这个描述信息。
+
+## `@Profile`
+该注解用于指定 `Bean` 的环境，例如：`@Profile("dev")` 表示这个 `Bean` 只在 `dev` 环境下生效。
+
+## `@Nullable`
+该注解用于标记一个字段可以为 `null`，这样的话 `Spring` 在注入的时候如果没有找到对应的 `Bean`，那么
+不会抛出异常。
+
+## `@NonNull`
+该注解用于标记一个字段不可以为 `null`，这样的话 `Spring` 在注入的时候如果没有找到对应的 `Bean`，那么
+会抛出异常。
+
+## `@NonNullApi`
+该注解用于标记一个包下的所有类的字段不可以为 `null`，这样的话 `Spring` 在注入的时候如果没有找到对应的
+`Bean`，那么会抛出异常。该注解一般写在 `package` 语句上方。
+
+## `@NonNullFields`
+该注解用于标记一个类的所有字段不可以为 `null`，这样的话 `Spring` 在注入的时候如果没有找到对应的 `Bean`，
+那么会抛出异常。该注解一般写在 `package` 语句上方。
+
