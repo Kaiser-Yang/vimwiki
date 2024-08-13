@@ -171,3 +171,124 @@ NOTE: 简单解释一下`systemctl enable gcs`和`systemctl disable gcs`的原�
 本次`pr`主要是将`spring-boot-starter-webflux`依赖删除，因为这个依赖是多余的。同时添加了一个`README-zh.md`
 文件，用于存储配置文件的说明。
 
+# Finish the script for deploying in docker
+`pr`的链接：[gcs-pull-24](https://github.com/CMIPT/gcs-back-end/pull/24)
+
+在本次的提交中，增加了自动在 `docker` 中部署的功能。在编写这部分功能的时候，发现 `docker` 在默认情况下
+是不能够使用 `systemd` 的，只有当指明 `--privileged=true` 的时候才能够使用 `systemd`。这个参数的作用
+是让 `docker` 在容器中运行的时候拥有直接操作宿主机的权限。如果通过样的方式创建 `docker` 失去了 `docker`
+的部分安全性，因此我将在 `docker` 中的部署改用成了 `Sys Init V` 的方式，而在物理机上的部署继续保持
+`systemd` 的方式。
+
+`Sys Init V` 的脚本模板来自于 [_service.md](https://gist.github.com/naholyr/4275302) 。我对其中进行了
+部分的修改，得到了如下的文件：
+
+```bash
+PIDDIR=$(dirname "$PIDFILE")
+LOGDIR=$(dirname "$LOGFILE")
+start() {
+  if [ -f "$PIDDIR/$PIDNAME" ] && kill -0 "$(cat "$PIDDIR/$PIDNAME")"; then
+    echo 'Service already running' >&2
+    return 1
+  fi
+  echo 'Starting service…' >&2
+  local CMD="$SCRIPT &> \"$LOGFILE\" & echo \$!"
+  su -c "mkdir -p ""$PIDDIR" "$RUNAS"
+  su -c "mkdir -p ""$LOGDIR" "$RUNAS"
+  su -c "$CMD" "$RUNAS" > "$PIDFILE"
+  echo 'Service started' >&2
+}
+
+stop() {
+  if [ ! -f "$PIDFILE" ] || ! kill -0 "$(cat "$PIDFILE")"; then
+    echo 'Service not running' >&2
+    return 1
+  fi
+  echo 'Stopping service…' >&2
+  kill -15 "$(cat "$PIDFILE")" && rm -f "$PIDFILE"
+  echo 'Service stopped' >&2
+}
+
+uninstall() {
+  echo -n "Are you really sure you want to uninstall this service? That cannot be undone. [yes|No] "
+  local SURE
+  read SURE
+  if [ "$SURE" = "yes" ]; then
+    stop
+    rm -f "$PIDFILE"
+    echo "Notice: log file is not be removed: '$LOGFILE'" >&2
+    update-rc.d -f "$NAME" remove
+    rm -fv "$0"
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  uninstall)
+    uninstall
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|uninstall}"
+esac
+```
+
+上面的脚本需要在最开始添加以下内容才能运行 (等号后面需要添加值)：
+
+```bash
+#!/bin/env bash
+NAME=
+SCRIPT=
+RUNAS=
+PIDFILE=
+LOGFILE=
+```
+
+我通过 `Python` 脚本读取 `json` 配置文件，然后将配置文件的内容写入到 `Sys Init V` 的脚本中，最后将
+后将这个脚本拷贝到指定目录：
+
+```python
+def create_sys_v_init_service(config):
+    try:
+        with open('script/service_tmp.sh', 'r') as f:
+            service_content = f.read()
+    except Exception as e:
+        command_checker(1, f"Error: {e}")
+        return
+
+    header = f'''#!/bin/env bash
+NAME={config.serviceName}
+SCRIPT="{parse_iterable_into_str([config.serviceStartJavaCommand] +
+config.serviceStartJavaArgs + [config.serviceStartJarFile])}"
+RUNAS={config.serviceUser}
+PIDFILE={config.servicePIDFile}
+LOGFILE={config.serviceLogFile}
+'''
+    service_content = header + service_content
+    log_debug(f"service_content:\n {service_content}")
+
+    res = os.system(
+        f"echo '{service_content}' | {sudo_cmd} tee {config.serviceSysVInitDirectory}/{config.serviceName}")
+    command_checker(res, f"Failed to create {config.serviceSysVInitDirectory}/{config.serviceName}")
+    res = os.system(f'{sudo_cmd} chmod +x {config.serviceSysVInitDirectory}/{config.serviceName}')
+    command_checker(
+        res, f"Failed to chmod +x {config.serviceSysVInitDirectory}/{config.serviceName}")
+
+    if logging.getLogger().level == logging.DEBUG:
+        try:
+            with open(f'{config.serviceSysVInitDirectory}/{config.serviceName}', 'r') as f:
+                log_debug(f"Service content:\n {f.read()}")
+        except Exception as e:
+            command_checker(1, f"Error: {e}")
+            return
+```
+
+除了这些更改以外，将依赖的安装交给了 `Python` 脚本管理，`bash` 脚本仅仅负责安装 `python` 依赖。
