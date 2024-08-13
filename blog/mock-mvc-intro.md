@@ -46,7 +46,7 @@ public class UserControllerTest {
 ```java
 @Test
 public void testGetUser() throws Exception {
-    mockMvc.perform(get("/user/1").header("token", "123456"));
+    mockMvc.perform(get("/user/{id}, 1").header("token", "123456"));
 }
 ```
 
@@ -68,7 +68,7 @@ public void testGetUser() throws Exception {
 ```java
 @Test
 public void testGetUser() throws Exception {
-    mockMvc.perform(get("/user/1").header("token", "123456"))
+    mockMvc.perform(get("/user/{id}, 1").header("token", "123456"))
             .andDo(print());
 }
 ```
@@ -82,7 +82,7 @@ public void testGetUser() throws Exception {
 ```java
 @Test
 public void testGetUser() throws Exception {
-    mockMvc.perform(get("/user/1").header("token", "123456"))
+    mockMvc.perform(get("/user/{id}, 1").header("token", "123456"))
             .andDo(print())
             .andExpect(status().isOk());
 }
@@ -97,7 +97,7 @@ public void testGetUser() throws Exception {
 ```java
 @Test
 public void testGetUser() throws Exception {
-    mockMvc.perform(get("/user/1").header("token", "123456"))
+    mockMvc.perform(get("/user/{id}, 1").header("token", "123456"))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(header().string("Content-Type", "application/json"));
@@ -113,7 +113,7 @@ public void testGetUser() throws Exception {
 ```java
 @Test
 public void testGetUser() throws Exception {
-    mockMvc.perform(get("/user/1").header("token", "123456"))
+    mockMvc.perform(get("/user/{id}", 1).header("token", "123456"))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(header().string("Content-Type", "application/json"))
@@ -128,7 +128,7 @@ public void testGetUser() throws Exception {
 ```java
 @Test
 public void testGetUser() throws Exception {
-    mockMvc.perform(get("/user/1").header("token", "123456"))
+    mockMvc.perform(get("/user/{id}, 1").header("token", "123456"))
             .andDo(print())
             .andExpectAll(
                     status().isOk(),
@@ -137,3 +137,34 @@ public void testGetUser() throws Exception {
             );
 }
 ```
+
+# 文件上传
+文件上传是指客户端向服务器发送文件，通常使用 `POST` 请求，请求头中的 `Content-Type` 为 `multipart/form-data`。
+`MockMvc` 提供了 `file` 方法用于模拟文件上传，下面的代码展示了如何模拟文件上传：
+
+```java
+@Test
+public void testUploadFile() throws Exception {
+    mockMvc.perform(multipart("/file/upload")
+            .file(new MockMultipartFile("file", "test.txt", "text/plain", "hello".getBytes("UTF-8"))))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string("success"));
+}
+
+// 也可以使用以下的方式：
+@Test
+public void testUploadFile() throws Exception {
+    mockMvc.perform(multipart("/file/upload")
+            .file("file", "hello".getBytes("UTF-8")))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string("success"));
+}
+```
+
+上面的代码中，`multipart("/file/upload")` 方法用于模拟一个 `POST` 请求，请求路径为 `/file/upload`，
+`file` 方法用于模拟文件上传，`new MockMultipartFile("file", "test.txt", "text/plain", "hello".getBytes())`
+用于模拟一个名为 `test.txt`，文件类型为 `text/plain`，文件内容为 `hello`。
+
+上面的第二种方式中，`file("file", "hello".getBytes())` 方法用于模拟一个名为 `file`，文件内容为 `hello`。
