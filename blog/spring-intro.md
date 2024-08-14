@@ -135,9 +135,9 @@ TODO：增加解释说明为什么 `mvc` 应用的注解不同。
 `SpEL`。
 
 `@Value("${}")` 用于引用配置文件中的属性，例如在 `application.properties` 文件中有 `name=Tom`，那么
-`@Value("${name}")` 就会注入 `Tom`。
+`@Value("${name}")` 就会注入 `Tom`。也可以用 `@Value("${name:default}")` 为找不到 `name` 时指定默认值。
 
-使用 `@Value` 的时候需要写好配置文件，下面简单介绍以下如何读取配置文件。对于一个 `Spring Boot` 的项目，
+使用 `@Value` 的时候需要写好配置文件，下面简单介绍一下如何读取配置文件。对于一个 `Spring Boot` 的项目，
 在完成初始化后，在 `src/main/resources` 目录下会存在一个 `application.properties` 文件，这个文件就是
 `Spring Boot` 的配置文件，可以在这个文件中写入一些配置信息，然后通过 `@Value` 注解进行读取。如果没有
 这个文件自行创建就可以了，`Spring` 会自动加载以下路径下的 `application.properties` 或者 `application.yml`：
@@ -158,8 +158,7 @@ TODO：增加解释说明为什么 `mvc` 应用的注解不同。
 
 ```java
 @Configuration
-// 可以通过 : 来指定找不到的时候的默认值
-@PropertySource("classpath:config/XXXConfig.properties:defaultValue")
+@PropertySource("classpath:config/XXXConfig.properties")
 public class XXXConfig {
 }
 ```
