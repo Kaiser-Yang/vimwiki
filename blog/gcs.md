@@ -5,6 +5,7 @@
 
 # 重要知识介绍
 * [spring](spring-intro)
+* [spring-mvc](spring-mvc-intro)
 * [使用 `MockMvc` 进行测试](mock-mvc-intro)
 
 # 项目开发进展
