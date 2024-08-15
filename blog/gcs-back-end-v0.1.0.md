@@ -1,4 +1,4 @@
-NOTE: 文章内容按照时间`pr`合入的时间线进行排列。
+NOTE: 文章内容按照时间 `pr` 创建的时间线进行排列。
 
 仓库地址：[gcs-back-end](https://github.com/CMIPT/gcs-back-end)
 

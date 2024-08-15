@@ -158,3 +158,86 @@ NOTE: 当该注解用于一个 `Map` 类型的参数时，`Spring` 会将所有�
 
 ## `@RestController`
 该注解是 `@Controller` 和 `@ResponseBody` 的组合。标明该类的所有方法都被 `@ResponseBody` 标注。
+
+# 跨域问题
+在通常的情况下，为了保护用户的数据，浏览器会限制跨域请求，也就是说浏览器不允许一个源向另一个源发送
+请求。同一个源指的是协议、域名、端口号都相同。
+
+而对于一个前后端分离的程序而言，其前端永远也不可能和后端在同一个源上，这也意味着：即使前端和后端程序
+部署在同一个服务器上，但是由于端口不同，也会被浏览器拦截。
+
+而对于浏览器的拦截策略，其往往有以下过程：
+1. 浏览器向服务器发送一个 `OPTIONS` 请求，询问服务器是否允许跨域请求。
+2. 服务器返回信息以说明是否允许跨域请求。
+3. 当访问的域名没有被允许时，浏览器会拦截请求。否则，浏览器会发送真正的请求。
+
+也就是说要解决跨域问题，我们只需要在服务端增加能够处理特定 `OPTIONS` 的请求，在对应的响应体中添加支持
+跨域访问的 `CORS` 的头部信息即可。
+
+[Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) 介绍了 `CORS`
+是如何工作的，你可以阅读这篇文章以获取更加详细的信息。
+
+在 `Spring MVC` 中解决跨域问题使容易的，因为 `Spring MVC` 为跨域问题做了内置的处理: 当收到一个 `OPTIONS`
+请求时，`Spring MVC` 会寻找用户的跨域配置，如果找到了，那么 `Spring MVC` 会自动返回一个 `CORS` 的头部信息。
+否则，`Spring MVC` 会直接拒绝。
+
+## 使用 `@CrossOrigin` 解决局部跨域问题
+该注解用于标注一个方法支持跨域请求，`@CrossOrigin` 注解可以接受以下参数：
+* `origins` 用于指定允许跨域的源，可以是一个字符串数组。
+* `methods` 用于指定允许跨域的方法，可以是一个字符串数组。
+* `allowedHeaders` 用于指定允许跨域的头部信息，可以是一个字符串数组。
+* `exposedHeaders` 用于指定允许跨域的头部信息，可以是一个字符串数组。
+* `allowCredentials` 用于指定是否允许携带 `cookie`，默认为 `false`。
+* `maxAge` 用于指定 `OPTIONS` 请求的缓存时间，单位为秒。
+
+默认情况下，`@CrossOrigin` 注解会允许所有的跨域请求，并且支持所有头部信息，不允许携带 `cookie`，`OPTIONS`
+请求的缓存时间为 `1800` 秒。
+
+当然该注解可以标注在类上，用于标识该 `Controller` 的所有方法默认支持跨域请求。
+
+## 使用 `WebMvcConfigurer` 解决全局跨域问题
+在 `Spring MVC` 中可以通过添加一个如下的配置类为全局配置代理：
+
+```java
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+            .allowedOrigins("https://domain2.com")
+            .allowedMethods("PUT", "DELETE")
+            .allowedHeaders("header1", "header2", "header3")
+            .exposedHeaders("header1", "header2")
+            .allowCredentials(true).maxAge(3600);
+
+        // Add more mappings...
+    }
+}
+```
+
+## 使用 `Filter` 来解决跨域问题
+在前面的介绍中我们提到了跨域要允许跨域只需要对特定的 `OPTIONS` 请求返回 `CORS` 的头部信息即可，而我们
+介绍了 `Filter` 可以用来处理 `HTTP` 请求的预处理和后处理，因此我们可以使用 `Filter` 来处理跨域问题。
+而 `Spring MVC` 中默认提供了一个类型为 `CorFilter` 的过滤器用于处理跨域问题，我们只需要在 `Spring`
+的 `IoC` 容器中注册这个过滤器即可：
+
+```java
+@Configuration
+@EnableWebMvc
+public class CorsConfig {
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+}
+```
+
+在更改 `Spring MVC` 的配置的时候需要增加 `@EnableWebMvc` 注解。
