@@ -348,3 +348,38 @@ LOGFILE={config.serviceLogFile}
 ```
 
 除了这些更改以外，将依赖的安装交给了 `Python` 脚本管理，`bash` 脚本仅仅负责安装 `python` 依赖。
+
+# Finish the deploy script for database
+`pr` 链接：[gcs-pull-25](https://github.com/CMIPT/gcs-back-end/pull/25)
+
+本次的 `pr` 主要完成了数据库部署部分，根据之前提供的 `SQL` 脚本，我们在部署脚本中调用了 `SQL` 脚本去
+部署数据库。
+
+在部署数据库部分，先在数据库中检查是否存在指定的用户，不存在就进行创建，并根据配置文件的密码修改数据
+库中用户的密码。之后检查是否存在数据库，不存在就创建数据库。然后给当前用户赋予指定数据库的所有权限。
+最后就是通过该用户去调用 `SQL` 脚本创建表。
+
+除了数据库部分的部署外，还增加了激活不同配置文件的功能。在 `deploy_helper.py` 中增加了一个函数：
+
+```python
+def active_profile(config):
+    profile_format = f"spring.profiles.active={parse_iterable_into_str(config.profiles, sep=',')}"
+    log_debug(f"Profile format: {profile_format}")
+    try:
+        lines = None
+        if os.path.exists(application_config_file_path):
+            with open(application_config_file_path, 'r') as f:
+                lines = f.readlines()
+        with open(application_config_file_path, 'w') as f:
+            if lines:
+                for line in lines:
+                    if not line.startswith('spring.profiles.active'):
+                        f.write(line)
+            f.write(profile_format)
+    except Exception as e:
+        command_checker(1, f"Error: {e}")
+```
+
+除此之外，我们将 `Spring Boot` 的相关配置使用 `yml` 格式进行配置，而脚本创建的配置则放置在了
+`properties` 文件中。这样能保证后续增加的配置一定能生效，因为 `properties` 文件的优先级高于 `yml`
+文件。
