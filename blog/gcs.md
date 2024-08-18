@@ -4,9 +4,9 @@
 仓库地址：[gcs-back-end](https://github.com/CMIPT/gcs-back-end)
 
 # 重要知识介绍
-* [spring](spring-intro)
-* [spring-mvc](spring-mvc-intro)
-* [使用 `MockMvc` 进行测试](mock-mvc-intro)
+* [spring](spring-intro.md)
+* [spring-mvc](spring-mvc-intro.md)
+* [使用 `MockMvc` 进行测试](mock-mvc-intro.md)
 
 # 项目开发进展
-- [ ] [后端v0.1.0开发实录](gcs-back-end-v0.1.0)
+- [ ] [后端v0.1.0开发实录](gcs-back-end-v0.1.0.md)

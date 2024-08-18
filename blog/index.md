@@ -6,4 +6,4 @@
 
 [A brief introduction of the Waiting Move and the SG Theorem](SGTheorem)
 
-[git center server开发实录](gcs)
+[git center server开发实录](gcs.md)
