@@ -22,7 +22,7 @@ sudo find -L /sys/class/backlight -maxdepth 2 -name '*brightness*'
 
 ## Extensions
 There are two things I've learned about the quotations in `Linux`:
-* single quotations show what it looks like, and you cannot add single quotations in single quotations, but you cannot add double quotations in single quotations.
+* single quotations show what it looks like, and you cannot add single quotations in single quotations, but you can add double quotations in single quotations by adding a leading back slash.
 * double quotations show what it exactly is, for example, if you use `$HOME`, it will be your home directory which looks like `/home/kaiser`, and you can add double quotations in double quotations by add back slash before the double quotations, and you can add single quotations in double quotations directly.
 
 # Shell Tools and Scripting
