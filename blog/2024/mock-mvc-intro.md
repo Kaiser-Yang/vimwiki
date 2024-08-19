@@ -1,4 +1,3 @@
-# `MockMvc` 简介
 `MockMvc` 是 `Spring MVC` 框架提供的一个用于测试控制器的工具类，它可以模拟发送 `HTTP` 请求并接收 `HTTP` 响应，
 从而可以方便地测试控制器的功能。`MockMvc` 的使用非常简单，只需要通过 `MockMvcBuilders` 类的 `standaloneSetup`
 方法创建一个 `MockMvc` 对象，然后使用 `MockMvc` 对象的 `perform` 方法发送 `HTTP` 请求，即可得到 `HTTP` 响应。
@@ -168,3 +167,40 @@ public void testUploadFile() throws Exception {
 用于模拟一个名为 `test.txt`，文件类型为 `text/plain`，文件内容为 `hello`。
 
 上面的第二种方式中，`file("file", "hello".getBytes())` 方法用于模拟一个名为 `file`，文件内容为 `hello`。
+
+<!-- TODO: check those below -->
+<!-- ## 文件下载 -->
+<!-- 文件下载是指服务器向客户端发送文件，通常使用 `GET` 请求，请求头中的 `Content-Type` 为 `application/octet-stream`。 -->
+<!-- `MockMvc` 提供了 `file` 方法用于模拟文件下载，下面的代码展示了如何模拟文件下载： -->
+<!---->
+<!-- ```java -->
+<!-- @Test -->
+<!-- public void testDownloadFile() throws Exception { -->
+<!--     mockMvc.perform(get("/file/download")) -->
+<!--             .andDo(print()) -->
+<!--             .andExpect(status().isOk()) -->
+<!--             .andExpect(header().string("Content-Type", "application/octet-stream")) -->
+<!--             .andExpect(header().string("Content-Disposition", "attachment; filename=test.txt")) -->
+<!--             .andExpect(content().string("hello")); -->
+<!-- } -->
+<!-- ``` -->
+<!---->
+<!-- 上面的代码中，`get("/file/download")` 方法用于模拟一个 `GET` 请求，请求路径为 `/file/download`， -->
+<!-- `content().string("hello")` 用于模拟文件内容为 `hello`。 -->
+<!---->
+<!-- ## 异步请求 -->
+<!-- 异步请求是指客户端向服务器发送请求，服务器处理请求的过程中可能会进行一些耗时的操作，这时服务器会立即返回一个 -->
+<!-- `202` 状态码，告诉客户端请求已经接收，但是还没有处理完成。`MockMvc` 提供了 `async` 方法用于模拟异步请求， -->
+<!-- 下面的代码展示了如何模拟异步请求： -->
+<!---->
+<!-- ```java -->
+<!-- @Test -->
+<!-- public void testAsync() throws Exception { -->
+<!--     mockMvc.perform(get("/async")) -->
+<!--             .andDo(print()) -->
+<!--             .andExpect(status().isAccepted()) -->
+<!--             .andExpect(content().string("success")); -->
+<!-- } -->
+<!-- ``` -->
+<!---->
+<!-- 上面的代码中，`get("/async")` 方法用于模拟一个 `GET` 请求，请求路径为 `/async`。 -->

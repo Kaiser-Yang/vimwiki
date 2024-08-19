@@ -1,4 +1,3 @@
-# `Spring` 简介
 对于最原始的 `Spring` 而言，`Spring` 往往指的是能够对对象进行管理的框架，`IoC` 和 `AOP` 是其两大核心思想。
 而在最初的 `Spring` 中，多数是使用 `xml` 文件进行配置，不过在目前看来使用 `xml` 进行配置的方式已经不再流行，
 而是使用 `Java` 配置的方式 (即通过 `Java` 注解的方式进行配置)，这样也更好的与 `Spring-Boot` 相互配合。
@@ -189,3 +188,45 @@ public class XXXConfig {
 该注解用于标记一个类的所有字段不可以为 `null`，这样的话 `Spring` 在注入的时候如果没有找到对应的 `Bean`，
 那么会抛出异常。该注解一般写在 `package` 语句上方。
 
+<!-- # `AOP` -->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!-- `@PostConstruct` 和 `@PreDestroy` -->
+<!-- 众所周知，`Spring` 中 `Bean` 的生命周期可以分成以下的几个阶段： -->
+<!-- 1. `Bean` 的实例化 -->
+<!-- 2. `Bean` 的属性注入 -->
+<!-- 3. `Bean` 的初始化 -->
+<!-- 4. `Bean` 的销毁 -->
+<!---->
+<!-- `@PostConstruct` 和 `@PreDestroy` 注解分别用于在 `Bean` 的初始化和销毁阶段进行操作。被 `@PostConstruct` -->
+<!-- 注释的方法将在依赖注入完成后调用，而被 `@PreDestroy` 注释的方法将在 `Bean` 销毁之前调用。 -->
+<!---->
+<!-- 在 `@Bean` 中也可以指定 `initMethod` 和 `destroyMethod` 这两者与 `@PostConstruct` 和 `@PreDestroy` -->
+<!-- 的作用是一样的。 -->
+<!---->
+<!---->
+<!-- `BeanFactoryPostProcessor -> postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)` -->
+<!-- `InstantiationAwareBeanPostProcessor -> postProcessBeforeInstantiation(Class<?> beanClass, String beanName)` -->
+<!-- `InstantiationAwareBeanPostProcessor -> postProcessAfterInstantiation(Object bean, String beanName)` -->
+<!-- `BeanPostProcessor -> postProcessBeforeInitialization(Object bean, String beanName)` -->
+<!-- `InitializingBean -> afterPropertiesSet()` -->
+<!-- `InitializingBean -> initMethod()` -->
+<!-- `BeanPostProcessor -> postProcessAfterInitialization(Object bean, String beanName)` -->
+<!---->
