@@ -21,11 +21,11 @@ NOTE: `git action`的代码中出现了`secrets.PAT`，该字段需要在仓库�
 
 在`github`中创建`token`：
 
-![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20240801102637.png)
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20240801102637.png){: .img-fluid}
 
 如何在仓库的`secrets`中添加`token`：
 
-![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20240801102200.png)
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20240801102200.png){: .img-fluid}
 
 ## Docker Creator
 本次`pr`中还添加了一个第三方依赖，用于创建`docker`镜像。这个镜像能够自动创建一个`docker`镜像并安装

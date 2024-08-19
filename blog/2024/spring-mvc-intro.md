@@ -241,3 +241,11 @@ public class CorsConfig {
 ```
 
 在更改 `Spring MVC` 的配置的时候需要增加 `@EnableWebMvc` 注解。
+
+`@ResponseStatus`
+`@SessionAttributes`
+`@ModelAttribute`
+`@InitBinder`
+`@ExceptionHandler`
+`@ControllerAdvice`
+`@CrossOrigin`
