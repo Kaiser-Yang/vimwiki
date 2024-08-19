@@ -227,6 +227,22 @@ Expected status code 0, got status code {1}
 本次`pr`主要是将`spring-boot-starter-webflux`依赖删除，因为这个依赖是多余的。同时添加了一个`README-zh.md`
 文件，用于存储配置文件的说明。
 
+# Refactor the database script
+`pr`的链接：[gcs-pull-23](https://github.com/CMIPT/gcs-back-end/pull/23)
+
+在本次提交中，对数据库脚本进行了重构，将一个sql脚本分割成多个功能不同的sql脚本并放入不同的目录当中，
+降低了数据库代码的耦合度，方便后续更新。并且还提供了一个数据库部署脚本`database_deploy.sh`，运行这个
+脚本就能够自动调用前面的`SQL`脚本，从而部署数据库。
+
+目前`database`的目录结果如下所示：
+![](https://typora-picture-cloud.oss-cn-chengdu.aliyuncs.com/img1/202408191959133.png){: .img-fluid}
+
+在`constraint/all_column_constraint.sql`文件中，定义了表的主键和唯一键约束；`update_gmt_updated_column`
+文件包含一个函数，用于在更新时自动将`gmt_updated`列设置为当前的时间戳；`sequence/all_column_seq.sql`
+文件和`sequence/sequence_set.sql`为表的主键列定义了序列以及设定列的当前值；在`table`目录下面的三个文
+件定义了三个表，并且为每列添加了注释；`trigger/all_table_trigger.sql`文件为表添加了触发器，自动在更新
+行的时候更新`gmt_updated`列。
+
 # Finish the script for deploying in docker
 `pr`的链接：[gcs-pull-24](https://github.com/CMIPT/gcs-back-end/pull/24)
 
