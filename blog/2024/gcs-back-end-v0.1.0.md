@@ -399,3 +399,83 @@ def active_profile(config):
 除此之外，我们将 `Spring Boot` 的相关配置使用 `yml` 格式进行配置，而脚本创建的配置则放置在了
 `properties` 文件中。这样能保证后续增加的配置一定能生效，因为 `properties` 文件的优先级高于 `yml`
 文件。
+
+# Configure datasource and mybatis-plus
+`pr` 链接：[gcs-pull-29](https://github.com/CMIPT/gcs-back-end/pull/29)
+
+在本次的提交中主要完成了数据源的配置和 `mybatis-plus` 的配置。
+
+除此之外，还修复了 [gcs-pull-25](https://github.com/CMIPT/gcs-back-end/pull/25) 中引入的问题：
+为 `su` 命令传入了错误的密码。`su` 命令接收的密码应该为操作系统用户的密码，而不是数据库用户的密码，
+之前错误地传入了数据库用户的密码。
+
+这个 `pr` 还修复了 `gitaction` 中默认使用的 `Java` 版本为 `11`，通过以下的代码为环境设置 `openjdk-17`：
+
+```yml
+- name: Set up openjdk-17
+  uses: actions/setup-java@v4
+  if: steps.check_java_files.outputs.java_files_exist == 'true'
+  with:
+    distribution: 'zulu'
+    java-version: '17'
+```
+
+配置 `druid` 的时候有以下的注意事项：
+* 如果是 `Spring Boot 3` 应该使用 `druid-spring-boot-3-starter` 的依赖，而不是 `druid-spring-boot-starter`。
+* 配置数据源除了需要添加 `druid` 的依赖外，还需要添加数据驱动的依赖，例如 `postgresql` 驱动应该添加以下依赖：
+
+```xml
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+</dependency>
+```
+
+* 除此之外还需要配置 `jdbc` 可以使用 `spring-boot-starter-jdbc` 进行自动装配。
+* 引入依赖后需要在 `application.yml` 中配置数据源的相关信息，例如：
+
+```yml
+datasource:
+    druid:
+      username: gcs_debug
+      password: gcs_debug
+      url: jdbc:postgresql://localhost:5432/gcs_debug
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: org.postgresql.Driver
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 6000 # unit: ms
+      time-between-eviction-runs-millis: 60000
+      min-evication-idle-time-millis: 600000 # min alive time of a connection
+      max-evication-idle-time-millis: 1200000 # max alive time of a connection
+      validation-query: SELECT 1
+      test-while-idle: true
+      async-init: true
+      keep-alive: true
+      filters:
+        stat:
+          enable: true
+          log-slow-sql: true
+          slow-sql-millis: 1000
+        wall:
+          enable: true
+          log-violation: true
+          throw-exception: false
+          config:
+            drop-table-allow: false
+            delete-allow: false
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+        session-stat-enable: true
+        session-stat-max-count: 1000
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: druid
+        login-password: druid
+        allow: # empty means allow all
+```
