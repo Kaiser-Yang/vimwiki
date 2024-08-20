@@ -113,7 +113,7 @@ A language server for librime
             )
         end
         -- 通过 `<c-space>` 来切换 `rime-ls` 的开关
-        vim.keymap.set('i', '<c-space>', toggle_rime)
+        vim.keymap.set({ 'i', 'n' }, '<c-space>', toggle_rime)
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -146,7 +146,7 @@ return M
 `user_data_dir = vim.fn.expand"~/.local/share/rime-ls"` 因此配置文件需要放置在这个目录下，而配置方法
 与配置 `rime` 输入法是一致的，例如下面是我添加的一些简单配置：
 
-![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20240808220342.png)
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20240808220342.png){: .img-fluid}
 
 如果需要切换输入方案只需要打开一个启动了 `rime-ls` 的文件，然后输入 `&` 并手动触发一次 `cmp.complete()` 即可
 (默认的按键是 `<c-n>`) 。通过数字键选择对应的方案即可，选择后需要确认补全。
@@ -177,23 +177,31 @@ end
 vim.api.nvim_create_autocmd('FileType', {
     pattern = rime_ls_filetypes,
     callback = function ()
-        vim.api.nvim_buf_set_keymap(0, 'i', '<space>', '', {
-            noremap = true,
-            silent = true,
-            callback = function()
+        vim.keymap.set({ 'i', 's' }, '<space>', function()
+            if not vim.g.rime_enabled then
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<f30>', true, true, true),
+                    'm', false)
+            else
                 local entry = cmp.get_selected_entry()
-                if entry == nil then
-                    entry = cmp.core.view:get_first_entry()
+                if entry ~= nil then
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<f30>', true, true, true),
+                        'm', false)
                 end
+                entry = cmp.core.view:get_first_entry()
                 if is_rime_entry(entry) then
                     cmp.confirm({
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,
                     })
                 else
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<f30>', true, true, true), 'm', false)
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<f30>', true, true, true),
+                        'm', false)
                 end
             end
+        end, {
+            noremap = true,
+            silent = true,
+            buffer = true
         })
     end
 })
@@ -247,14 +255,17 @@ vim.api.nvim_create_autocmd('FileType', {
     callback = function ()
         for numkey = 1, 9 do
             local numkey_str = tostring(numkey)
-            vim.api.nvim_buf_set_keymap(0, 'i', numkey_str, '', {
-                noremap = true,
-                silent = false,
-                callback = function()
-                    vim.fn.feedkeys(numkey_str, 'n')
-                    -- 使用 `vim.schedule` 可以保证 `auto_upload_rime` 在 `feedkeys` 之后执行
+            vim.keymap.set({ 'i', 's' }, numkey_str, function()
+                local visible = cmp.visible()
+                vim.fn.feedkeys(numkey_str, 'n')
+                -- 使用 `vim.schedule` 可以保证 `auto_upload_rime` 在 `feedkeys` 之后执行
+                if visible then
                     vim.schedule(auto_upload_rime)
                 end
+            end, {
+                noremap = true,
+                silent = true,
+                buffer = true,
             })
         end
     end
@@ -270,18 +281,19 @@ vim.api.nvim_create_autocmd('FileType', {
 (如果使用这种方式的话，需要将 `rime-ls` 标点输入设置为英文标点，可以通过方案选择的方式设置)：
 
 ```lua
-local punc_en = {',', '.', ':', ';', '?'}
-local punc_zh = {'，', '。', '：', '；', '？'}
+local punc_en = { ',', '.', ':', ';', '?', '\\' }
+local punc_zh = { '，', '。', '：', '；', '？', '、' }
 vim.api.nvim_create_autocmd('FileType', {
     pattern = rime_ls_filetypes,
     callback = function ()
         for i = 1, #punc_en do
             local src = punc_en[i] .. '<space>'
             local dst = 'rime_enabled ? "' .. punc_zh[i] .. '" : "' .. punc_en[i] .. ' "'
-            vim.api.nvim_buf_set_keymap(0, mode, src, dst, {
+            vim.keymap.set({ 'i', 's' }, src, dst, {
                 noremap = true,
                 silent = false,
                 expr = true,
+                buffer = true,
             })
         end
     end

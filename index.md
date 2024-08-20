@@ -13,6 +13,9 @@ There notes below are sorted by lexicographically.
 # m/M
 [make and makefile: how to write makefile](makeLearning)
 
+# s/S
+[使用 nvim-cmp + rime-ls 配置 nvim 中文输入法](/blog/2024/nvim-input-method)
+
 # t/T
 [the missing semester](theMissingSemesterNotes)
 
