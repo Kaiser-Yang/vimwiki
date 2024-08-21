@@ -85,8 +85,7 @@ args = parser.parse_args()
 集成文档的时候开始在尝试使用`spring-fox`和`spring-swagger`。结果发现和`spring3.x`的版本不兼容，然后
 搜索资料发现了`spring-doc`这个依赖，然后就使用了这个依赖。
 
-TODO:
-- [ ] 添加`spring-doc`的使用介绍
+- [x] 添加`spring-doc`的使用介绍
 
 # Finish part of the deploy script
 `pr`的链接：[gcs-pull-9](https://github.com/CMIPT/gcs-back-end/pull/9)
