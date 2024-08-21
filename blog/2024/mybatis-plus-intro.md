@@ -232,3 +232,33 @@ mybatis-plus:
       logic-not-delete-value: "null" # 逻辑未删除值 此处不能直接使用 null 而应该传入字符串的 "null"
 ```
 
+# 扩展 `Service`
+在实际的开发中，我们可能需要为 `Service` 接口添加一些自定义的方法。这里简单介绍如何进行扩展。假设我们
+已经通过继承 `IService` 接口创建了一个 `UserService` 接口，我们可以通过以下方式为 `UserService` 接口
+添加自定义的方法。
+
+首先，我们需要在 `UserService` 中定义自定义的方法：
+
+```java
+public interface UserService extends IService<UserPO> {
+    void customMethod();
+}
+```
+
+接着，我们需要为 `UserService` 创建一个实现类，实现自定义的方法：
+
+```java
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper, UserPO> implements UserService {
+    @Override
+    public void customMethod() {
+        // 自定义的方法实现
+    }
+}
+```
+
+在实现类中，我们需要继承 `ServiceImpl` 类，这个类的泛型参数分别是 `Mapper` 接口和 `PO` 类，同时我们
+还需要实现 `UserService` 接口中定义的方法。
+
+通过上述的操作后，自动装配 `UserService` 接口时会自动装配 `UserServiceImpl` 类，这样我们就可以使用
+`UserService` 接口中定义的方法了。
