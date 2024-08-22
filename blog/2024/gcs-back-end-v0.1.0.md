@@ -478,3 +478,17 @@ datasource:
         login-password: druid
         allow: # empty means allow all
 ```
+
+# Finish the example for creating a user
+`pr` 链接：[gcs-pull-33](https://github.com/CMIPT/gcs-back-end/pull/33)
+
+在本次提交中，我们简单地完成了一个创建用户的例子。这个例子是一个简单的 `restful api`，接收一个 `json`
+格式的请求，然后将请求中的内容存入数据库中。
+
+我们使用 `OpenAPI 3.0` 完成了 `restful api` 的文档，这样能够更好地展示 `restful api` 的使用方法。
+
+同时使用了 `MockMvc` 演示了如何测试这个 `restful api`。
+
+另外，在本次测试的过程中我们发现经过 `MD5` 加密后的密码通常采用 `32` 位的 `16` 进制数表示，而不是
+存储 `128` 位的二进制，所以之前的数据库中密码字段的长度设置为 `128` 位是不合适的，我们将其修改为
+`32` 位。
