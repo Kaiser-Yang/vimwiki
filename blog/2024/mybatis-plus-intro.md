@@ -45,7 +45,8 @@ public class UserPO {
 
 ### `@TableID`
 如果上面的例子中的 `id` 字段是主键，我们可以在 `id` 字段上添加 `@TableID` 注解，指定主键的类型。这样
-指定后才能使用 `MyBatis-Plus` 提供的一些与 `ID` 相关的方法。
+指定后才能使用 `MyBatis-Plus` 提供的一些与 `ID` 相关的方法。如果表中和 `PO` 类中的主键字段都叫 `id`，
+则可以不用使用该注解。
 
 ## `BaseMapper` 接口
 通常情况下，我们会为每个 `PO` 对象创建一个对应的 `Mapper` 接口，继承 `BaseMapper` 接口。`BaseMapper`
@@ -129,7 +130,7 @@ public void updateUser() {
 public void updateUser() {
     Wrapper<UserPO> updateWrapper = new UpdateWrapper<>();
     queryWrapper.eq("age", 20).set("email", "123456@xxx.xxx");
-    userMapper.update(null, updateWrapper);
+    userMapper.update(updateWrapper);
 }
 ```
 

@@ -9,6 +9,7 @@
 * [使用 `MockMvc` 进行测试](/blog/2024/mock-mvc-intro)
 * [MyBatic-Plus](/blog/2024/mybatis-plus-intro)
 * [使用 `Spring-Doc` 生成接口文档](/blog/2024/spring-doc-intro)
+* [使用 `Spring-Validation` 进行参数校验](/blog/2024/spring-validation-intro)
 
 # 项目开发进展
 - [ ] [后端v0.1.0开发实录](/blog/2024/gcs-back-end-v0.1.0)
