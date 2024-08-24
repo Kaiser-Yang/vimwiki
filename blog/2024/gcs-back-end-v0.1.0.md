@@ -479,6 +479,21 @@ datasource:
         allow: # empty means allow all
 ```
 
+# Update the primary key of database
+`pr` 链接：[gcs-pull-31](https://github.com/CMIPT/gcs-back-end/pull/31)
+
+在本次提交中，我们主要是修复数据库主键与`MyBatis-Plus` 兼容问题, 以及完善了部分的细节问题。
+
+经过测试发现，`MyBatis-Plus` 与 `PostgreSQL` 数据库在主键的使用上存在一些问题，由于在数据库中设置了
+序列`sequence` 和`MyBatis-Plus` 自动增长主键`IdType.AUTO` 类型的功能重复，导致脚本进行插入的时候`id`
+会以步长`2`进行自增，所以我们对数据库中的`sequence` 进行了删除。
+
+为了符合阿里巴巴的开发规范，我们还对数据库中的表的主键字段进行了重命名，全部修改为`id`。
+
+由于开发中使用逻辑删除，所以当一个用户进行了注销操作后，真正的数据不会被删除，当这个用户重新进行注册
+的时候，由于唯一索引的存在会导致之前的注册邮箱无法使用，因此目前直接删除了`all_column_constraint.sql`
+中的唯一索引。
+
 # Finish the example for creating a user
 `pr` 链接：[gcs-pull-33](https://github.com/CMIPT/gcs-back-end/pull/33)
 
