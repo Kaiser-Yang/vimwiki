@@ -471,3 +471,191 @@ print(mem.tolist()) # [[1, 2, 3], [4, 5, 6]]
 mem[1, 2] = 100
 print(numbers) # [1, 2, 3, 4, 5, 100]
 ```
+
+# 字典
+## 字典推导式
+我们可以使用列表推导式快速创建列表，实际上，对于字典的创建也有类似的语法：
+
+```python
+{key: value for key, value in iterable}
+```
+
+## 在 `match/case` 中匹配字典
+`match/case` 语句还可以用来匹配字典：
+
+```python
+def match_color(info):
+    match info:
+        case {'color': 'red', 'light': True}:
+            print('Light Red')
+        case {'color': 'red', 'light': False}:
+            print('Dark Red')
+        case {'color': 'green', 'light': True}:
+            print('Light Green')
+        case {'color': 'green', 'light': False}:
+            print('Dark Green')
+        case _:
+            print('Unknown')
+
+match_color({'color': 'red', 'light': True}) # Light Red
+```
+
+上面的匹配式的意思是只要含有这些键值对的都会被匹配，而且顺序不重要，即使是一个 `OrderDict` 也会被忽略
+顺序。
+
+# 集合
+## 集合推导式
+也可以使用集合推导式创建集合：
+
+```python
+{value for value in iterable}
+```
+
+## 判断集合的包含关系
+使用比较运算符可以判断集合的包含关系：
+
+| 运算符 | 说明 |
+| --- | --- |
+| `<=` | 子集 |
+| `<` | 真子集 |
+| `>=` | 超集 |
+| `>` | 真超集 |
+| `==` | 相等 |
+| `!=` | 不相等 |
+
+# 可变对象与不可变对象
+`Python` 中的对象分为可变对象和不可变对象，可变对象是指对象的值可以改变，而不可变对象是指对象的值不可以改变。
+
+`Python` 中的不可变对象有：`int`、`float`、`complex`、`str`、`tuple`、`frozenset` 等。
+
+`Python` 中的可变对象有：`list`、`dict`、`set` 等。
+
+一个对象如果可以通过 `hash` 函数计算哈希值且不抛出异常，那么这个对象就是不可变对象。例如我们可以通过
+以下的代码来判断一个对象是否是可变对象：
+
+```python
+def is_mutable(obj):
+    try:
+        hash(obj)
+        return False
+    except TypeError:
+        return True
+
+print(is_mutable(1)) # False
+print(is_mutable('hello')) # False
+print(is_mutable([1, 2, 3])) # True
+```
+
+## 避免可变对象作为默认值
+在 `Python` 中如果使用可变对象绑定到默认值，那么在函数调用时会共享这个可变对象，这样会导致默认值的改变：
+
+```python
+def f(a=[]):
+    a.append(1)
+    return a
+
+print(f()) # [1]
+print(f()) # [1, 1]
+```
+
+如果我们想要避免这种情况，我们可以使用 `None` 作为默认值，然后在函数内部判断是否为 `None`，然后创建一个新的对象：
+
+```python
+def f(a=None):
+    if a is None:
+        a = []
+    a.append(1)
+    return a
+
+print(f()) # [1]
+print(f()) # [1]
+```
+
+# 类属性和实例属性
+在 `Python` 中，存在类属性和实例属性的区分，一般而言，类属性可以通过在类的开头定义，而实例对象可以在
+`__init__` 方法中定义。类属性可以通过类名或者实例对象访问，而实例属性则可以通过实例对象访问。例如：
+
+```python
+class A:
+    class_attr = 1
+
+    def __init__(self):
+        self.instance_attr = 2
+
+a = A()
+print(a.class_attr) # 1
+print(a.instance_attr) # 2
+print(A.class_attr) # 1
+```
+
+如果通过实例对象去修改类属性，那么实际上是创建了一个新的实例属性：
+
+```python
+# 创建一个新的实例对象，名字与类属性相同
+a.class_attr = 3
+print(a.class_attr) # 3
+print(A.class_attr) # 1
+# 可以通过 del 删除实例属性
+del a.class_attr
+# 由于实例对象的 class_attr 属性被删除，所以会访问类属性
+print(a.class_attr) # 1
+```
+
+## 静态方法、类方法和实例方法
+在 `Python` 的类中，有三种方法：静态方法、类方法和实例方法。
+
+首先介绍最常见的实例方法，实例方法的第一个参数是 `self`，表示实例对象本身：
+
+```python
+class A:
+    def instance_method(self):
+        # 实例方法可以访问实例属性
+        return self
+```
+
+实例方法可以通过实例对象调用，也可以通过类对象调用，但是需要传入实例对象：
+
+```python
+a = A()
+print(a.instance_method()) # <__main__.A object at 0x7f8b3c7b3d30>
+print(A.instance_method(a)) # <__main__.A object at 0x7f8b3c7b3d30>
+```
+
+类方法使用 `@classmethod` 装饰器来定义，类方法的第一个参数是 `cls`，表示类对象本身：
+
+```python
+class A:
+    @classmethod
+    def class_method(cls):
+        # 类方法可以访问类属性
+        return cls
+```
+
+类方法可以通过类对象调用，也可以通过实例对象调用，但是不需要传入实例对象：
+
+```python
+a = A()
+print(a.class_method()) # <class '__main__.A'>
+print(A.class_method()) # <class '__main__.A'>
+```
+
+静态方法使用 `@staticmethod` 装饰器来定义，静态方法没有 `self` 和 `cls` 参数：
+
+```python
+class A:
+    @staticmethod
+    def static_method():
+        return 'static method'
+```
+
+静态方法可以通过类对象调用，也可以通过实例对象调用，但是不需要传入实例对象：
+
+```python
+a = A()
+print(a.static_method()) # static method
+print(A.static_method()) # static method
+```
+
+静态方法其实更像是一个普通的函数，它不能访问类属性和实例属性，但是他可以被实例方法或者类方法调用，
+所以如果需要处理的逻辑只会被当前的类多次调用，那么可以使用静态方法实现代码的复用。
+
