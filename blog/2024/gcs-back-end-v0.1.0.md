@@ -507,3 +507,96 @@ datasource:
 另外，在本次测试的过程中我们发现经过 `MD5` 加密后的密码通常采用 `32` 位的 `16` 进制数表示，而不是
 存储 `128` 位的二进制，所以之前的数据库中密码字段的长度设置为 `128` 位是不合适的，我们将其修改为
 `32` 位。
+
+# Add an example for validation
+`pr` 链接：[gcs-pull-34](https://github.com/CMIPT/gcs-back-end/pull/34)
+
+在本次的 `pr` 中，我们主要是增加了 `Spring Validation` 如何使用的例子。
+
+从 [使用 `Spring-Validation` 进行参数校验](/blog/2024/spring-validation-intro) 中可以了解到更多关于
+关于本次提交的信息。
+
+# User record to define the DTO object
+`pr` 链接：[gcs-pull-35](https://github.com/CMIPT/gcs-back-end/pull/35)
+
+我们发现对于 `DTO` 和 `VO` 对象，我们在创建之后不再需要对其值进行修改，因此我们将这两个对象定义为
+`record` 对象。
+
+`record` 关键字是 `Java 14` 中引入的，用于定义一个不可变的类。`record` 类似于 `data class`，它会自动
+为类的属性生成 `getter` 方法，`equals` 方法，`hashCode` 方法，`toString` 方法。
+
+# Add filter for authentication and authorization
+`pr` 链接：[gcs-pull-37](https://github.com/CMIPT/gcs-back-end/pull/37)
+
+这个例子的主要目的是为了实现使用双 `token` 进行认证和授权。关于双 `token` 的使用可以参考
+[`JJWT` + `Spring Boot Filter` 实现认证与授权](/blog/2024/filter-jjwt-intro)。
+
+除此之外，我们还通过一些特殊的手段实现了对 `filter` 中抛出的异常进行全局处理，可以参考
+[`Spring Boot Filter` 异常处理](/blog/2024/exception-handler-intro)。
+
+最后，在本次的 `pr` 中，我们第一次尝试引入 `DevelopmentController`，该 `controller` 主要是为前端开发
+者服务的，通过请求该 `controller` 可以获取到如所有可用的 `API` 路径信息、所有错误信息等。
+
+# Update the processing of error messages
+`pr` 链接：[gcs-pull-38](https://github.com/CMIPT/gcs-back-end/pull/38)
+
+在之前的错误信息处理的过程中，我们只会返回形如以下内容的错误信息：
+
+```json
+{
+    "message": "Error occurs while converting message"
+}
+```
+
+这样的错误信息没有错误代码，不适合前端进行比较，因此我们在本次提交中主要增加了一个错误代码枚举类：
+
+```java
+package edu.cmipt.gcs.enumeration;
+
+public enum ErrorCodeEnum {
+    // This should be ignored, this is to make the ordinal of the enum start from 1
+    ZERO_PLACEHOLDER,
+
+    USERDTO_ID_NULL("UserDTO.id.Null"),
+    USERDTO_ID_NOTNULL("UserDTO.id.NotNull"),
+    USERDTO_USERNAME_SIZE("UserDTO.username.Size"),
+    USERDTO_USERNAME_NOTBLANK("UserDTO.username.NotBlank"),
+    USERDTO_EMAIL_NOTBLANK("UserDTO.email.NotBlank"),
+    USERDTO_EMAIL_EMAIL("UserDTO.email.Email"),
+    USERDTO_USERPASSWORD_SIZE("UserDTO.userPassword.Size"),
+    USERDTO_USERPASSWORD_NOTBLANK("UserDTO.userPassword.NotBlank"),
+
+    USERSIGNINDTO_USERNAME_NOTBLANK("UserSignInDTO.username.NotBlank"),
+    USERSIGNINDTO_USERPASSWORD_NOTBLANK("UserSignInDTO.userPassword.NotBlank"),
+
+    USERNAME_ALREADY_EXISTS("USERNAME_ALREADY_EXISTS"),
+    EMAIL_ALREADY_EXISTS("EMAIL_ALREADY_EXISTS"),
+    WRONG_SIGN_IN_INFORMATION("WRONG_SIGN_IN_INFORMATION"),
+
+    INVALID_TOKEN("INVALID_TOKEN"),
+    ACCESS_DENIED("ACCESS_DENIED"),
+
+    MESSAGE_CONVERSION_ERROR("MESSAGE_CONVERSION_ERROR");
+
+    // code means the error code in the message.properties
+    private String code;
+
+    ErrorCodeEnum() {}
+
+    ErrorCodeEnum(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+}
+```
+
+这个枚举类中的 `code` 对应着 `message.properties` 中的错误信息。我们只需要简单实现一个工具类就可以进行
+内容的转换。更多的内容可以查看
+[`Spring Validation` 与错误代码自定义](/blog/2024/spring-validation-custom-error-code)。
+
+除了上面的修改之外，我们还尽可能避免在代码中出现魔法值，将一些常量提取到了 `Constant` 类中。
+
+最后，在本次的提交中，我们对 `authenticationController` 中的方法添加了测试。

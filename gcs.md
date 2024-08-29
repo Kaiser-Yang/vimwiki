@@ -12,6 +12,7 @@
 * [使用 `Spring-Validation` 进行参数校验](/blog/2024/spring-validation-intro)
 * [`Spring Boot Filter` 异常处理](/blog/2024/exception-handler-intro)
 * [`JJWT` + `Spring Boot Filter` 实现认证与授权](/blog/2024/filter-jjwt-intro)
+* [`Spring Validation` 与错误代码自定义](/blog/2024/spring-validation-custom-error-code)
 
 # 项目开发进展
 - [ ] [后端v0.1.0开发实录](/blog/2024/gcs-back-end-v0.1.0)
