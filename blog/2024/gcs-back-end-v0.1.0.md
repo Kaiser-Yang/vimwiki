@@ -600,3 +600,14 @@ public enum ErrorCodeEnum {
 除了上面的修改之外，我们还尽可能避免在代码中出现魔法值，将一些常量提取到了 `Constant` 类中。
 
 最后，在本次的提交中，我们对 `authenticationController` 中的方法添加了测试。
+
+# Add configuration for CORS
+`pr` 链接：[gcs-pull-39](https://github.com/CMIPT/gcs-back-end/pull/39)
+
+在本次的提交中，我们增加了跨域的配置。我们为 `dev` 和 `prod` 两个环境配置了不同的跨域策略。
+
+在 `dev` 中，我们允许所有的请求，而在 `prod` 中，我们只允许前端发送的 `GET`、`POST` 以及 `DELETE`
+请求。除此之外，我们添加了测试类对 `pord` 环境中的跨与配置进行了测试。
+
+- [ ] 只允许前端进行跨域是不正确的，因为前端启动后发送的请求实际上是从客户端发出的，因此应该设置成
+允许所有地址。
