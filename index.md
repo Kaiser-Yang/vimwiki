@@ -10,6 +10,9 @@ There notes below are sorted by lexicographically.
 
 [git center server开发实录](gcs.md)
 
+# l/L
+[Linux 大杂烩](/blog/2024/linux-potpourri.md)
+
 # m/M
 [make and makefile: how to write makefile](makeLearning)
 
