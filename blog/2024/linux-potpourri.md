@@ -39,6 +39,7 @@
 | `-C 2`                      | 显示匹配行的前两行和后两行 |
 | `-E`                        | 使用扩展正则表达式 |
 | `-F`                        | 使用固定字符串。这个选项会将模式中的特殊字符当作普通字符对待 |
+| `-H`                        | 显示文件名。默认情况下，当只有一个文件时，`grep` 不会显示文件名，而使用 `-H` 可以强制显示文件名 |
 
 **注意**：`grep` 的正则表达式是基于 `POSIX` 的基本正则表达式，而 `egrep` 和 `grep -E` 是基于 `POSIX`
 的扩展正则表达式。`grep` 和 `egrep` 的区别在于 `egrep` 默认使用扩展正则表达式，而 `grep` 默认使用基本
@@ -207,6 +208,75 @@ END {
 
 例如，我们可以使用 `awk '/[[:digit:]]/'` 来匹配包含数字的行。当然也可以写成 `awk '/[0-9]/'`。
 
+## `find`
+
+| 选项          | 说明 |
+| ---           | --- |
+| `-type`       | 指定文件类型。`f` 表示普通文件，`d` 表示目录，`l` 表示符号链接 |
+| `-readable`   | 查找可读文件或目录 |
+| `-writable`   | 查找可写文件或目录 |
+| `-executable` | 查找可执行文件或目录 |
+| `-name`       | 指定文件名。可以使用 `wildcads` |
+| `-path`       | 指定路径。可以使用 `wildcards` |
+| `-iname`      | 忽略大小写的文件名 |
+| `-ipath`      | 忽略大小写的路径 |
+| `-empty`      | 查找空文件或者空目录 |
+| `-perm`       | 指定权限。例如 `-perm 644` 表示查找权限为 `644` 的文件或目录 |
+| `-mtime`      | 指定修改时间。例如 `-mtime +1` 表示查找修改时间在 `1` 天前的文件或目录 |
+| `-atime`      | 指定访问时间。例如 `-atime +1` 表示查找访问时间在 `1` 天前的文件或目录 |
+| `-ctime`      | 指定创建时间。例如 `-ctime +1` 表示查找创建时间在 `1` 天前的文件或目录 |
+| `-mmin`       | 指定修改时间。例如 `-mmin +1` 表示查找修改时间在 `1` 分钟前的文件或目录 |
+| `-amin`       | 指定访问时间。例如 `-amin +1` 表示查找访问时间在 `1` 分钟前的文件或目录 |
+| `-cmin`       | 指定创建时间。例如 `-cmin +1` 表示查找创建时间在 `1` 分钟前的文件或目录 |
+| `-user`       | 指定拥有者 |
+| `-group`      | 指定所属组 |
+| `-delete`     | 删除查找到的文件或目录 |
+| `-maxdepth`   | 指定查找的最大深度 |
+| `-mindepth`   | 指定查找的最小深度 |
+| `-not`        | 取反。返回不符合条件的文件 |
+| `-and`        | 逻辑与。同时满足两个条件 |
+| `-or`         | 逻辑或。满足其中一个条件即可 |
+| `-P`          | 不跟踪符号链接。默认行为。 |
+| `-L`          | 跟踪符号链接。 |
+| `-H`          | 只对命令行参数进行跟踪。例如 `find -H /path/to/file -name filename` 只对 `/path/to/file` 进行跟踪 |
+| `-print0`     | 使用 `NUL` 作为文件名分隔符 |
+| `-regex`      | 使用正则表达式匹配文件名 |
+| `-iregex`     | 使用忽略大小写的正则表达式匹配文件名 |
+
+`-type` 还可以以下类型有：
+* `b`：块设备文件
+* `c`：字符设备文件
+* `p`：管道文件
+* `s`：套接字文件
+
+**注意**：使用正则表达式匹配含有某个字符的文件名时，需要使用 `.*` 来表示任意数量的字符，例如
+`find . -regex ".*pattern.*"`，而不能直接使用 `find . -regex "pattern"`。
+
+**注意**：如果要使用复杂的逻辑表达式，需要使用 `()` 来分组，例如 `find . \( -name "*.txt" -or -name "*.md" \)`
+表示查找所有 `txt` 或者 `md` 文件，其中的括号需要进行转义。
+
+### 指定文件大小
+`-size` 参数有以下几种单位：
+* `b`：块，取决于文件系统，默认是 `512` 字节
+* `c`：字节
+* `k`：千字节 (1024 字节)
+* `M`：兆字节 (1024 千字节)
+* `G`：吉字节 (1024 兆字节)
+
+知道了上述单位后，查找某个固定大小的文件只需要指定大小和单位即可，例如 `find . -size 1M` 表示查找大小为
+`1` 兆字节的文件。
+
+但是通常我们会查找大于或者小于某个大小的文件，这时候我们可以使用 `+` 和 `-` 来表示大于和小于，例如
+`find . -size +1M` 表示查找大于 `1MB` 的文件，`find . -size -1M` 表示查找小于 `1MB` 的文件。
+这两者也可以结合使用，例如 `find . -size +1M -size -2M` 表示查找大于 `1MB` 且小于 `2MB` 的文件。
+
+### 对查找到的文件执行操作
+`-exec` 可以对查找到的文件执行操作，例如 `find . -name "*.txt" -exec cat {} \;` 表示查找当前目录下的
+所有 `txt` 文件并将其内容输出到标准输出。`{}` 会被替换为查找到的文件名，`\;` 表示结束。
+
+也可以使用 `grep` 命令过滤查找到的文件，例如 `find . -name "*.txt" -exec grep "pattern" {} \;` 表示查找
+当前目录下的所有 `txt` 文件并在其中查找 `pattern`。
+
 # 巨人的肩膀
 * [10 Practical Examples Using Wildcards to Match Filenames in Linux](https://www.tecmint.com/use-wildcards-to-match-filenames-in-linux/)
 * [fish shell wildcards](https://fishshell.com/docs/current/fish_for_bash_users.html#wildcards-globs)
@@ -219,3 +289,9 @@ END {
 * [30+ awk examples for beginners / awk command tutorial in Linux/Unix](https://www.golinuxcloud.com/awk-examples-with-command-tutorial-unix-linux/)
 * [8 Powerful Awk Built-in Variables – FS, OFS, RS, ORS, NR, NF, FILENAME, FNR](https://www.thegeekstuff.com/2010/01/8-powerful-awk-built-in-variables-fs-ofs-rs-ors-nr-nf-filename-fnr/)
 * [Getting Started With AWK Command \[Beginner's Guide\]](https://linuxhandbook.com/awk-command-tutorial/)
+* [25+ most used find commands in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/find-command-in-linux/)
+* [find Linux Command Cheatsheet](https://onecompiler.com/cheatsheets/find)
+* [Linux Find Cheatsheet](https://linuxtutorials.org/linux-find-cheatsheet/)
+* [Find files and directories on Linux with the find command](https://opensource.com/article/21/9/linux-find-command)
+* [10 ways to use the Linux find command](https://www.redhat.com/sysadmin/linux-find-command)
+* [Find cheatsheet](https://quickref.me/find)<++>
