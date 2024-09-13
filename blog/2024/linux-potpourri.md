@@ -5,6 +5,7 @@
 
 常见的 `wildcards` 有以下几种：
 * `*`：匹配任意数量( 包含 `0` 个 )的字符
+* `**`：递归匹配任意数量( 包含 `0` 个 )的字符
 * `?`：匹配单个任意字符
 * `[]`：匹配出现在中括号中的某个符号，在中括号中可以使用 `-` 来表示范围，也可以使用 `!` 来表示取反，
 例如 `[!0-9]` 表示匹配不是数字的字符，`[!ab]` 表示不是 `a` 也不是 `b` 的字符
@@ -277,6 +278,37 @@ END {
 也可以使用 `grep` 命令过滤查找到的文件，例如 `find . -name "*.txt" -exec grep "pattern" {} \;` 表示查找
 当前目录下的所有 `txt` 文件并在其中查找 `pattern`。
 
+# `git`
+## `.gitignore`
+`.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
+`.gitignore` 文件中可以使用 `wildcards` 来指定不需要被追踪的文件或目录。
+
+### `wildcards`
+`.gitignore` 中的 `wildcards` 与 `bash` 中基本一致，可以查看 [Wildcards in Linux](#wildcards-in-linux) 来
+了解更多关于 `wildcards` 的内容。
+
+### 基本用法
+默认情况下，`.gitignore` 中的条目会进行递归的忽略，如果不想进行递归忽略，可以在条目前加上 `/` 表示只对
+当前目录生效。例如 `/foo` 表示只忽略当前目录下的 `foo` 文件或目录，而 `foo` 表示忽略所有的 `foo` 文件或
+目录。
+
+默认情况下，`.gitignore` 中的条目会匹配目录和文件，如果只想匹配目录则可以在条目末尾加上 `/` 表示只匹配
+目录。例如 `foo/` 表示只匹配目录 `foo`，而 `foo` 表示匹配所有的 `foo` 文件或目录。你可能会有疑惑：
+在 `Linux` 中，同一目录下的文件和目录不能够重名，这样做的意义是什么？其实如果不进行递归匹配，确实是
+没有意义的，但是 `build/` 和 `build` 表示的意义是不同的，前者表示忽略所有 `build` 目录，而后者表示
+忽略所有 `build` 文件或目录。前者可以保留某个子目录下面的名为 `build` 的文件，而后者却做不到这一点。
+当然如前面所言，我们可以使用 `/build/` 只忽略当前目录下的 `build` 目录。
+
+### 全局忽略
+在 `git` 中可以配置全局忽略文件，通常使用 `.git` 管理的仓库不需要追踪一些特定的文件，例如 `*.pyc`、
+`*.o` 等，这时候我们可以配置全局忽略文件。全局忽略文件的配置文件是 `~/.config/git/ignore`。
+
+### 忽略文件优先级
+在 `git` 中任何一个目录下都可以有一个 `.gitignore` 文件，这个文件会对当前目录下的文件和目录生效。如果
+在父目录下有一个 `.gitignore` 文件，那么这个文件会对当前目录下的文件和目录生效，但是如果当前目录下有
+一个 `.gitignore` 文件，那么这个文件会覆盖父目录下的文件。也就是说，`.gitignore` 文件的优先级是从
+子目录到父目录逐渐降低的。全局忽略文件的优先级最低。
+
 # 巨人的肩膀
 * [10 Practical Examples Using Wildcards to Match Filenames in Linux](https://www.tecmint.com/use-wildcards-to-match-filenames-in-linux/)
 * [fish shell wildcards](https://fishshell.com/docs/current/fish_for_bash_users.html#wildcards-globs)
@@ -295,3 +327,4 @@ END {
 * [Find files and directories on Linux with the find command](https://opensource.com/article/21/9/linux-find-command)
 * [10 ways to use the Linux find command](https://www.redhat.com/sysadmin/linux-find-command)
 * [Find cheatsheet](https://quickref.me/find)<++>
+* [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
