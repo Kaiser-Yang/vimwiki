@@ -89,13 +89,13 @@
 可以通过 `OFS=` (Output Field Separator) 来指定输出的分隔符，例如 `awk '{print $1,$2,$NF}' OFS=","`
 表示使用 `,` 作为分隔符。也可以在 `BEGIN` 模式串中指定 `OFS`，例如 `awk 'BEGIN {OFS=","} {print $1,$2,$NF}'`。
 
-除了 `OFS` 以外，还有 `FS` 用于制定输入文件的分隔符。
+除了 `OFS` 以外，还有 `FS` 用于指定输入文件的分隔符。
 
 ### 预定义变量
 除了之前提到的 `OFS`, `FS` 之外，还有一些预定义变量：
 * `NR`: 当前行的行号
 * `NF`: 当前行的列数
-* `RS`：记录分隔符，默认是换行符，也就是没一行作为一条记录
+* `RS`：记录分隔符，默认是换行符，也就是每一行作为一条记录
 * `ORS`：输出的记录分隔符，默认是换行符
 * `FILENAME`：当前文件的文件名
 * `FNR`：当前文件的行号，当时用多个文件的时候，`NR` 记录的是当前的总行号，而 `FNR` 记录的是当前文件的行号
@@ -234,9 +234,9 @@ END {
 | `-delete`     | 删除查找到的文件或目录 |
 | `-maxdepth`   | 指定查找的最大深度 |
 | `-mindepth`   | 指定查找的最小深度 |
-| `-not`        | 取反。返回不符合条件的文件 |
-| `-and`        | 逻辑与。同时满足两个条件 |
-| `-or`         | 逻辑或。满足其中一个条件即可 |
+| `-and`        | 逻辑与。 |
+| `-or`         | 逻辑或。 |
+| `-not`        | 逻辑非。 |
 | `-P`          | 不跟踪符号链接。默认行为。 |
 | `-L`          | 跟踪符号链接。 |
 | `-H`          | 只对命令行参数进行跟踪。例如 `find -H /path/to/file -name filename` 只对 `/path/to/file` 进行跟踪 |
@@ -326,5 +326,5 @@ END {
 * [Linux Find Cheatsheet](https://linuxtutorials.org/linux-find-cheatsheet/)
 * [Find files and directories on Linux with the find command](https://opensource.com/article/21/9/linux-find-command)
 * [10 ways to use the Linux find command](https://www.redhat.com/sysadmin/linux-find-command)
-* [Find cheatsheet](https://quickref.me/find)<++>
+* [Find cheatsheet](https://quickref.me/find)
 * [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
