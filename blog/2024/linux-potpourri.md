@@ -18,6 +18,34 @@
 `[]` 表示匹配中括号中的任意一个字符，`-` 表示范围，`^` 表示取反。
 
 # 常用命令 `Cheat Sheet`
+## `cat`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-n` | 显示行号 |
+| `-b` | 显示非空行的行号 |
+| `-s` | 合并多个空行为一个空行 |
+| `-v` | 使用 `^` 和 `M-` 显示不可打印字符 |
+| `-E` | 在每行的结尾显示 `$` |
+| `-T` | 将制表符显示为 `^I` |
+| `-A` | 等价于 `-v -E -T` |
+| `-e` | 等价于 `-v -E` |
+| `-t` | 等价于 `-v -T` |
+| `-`  | 从标准输入读取内容 |
+
+使用 `cat` 可以直接创建带有内容的文件或者追加内容到文件中，例如 `cat > file` 会等待输入，当输入完成
+后，使用 `^D` (EOF, end of file) 来结束输入。如果要追加内容到文件中，可以使用 `cat >> file`。
+
+`-` 可以出现在多个文件的任意位置，例如 `cat file1 - file2` 表示将标准输入中读取到的内容放置在
+`file1` 和 `file2` 的内容之间，而 `cat file1 - file2 - file3` 表示将标准输入中读取到的内容放置在
+`file1` 和 `file2` 的内容之间，`file2` 和 `file3` 的内容之间，此时会要求输入两次，第一次输入完成后，
+使用 `^D` 结束，然后输入第二次，再次使用 `^D` 结束，第一次输入的内容会放置在 `file1` 和 `file2` 的内容
+之间，第二次输入的内容会放置在 `file2` 和 `file3` 的内容之间。
+
+补充：`tac` 可以将文件内容逆序输出 (优先输出最后一行)，`tac` 的名字来源于 `cat` 的逆序。
+
+题外话：`cat` 的名字来源于 `concatenate`，即连接的意思，其可以将多个文件的内容拼接在一起。
+
 ## `grep`
 
 | 选项                        | 说明 |
@@ -328,3 +356,4 @@ END {
 * [10 ways to use the Linux find command](https://www.redhat.com/sysadmin/linux-find-command)
 * [Find cheatsheet](https://quickref.me/find)
 * [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
+* [cat command examples for beginners \[cheatsheet\]](https://www.golinuxcloud.com/cat-command-examples/)
