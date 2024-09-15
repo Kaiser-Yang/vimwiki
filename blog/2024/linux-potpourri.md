@@ -61,6 +61,10 @@
 | `-i`                        | 忽略大小写 |
 | `-v`                        | 反向匹配 |
 | `-c`                        | 显示匹配次数。使用 `-v` 时，显示反向匹配的数量 |
+| `-o`                        | 只显示匹配的部分 |
+| `-m`                        | 指定匹配的次数。例如 `-m 1` 表示当有多个匹配的时候只显示第一个匹配。 |
+| `-f`                        | 从文件中读取模式。文件中每行一个模式 |
+| `-e`                        | 指定模式。可以指定多个模式，例如 `grep -e pattern1 -e pattern2` |
 | `-w`                        | 只匹配完整单词。完整单词指的是前后均不是字母、数字或者下划线的部分。 |
 | `-x`                        | 只匹配整行 |
 | `-A 2`                      | 显示匹配行的后两行 |
@@ -69,6 +73,9 @@
 | `-E`                        | 使用扩展正则表达式 |
 | `-F`                        | 使用固定字符串。这个选项会将模式中的特殊字符当作普通字符对待 |
 | `-H`                        | 显示文件名。默认情况下，当只有一个文件时，`grep` 不会显示文件名，而使用 `-H` 可以强制显示文件名 |
+| `-h`                        | 不显示文件名。默认情况下，当有多个文件时，`grep` 会显示文件名，而使用 `-h` 可以强制不显示文件名 |
+
+**注意**：`-m 1` 在有多个文件的时候，每个文件都会显示一个匹配的行，而不是总共只显示一个匹配的行。
 
 **注意**：`grep` 的正则表达式是基于 `POSIX` 的基本正则表达式，而 `egrep` 和 `grep -E` 是基于 `POSIX`
 的扩展正则表达式。`grep` 和 `egrep` 的区别在于 `egrep` 默认使用扩展正则表达式，而 `grep` 默认使用基本
@@ -306,6 +313,33 @@ END {
 也可以使用 `grep` 命令过滤查找到的文件，例如 `find . -name "*.txt" -exec grep "pattern" {} \;` 表示查找
 当前目录下的所有 `txt` 文件并在其中查找 `pattern`。
 
+## `tar`
+
+| 选项          | 说明 |
+| ---           | --- |
+| `-c`          | 创建文档 |
+| `-f`          | 指定文件名 |
+| `-v`          | 显示详细信息 |
+| `-z`          | 使用 `gzip` 压缩或解压 |
+| `-j`          | 使用 `bzip2` 压缩或解压 |
+| `-J`          | 使用 `xz` 压缩或解压 |
+| `-x`          | 提取文档 |
+| `-C`          | 指定提取的目录 |
+| `-t`          | 查看文档内容 |
+| `--wildcards` | 使用 `wildcards` 匹配文件。例如 `tar -xf a.tar --wildcards '*.txt'` 可以提取 `a.tar` 中的所有 `txt` 文件 |
+| `--delete`    | 删除文档中的文件。例如 `tar -f a.tar --delete '*.txt'` 可以删除 `a.tar` 中的所有 `txt` 文件 |
+| `--exclude=`  | 排除文件。例如 `tar -cf a.tar --exclude=*.txt .` 可以创建 `a.tar` 时排除所有 `txt` 文件 |
+| `-r`          | 向文档中追加文件。例如 `tar -rf a.tar b.txt` 可以将 `b.txt` 追加到 `a.tar` 中 |
+| `-A`          | 向文档中追加另一个文档。例如 `tar -Af a.tar b.tar` 可以将 `b.tar` 追加到 `a.tar` 中 |
+| `-W`          | 检验文档。例如 `tar -Wf a.tar` 可以检验 `a.tar` 的完整性 |
+| `-u`          | 更新文档。例如 `tar -uf a.tar b.txt` 可以更新 `a.tar` 中的 `b.txt` 文件 |
+
+**注意**：在使用 `--exclude` 时必须使用 `=` 进行连接，且 `--exclude` 要出现在待打包文件之前。
+`tar -cf a.tar . --exclude=*.txt` 是错误用法。
+
+**注意**：在使用 `-u` 的时候，并不会覆盖旧的文件，而是直接追加新的文件，这样 `tar` 文件中可能会有多个
+同名的文件，目前我并没有找到如何提取旧文件的方法。
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
@@ -341,6 +375,7 @@ END {
 * [10 Practical Examples Using Wildcards to Match Filenames in Linux](https://www.tecmint.com/use-wildcards-to-match-filenames-in-linux/)
 * [fish shell wildcards](https://fishshell.com/docs/current/fish_for_bash_users.html#wildcards-globs)
 * [Linux Tutorial - Cheat Sheet - grep](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php)
+* [20 grep command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/grep-command-in-linux/)
 * [Linux Handbook: sort Command Examples](https://linuxhandbook.com/sort-command/)
 * [15+ Tips to PROPERLY sort files in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/linux-sort-files/#1_Sort_by_name)
 * [Linux and Unix sort command tutorial with examples](https://shapeshed.com/unix-sort/)
@@ -357,3 +392,5 @@ END {
 * [Find cheatsheet](https://quickref.me/find)
 * [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
 * [cat command examples for beginners \[cheatsheet\]](https://www.golinuxcloud.com/cat-command-examples/)
+* [Linux Audit: tar cheat sheet](https://linux-audit.com/cheat-sheets/tar/)
+* [15+ tar command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tar-command-in-linux/)
