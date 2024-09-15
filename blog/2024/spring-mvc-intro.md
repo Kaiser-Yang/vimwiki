@@ -150,6 +150,9 @@ NOTE: 当该注解用于一个 `Map` 类型的参数时，`Spring` 会将所有�
 对象的属性上使用 `@JsonProperty` 注解来指定键值对的键名。也可以使用 `@JsonAlias` 注解来指定多个键名，
 但是这个注解必须要依赖于 `setter` 和 `getter`。
 
+**注意**：在 `Swagger` 中也有一个注解 `@RequestBody`，其作用是指定请求体的格式，这两个注解是不同的。
+在 `import` 的时候要注意引入正确的注解。
+
 # `Controller` 返回数据
 ## `@ResponseBody`
 该注解用于标记一个方法的返回值会放置到 `HTTP` 响应体中，`Spring` 会根据请求头中的 `Accept` 内容自动
