@@ -278,6 +278,8 @@ END {
 | `-print0`     | 使用 `NUL` 作为文件名分隔符 |
 | `-regex`      | 使用正则表达式匹配文件名 |
 | `-iregex`     | 使用忽略大小写的正则表达式匹配文件名 |
+| `-samefile`   | 指定文件的硬链接。例如 `find . -samefile file` 表示查找和 `file` 硬链接的文件 |
+| `-links`      | 指定文件的硬链接数。例如 `find . -links 2` 表示查找硬链接数为 `2` 的文件，`+` 和 `-` 可以用来表示大于和小于 |
 
 `-type` 还可以以下类型有：
 * `b`：块设备文件
@@ -340,6 +342,32 @@ END {
 **注意**：在使用 `-u` 的时候，并不会覆盖旧的文件，而是直接追加新的文件，这样 `tar` 文件中可能会有多个
 同名的文件，目前我并没有找到如何提取旧文件的方法。
 
+## `ln`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-s` | 创建软连接 |
+| `-f` | 强制创建。如果软连接已经存在，会覆盖原有的软连接 |
+| `-t` | 指定连接的目标目录。`ln -t dir target` 与 `ln target dir` 效果相同 |
+
+使用 `ln target link_name` 创建的时候如果 `link_name` 是一个目录，那么会在目录下创建一个名为
+`target` 的文件。
+
+`ln` 默认创建硬连接。
+
+使用 `rm` 和 `unlink` 命令均可以删除软连接或者硬连接。但是 `unlink` 一次只能删除一个文件，而 `rm`
+可以删除多个文件。
+
+### 硬连接与软连接
+`ln` 命令可以创建硬连接和软连接，硬连接是指多个文件指向同一个 `inode`，而软连接是指一个文件指向
+另一个文件。除此之外，硬连接和软连接还有以下区别：
+* 软连接可以指向不同文件系统的文件，而硬连接只能指向同一个文件系统的文件
+* 软连接可以指向目录，而硬连接不能指向目录
+* 源文件被删除的时候，硬连接不会受到影响，而软连接会失效
+
+在 `Linux` 中，可以通过 `ls -l` 命令查看文件的硬连接数 (第二列为硬连接数)，硬连接数为 `1` 表示只有一个文件指向该
+`inode`，而硬连接数大于 `1` 表示有多个文件指向该 `inode`。
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
@@ -394,3 +422,4 @@ END {
 * [cat command examples for beginners \[cheatsheet\]](https://www.golinuxcloud.com/cat-command-examples/)
 * [Linux Audit: tar cheat sheet](https://linux-audit.com/cheat-sheets/tar/)
 * [15+ tar command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tar-command-in-linux/)
+* [10+ practical examples to create symbolic link in Linux](https://www.golinuxcloud.com/create-symbolic-link-linux/)
