@@ -368,6 +368,27 @@ END {
 在 `Linux` 中，可以通过 `ls -l` 命令查看文件的硬连接数 (第二列为硬连接数)，硬连接数为 `1` 表示只有一个文件指向该
 `inode`，而硬连接数大于 `1` 表示有多个文件指向该 `inode`。
 
+## `scp`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-r` | 递归复制。如果复制的是目录，需要使用 `-r` 选项 |
+| `-P` | 指定端口。默认端口是 `22` |
+| `-p` | 保留文件属性 (例如修改时间等)。默认情况下，`scp` 不会保留文件的属性，使用 `-p` 可以保留文件的属性 |
+| `-q` | 静默模式。不显示进度信息 |
+| `-v` | 显示详细信息。可以使用多个 `-v` 来显示更多的信息 |
+| `-C` | 压缩传输。使用 `-C` 可以压缩传输的数据 |
+| `-i` | 指定密钥文件。默认情况下，`scp` 使用 `~/.ssh/id_rsa` 作为密钥文件 |
+| `-l` | 限制带宽。单位是 `Kb/s` |
+| `-3` | 通过本机在两个远端之间传输文件 |
+| `-4` | 强制使用 `IPv4` |
+| `-6` | 强制使用 `IPv6` |
+
+使用 `scp` 的时候，如果在 `~/.ssh/config` 中配置了主机信息，可以直接使用主机名进行传输，例如
+`scp file host_name:/path/to/file`。
+
+`scp` 可以一次拷贝多个文件，例如 `scp file1 file2 host_name:/path/to/`。
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
@@ -423,3 +444,4 @@ END {
 * [Linux Audit: tar cheat sheet](https://linux-audit.com/cheat-sheets/tar/)
 * [15+ tar command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tar-command-in-linux/)
 * [10+ practical examples to create symbolic link in Linux](https://www.golinuxcloud.com/create-symbolic-link-linux/)
+* [15+ scp command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/scp-command-in-linux/)
