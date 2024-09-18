@@ -411,6 +411,16 @@ END {
 * `8`：系统管理命令
 * `9`：内核相关
 
+## `tee`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-a` | 追加到文件。默认情况下，`tee` 会覆盖文件内容，使用 `-a` 可以追加到文件末尾 |
+| `-i` | 忽略中断信号 |
+
+管道在进行传递的时候可能会遇到需要 `root` 权限的时候，这时候就需要使用 `sudo tee` 从管道中读取信息
+并写入到文件中。例如 `echo "content" | sudo tee file`。
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
@@ -468,3 +478,4 @@ END {
 * [10+ practical examples to create symbolic link in Linux](https://www.golinuxcloud.com/create-symbolic-link-linux/)
 * [15+ scp command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/scp-command-in-linux/)
 * [apropos Linux Command Explained](https://phoenixnap.com/kb/apropos-linux)
+* [10 tee command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tee-command-in-linux/)
