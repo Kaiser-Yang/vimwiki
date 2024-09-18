@@ -389,6 +389,28 @@ END {
 
 `scp` 可以一次拷贝多个文件，例如 `scp file1 file2 host_name:/path/to/`。
 
+## `apropos`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-a` | 逻辑与。可用于匹配多个关键字，例如 `apropos -a keyword1 keyword2` |
+| `-e` | 精确匹配 |
+| `-w` | 匹配带有 `Shell` 支持的通配符 |
+| `-r` | 使用正则表达式匹配 |
+| `-l` | 不依照终端宽度进行裁剪 |
+| `-s` | 指定 `man` 手册的节。例如 `apropos -s 3 keyword` 表示查找第 `3` 节的手册 |
+
+`man` 手册的节有以下几个：
+* `1`：命令或程序
+* `2`：系统调用
+* `3`：库函数
+* `4`：特殊文件
+* `5`：文件格式和约定
+* `6`：游戏
+* `7`：杂项
+* `8`：系统管理命令
+* `9`：内核相关
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
@@ -445,3 +467,4 @@ END {
 * [15+ tar command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tar-command-in-linux/)
 * [10+ practical examples to create symbolic link in Linux](https://www.golinuxcloud.com/create-symbolic-link-linux/)
 * [15+ scp command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/scp-command-in-linux/)
+* [apropos Linux Command Explained](https://phoenixnap.com/kb/apropos-linux)
