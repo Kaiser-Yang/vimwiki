@@ -609,3 +609,77 @@ public enum ErrorCodeEnum {
 在 `dev` 中，我们允许所有的请求，而在 `prod` 中，我们只允许前端发送的 `GET`、`POST` 以及 `DELETE`
 请求。除此之外，我们添加了测试类对 `pord` 环境中的跨与配置进行了测试。
 
+# Add function to get user info by name
+`pr` 链接：[gcs-pull-41](https://github.com/CMIPT/gcs-back-end/pull/41)
+
+在这个提交中，我们增加了一个可以通过用户名获取用户完整信息的 `API`。
+
+除此之外，我们将 `Token` 相关的字段全部放入到请求头和相应头中进行返回，而不是在 `body` 中返回。
+
+# Add function for checking the info validity
+`pr` 链接：[gcs-pull-42](https://github.com/CMIPT/gcs-back-end/pull/42)
+
+这个提交中，我们增加了用于检查邮箱和用户名合理性的 `API`。这几个 `API` 主要是在用户注册的时候使用，
+用于检查用户输入的邮箱和用户名是否合理。在校验部分，我们通过 `Spring Validation` 对路径变量和请求
+参数进行了校验，详细的方法可以查看
+[`Spring Validation` 路径变量与请求参数校验](/blog/2024/spring-validation-path-variable-and-request-param)
+
+# Add an api for updating user information
+`pr` 链接：[gcs-pull-43](https://github.com/CMIPT/gcs-back-end/pull/43)
+
+在本次的提交中，我们不仅增加了更新用户信息的 `API` 还增加了更多对用户信息的校验：例如通过 `@Pattern`
+注解校验用户名和密码的组成字符等。除此之外我们去除了 `Token` 的请求头，而是通过 `Access-Token` 和
+`Refresh-Token` 进行更好的区分。
+
+在更新用户信息的部分，如果涉及用户密码的更改，我们会将之前的 `Token` 全部通过加入黑名单的方式使其
+失效并在响应头中添加新的 `Token`。这也意味着在用户更新的时候必须携带 `Access-Token` 和
+`Refresh-Token`。不过黑名单这部分的内容目前并没有实现 (只是有一个 `stub`)。
+
+对于权限验证部分，我们在 `JwtFilter` 中增加了对更新部分的检验：我们只允许用户对 `id` 与
+`Access-Token` 中 `id` 相同的用户进行更改。
+
+在本次修改的时候我们发现了 `Long` 精度丢失的问题，详细的内容可以查看：
+[`Long` 在 `Swagger` 中精度丢失](/blog/2024/long-precision-lost-in-swagger)
+
+在本次修改的时候我们发现了 `request` 中的 `body` 无法被多次读取，详细的内容可以查看：
+[`Spring` 多次读取请求体](/blog/2024/spring-read-request-body-multiple-times)
+
+# Add an api for deleting user by id
+`pr` 链接：[gcs-pull-45](https://github.com/CMIPT/gcs-back-end/pull/45)
+
+本次提交增加删除用户的 `API`。在删除用户的时候，我们会将用户的 `Token` 加入到黑名单中，使其失效。
+
+在权限验证部分，我们只允许用户删除自己的账户，即只有 `id` 与 `Access-Token` 中的 `id` 相同的用户
+才能删除自己的账户。
+
+# Add an api for getting the repository list by user id
+`pr` 链接：[gcs-pull-47](https://github.com/CMIPT/gcs-back-end/pull/47)
+
+在本次提交中，我们增加了一个通过用户 `id` 获取用户的仓库列表的 `API`。这是一个分页查询，
+在这个 `API` 中，我们通过 `@RequestParam` 获取用户的 `id`，页数和每页的数量。这部分我们使用了
+`stream` 将 `UserPO` 对象转换成 `UserVO` 对象：
+
+
+```java
+@GetMapping(ApiPathConstant.USER_PAGE_USER_REPOSITORY_API_PATH)
+public List<RepositoryVO> pageUserRepositories(
+        @RequestParam("id") Long userId,
+        @RequestParam("page") Integer page,
+        @RequestParam("size") Integer size,
+        @RequestHeader(HeaderParameter.ACCESS_TOKEN) String accessToken) {
+    QueryWrapper<RepositoryPO> wrapper = new QueryWrapper<RepositoryPO>();
+    String idInToken = JwtUtil.getID(accessToken);
+    assert idInToken != null;
+    if (!idInToken.equals(userId.toString())) {
+        // the user only can see the public repositories of others
+        wrapper.eq("is_private", false);
+    }
+    wrapper.eq("user_id", userId);
+    return repositoryService.page(new Page<>(page, size), wrapper).getRecords().stream()
+            .map(RepositoryVO::new)
+            .collect(Collectors.toList());
+}
+```
+
+在权限验证部分，当查询他人的仓库时，我们只允许用户查看公开的仓库，而不允许查看私有的仓库。
+
