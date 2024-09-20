@@ -16,6 +16,7 @@
 * [`Spring Validation` 路径变量与请求参数校验](/blog/2024/spring-validation-path-variable-and-request-param)
 * [`Long` 在 `Swagger` 中精度丢失](/blog/2024/long-precision-lost-in-swagger)
 * [`Spring` 多次读取请求体](/blog/2024/spring-read-request-body-multiple-times)
+* [`Spring Boot Test` 自定义测试类顺序](/blog/2024/spring-boot-test-custom-test-class-order))
 
 # 项目开发进展
 - [ ] [后端v0.1.0开发实录](/blog/2024/gcs-back-end-v0.1.0)
