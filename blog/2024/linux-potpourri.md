@@ -421,6 +421,55 @@ END {
 管道在进行传递的时候可能会遇到需要 `root` 权限的时候，这时候就需要使用 `sudo tee` 从管道中读取信息
 并写入到文件中。例如 `echo "content" | sudo tee file`。
 
+## `sudo`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-l` | 列出用户可以执行的命令。可以使用 `sudo -l command` 来检查是否可以执行某个命令 |
+| `-U` | 与 `-l` 一同使用，指定列出的用户而不是执行 `sudo` 的用户 |
+| `-u` | 指定用户执行命令。例如 `sudo -u user command` 表示以 `user` 用户的身份执行 `command` |
+| `-g` | 指定用户组。例如 `sudo -g group command` 表示以 `group` 用户组的身份执行 `command` |
+| `-s` | 指定 `shell`。默认情况下，`sudo` 会使用 `root` 用户的 `shell`，使用 `-s` 可以指定其他的 `shell` |
+| `-k` | 使 `sudo` 忘记密码。默认情况下，`sudo` 会记住密码一段时间，使用 `-k` 可以使 `sudo` 忘记密码 |
+| `-v` | 更新记住密码时间的时间戳为当前时刻 |
+
+### `/etc/sudoers`
+`/etc/sudoers` 文件用于配置 `sudo` 的权限，只有拥有 `root` 权限的用户可以修改这个文件。
+`/etc/sudoers` 文件的格式如下：
+
+```
+# 配置某个用户
+user host=(runas[:runasgroup]) [NOPASSWD:] command
+# 配置某个组下的所有用户
+%group host=(runas[:runasgroup]) [NOPASSWD:] command
+# 引入目录中的所有文件
+@includedir dirname
+```
+
+对于上述的规则，方括号中代表可选项，这里给出几个实例：
+* `user ALL=(ALL) ALL`：允许 `user` 用户在任何主机上以任何用户的身份执行任何命令
+* `%group ALL=(ALL) NOPASSWD: ALL`：允许 `group` 组下的所有用户在任何主机上以任何用户的身份执行任何
+命令，且不需要输入密码
+* `@includedir /etc/sudoers.d` 表示引入 `/etc/sudoers.d` 目录下的所有文件，这是默认添加的配置，这
+意味着我们对于其他用户的配置可以放在 `/etc/sudoers.d` 目录下，并以用户名命名文件方便管理。
+
+**注意**：在 `@includedir` 目录下的文件不能以 `~` 结尾并且不能含有 `.`。这是在
+`/etc/sudoers.d/README` 中明确指出的：
+> This will cause `sudo` to read and parse any files in the `/etc/sudoers.d` directory that do not
+end in `~` or contain a `.` character.
+
+## `visudo`
+
+推荐使用 `visudo` 对 `/etc/sudoers` 文件进行修改 (即通过命令 `sudo visudo`)，`visudo` 会检查语法
+错误并在保存之前进行检查。
+
+`visudo` 还有一些选项：
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-c` | 检查语法错误。例如 `sudo visudo -c` 表示检查 `/etc/sudoers` 文件的语法错误 |
+| `-f` | 指定文件。例如 `sudo visudo -f /path/to/file` 表示编辑 `/path/to/file` 文件 |
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
@@ -479,3 +528,5 @@ END {
 * [15+ scp command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/scp-command-in-linux/)
 * [apropos Linux Command Explained](https://phoenixnap.com/kb/apropos-linux)
 * [10 tee command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tee-command-in-linux/)
+* [How To Use ‘sudo’: The Complete Linux Command Guide](https://raspberrytips.com/sudo-linux-command/)
+* [Linux visudo command](https://www.computerhope.com/unix/visudo.htm)
