@@ -17,6 +17,7 @@
 * [`Long` 在 `Swagger` 中精度丢失](/blog/2024/long-precision-lost-in-swagger)
 * [`Spring` 多次读取请求体](/blog/2024/spring-read-request-body-multiple-times)
 * [`Spring Boot Test` 自定义测试类顺序](/blog/2024/spring-boot-test-custom-test-class-order)
+* [服务器上创建 `git` 远程仓库](/blog/2024/create-git-remote-repository-on-server)
 
 # 项目开发进展
 - [ ] [后端v0.1.0开发实录](/blog/2024/gcs-back-end-v0.1.0)
