@@ -479,6 +479,8 @@ user host=(runas[:runasgroup]) [NOPASSWD:] command
 > This will cause `sudo` to read and parse any files in the `/etc/sudoers.d` directory that do not
 end in `~` or contain a `.` character.
 
+**注意**：如果要配置多条命令应该使用 `,` 作为分隔符。
+
 ## `visudo`
 
 推荐使用 `visudo` 对 `/etc/sudoers` 文件进行修改 (即通过命令 `sudo visudo`)，`visudo` 会检查语法
@@ -551,3 +553,4 @@ end in `~` or contain a `.` character.
 * [10 tee command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tee-command-in-linux/)
 * [How To Use ‘sudo’: The Complete Linux Command Guide](https://raspberrytips.com/sudo-linux-command/)
 * [Linux visudo command](https://www.computerhope.com/unix/visudo.htm)
+* [15 usermod command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/usermod-command-in-linux/)
