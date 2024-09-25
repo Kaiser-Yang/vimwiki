@@ -94,6 +94,18 @@ sudo chsh -s $(which git-shell) git
 
 设置完成后，`git` 用户将不能登录到服务器，只能通过 `git` 命令来操作仓库。
 
+# 禁止转发
+即使 `git` 用户目前不能登录，但是其依然可以执行一些端口转发的操作，我们可以通过在
+`~/.ssh/authorized_keys` 对想要禁止的公钥添加
+`no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty` 来禁止转发。
+
+例如，对第一行的公钥进行禁止转发：
+
+```bash
+# 在第一行的前面添加后，内容可能如下：
+no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa AAAAAA...
+```
+
 # 配置快速连接
 通常租用的服务器只有一个 `ip` 地址，没有相应的域名解析，不过我们可以通过 `~/.ssh/config` 文件来配置
 快速连接。
