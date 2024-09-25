@@ -459,6 +459,7 @@ END {
 `/etc/sudoers` 文件的格式如下：
 
 ```
+```bash
 # 配置某个用户
 user host=(runas[:runasgroup]) [NOPASSWD:] command
 # 配置某个组下的所有用户
