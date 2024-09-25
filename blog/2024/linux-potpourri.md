@@ -493,6 +493,57 @@ end in `~` or contain a `.` character.
 | `-c` | 检查语法错误。例如 `sudo visudo -c` 表示检查 `/etc/sudoers` 文件的语法错误 |
 | `-f` | 指定文件。例如 `sudo visudo -f /path/to/file` 表示编辑 `/path/to/file` 文件 |
 
+## `mount`
+
+| 选项       | 说明 |
+| ---        | --- |
+| `-a`       | 挂载所有在 `/etc/fstab` 中配置的文件系统 |
+| `-t`       | 指定文件系统类型。例如 `mount -t ext4 /dev/sda1 /mnt` 表示将 `/dev/sda1` 挂载到 `/mnt` 目录上，并且文件系统类型是 `ext4` |
+| `-o`       | 指定挂载选项。例如 `mount -o ro /dev/sda1 /mnt` 表示将 `/dev/sda1` 以只读模式挂载到 `/mnt` 目录上 |
+| `-r`       | 以只读模式挂载。等价于 `-o ro` |
+| `-w`       | 以读写模式挂载。等价于 `-o rw` |
+| `--move`   | 移动挂载点。例如 `mount --move /mnt /mnt2` 表示将 `/mnt` 移动到 `/mnt2` 上 |
+| `--fake`   | 模拟挂载。例如 `mount --fake /mnt` 表示模拟挂载 `/mnt` 目录上的文件系统，但是不会真正挂载 |
+
+常见的文件系统类型：
+* `ext4`：`Linux` 文件系统
+* `ntfs`：`Windows` 文件系统, 使用 `mount -t ntfs-3g` 进行挂载
+* `FAT32`：`FAT32` 文件系统，使用 `mount -t vfat` 进行挂载
+* `exFAT`：需要安装 `exfat-fuse` 和 `exfat-utils` 包，使用 `mount -t exfat` 进行挂载
+* `ISO`：`ISO` 文件系统，使用 `mount -t iso9660` 进行挂载
+* `nfs`：网络文件系统，使用 `mount -t nfs -o vers=num` 可以指定版本
+
+**注意**：直接使用 `mount` 可以列出所有已经挂载的文件系统。也可以使用 `mount -t type` 来列出指定类型
+的文件系统。
+
+### 获取设备的文件系统类型及 `UUID`
+可以使用 `blkid` 命令来获取设备的文件系统类型及 `UUID`，例如 `blkid /dev/sda1`。
+
+### `fstab`
+直接通过 `mount` 命令挂载的文件系统在系统重启后会失效，为了让文件系统在系统重启后自动挂载，我们可以
+将文件系统的信息写入 `/etc/fstab` 文件中。`/etc/fstab` 文件的格式如下：
+
+```
+# device <mount point>   <type>  <options>     <dump>  <pass>
+/dev/sda1       /mnt        ext4    defaults       0       2
+```
+
+其中各个字段的含义如下：
+* `<device>`：设备文件
+* `<mount point>`：挂载点
+* `<type>`：文件系统类型
+* `<options>`：挂载选项，多个选项通过 `,` 进行分隔
+* `<dump>`：备份标志。`0` 表示不备份，`1` 表示备份 (需要 `dump` 工具，通常设置为 `0`)
+* `<pass>`：文件系统检查顺序。`0` 表示不检查，`1` 表示第一个检查，`2` 表示第二个检查 (根文件系统通常
+设置为 `1`，其他文件系统设置为 `2`)
+
+## `umount`
+`umount` 用于卸载文件系统，使用方式为 `umount <mount point>`，例如 `umount /mnt`。
+
+**注意**：卸载文件系统的时候，如果文件系统正在被使用，会提示 `device is busy`，这时候可以使用
+`lsof <mount point>` 来查看哪些进程在使用这个文件系统，然后选择是否通过 `kill` 命令杀死这些进程。也
+可以使用 `umount -l <mount point>` 在空闲时自动卸载。
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
