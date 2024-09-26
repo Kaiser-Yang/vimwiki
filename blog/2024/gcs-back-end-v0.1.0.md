@@ -733,3 +733,18 @@ TODO:
 TODO:
 - [ ] 修改 `E-R` 图
 
+# Finish delete and update repo, and delete user
+`pr` 链接：[gcs-pull-53](https://github.com/CMIPT/gcs-back-end/pull/53)
+
+在这 `pr` 中，我们完成了以下功能：
+* 删除仓库
+* 更新仓库
+* 完善删除用户 (删除用户创建的 `ssh-key`)
+
+对于删除仓库功能，我们会删除仓库的 `git` 文件夹。
+
+对于更新仓库，目前不支持更新仓库的名称。
+
+删除用户部分，我们会同时删除用户创建的 `ssh-key`。
+
+除此之外，我们将所有需要查询数据库才能完成鉴权的操作都放到了 `controller` 层。
