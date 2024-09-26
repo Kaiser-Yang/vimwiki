@@ -683,3 +683,34 @@ public List<RepositoryVO> pageUserRepositories(
 
 在权限验证部分，当查询他人的仓库时，我们只允许用户查看公开的仓库，而不允许查看私有的仓库。
 
+# Finish the api for creating repository
+`pr` 链接：[gcs-pull-49](https://github.com/CMIPT/gcs-back-end/pull/49)
+
+在本次的提交中，我们完成了创建仓库的 `API`。为了实现该 `API`，我们使用
+`sudo -u git git init --bare <dir>` 命令来实现以 `git` 用户的身份创建仓库。
+
+除此之外，现在的额外配置会直接追加到 `application.yml` 文件中，而不是进行覆盖写。因为我们发现后续的
+相同配置会覆盖之前的配置，因此我们没有必要先删除之前的配置再添加新的配置，直接追加即可。
+
+在 `Mybatis-Plus` 中有 `list` 接口可以支持分页，因此我们在分页部分使用 `list` 而不再是 `page` 获取后
+通过 `getRecords()` 转换成 `List`：
+
+```java
+// ...
+public List<RepositoryVO> pageUserRepository(...) {
+    // ...
+    return repositoryService.list(new Page<>(page, size), wrapper).stream()
+            .map(RepositoryVO::new)
+            .collect(Collectors.toList());
+}
+```
+
+在本次提交中，我们完成了自定义测试类的执行顺序，可以查看
+[`Spring Boot Test` 自定义测试类顺序](/blog/2024/spring-boot-test-custom-test-class-order) 以获取
+更多信息。
+
+TODO:
+- [ ] 完成仓库 `url` 的生成
+    - [ ] `ssh`
+    - [ ] `https`
+- [x] 创建仓库部分应启用事务管理
