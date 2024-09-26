@@ -442,6 +442,23 @@ END {
 
 **注意**：创建出来的用户默认是不会过期的。如果设置了过期时间后，可以通过 `chmod -e ""` 来取消。
 
+## `su`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-l` | 以登录状态切换用户 |
+| `-c` | 执行命令。例如 `su -c command user` 表示以 `user` 用户的身份执行 `command` |
+| `-s` | 指定 `shell`。例如 `su -s /bin/bash user` 表示以 `user` 用户的身份使用 `bash` `shell` |
+| `-p` | 保留 `HOME`, `SHELL`, `USER`, `LOGNAME` 环境变量 |
+
+**注意**：使用 `su` 切换用户时，如果不指定用户，会默认切换到 `root` 用户。
+
+**注意**：如果不使用 `-l` 选项，`su` 不会切换用户的环境变量，而使用 `-l` 的时候，以下会被依次执行：
+> * clears all the environment variables except `TERM` and variables specified by `--whitelist-environment`
+> * initializes the environment variables `HOME`, `SHELL`, `USER`, `LOGNAME`, and `PATH`
+> * changes to the target user’s home directory
+> * sets `argv[0]` of the shell to `-` in order to make the shell a login shell
+
 ## `sudo`
 
 | 选项 | 说明 |
@@ -458,7 +475,6 @@ END {
 `/etc/sudoers` 文件用于配置 `sudo` 的权限，只有拥有 `root` 权限的用户可以修改这个文件。
 `/etc/sudoers` 文件的格式如下：
 
-```
 ```bash
 # 配置某个用户
 user host=(runas[:runasgroup]) [NOPASSWD:] command
@@ -606,3 +622,6 @@ end in `~` or contain a `.` character.
 * [How To Use ‘sudo’: The Complete Linux Command Guide](https://raspberrytips.com/sudo-linux-command/)
 * [Linux visudo command](https://www.computerhope.com/unix/visudo.htm)
 * [15 usermod command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/usermod-command-in-linux/)
+* [Linux mount command to access filesystems, iso image, usb, network drives](https://www.golinuxcloud.com/linux-mount-command-iso-usb-network-drive/)
+* [The “mount” Command in Linux \[15 Practical Examples\]](https://linuxsimply.com/mount-command-in-linux/)
+* [9 su command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/su-command-in-linux/)
