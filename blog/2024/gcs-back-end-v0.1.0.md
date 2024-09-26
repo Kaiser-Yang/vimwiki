@@ -714,3 +714,22 @@ TODO:
     - [ ] `ssh`
     - [ ] `https`
 - [x] 创建仓库部分应启用事务管理
+
+# Finish the APIs related with ssh-key
+`pr` 链接：[gcs-pull-51](https://github.com/CMIPT/gcs-back-end/pull/51)
+
+这个 `pr` 实现了 `ssh` 相关的功能：
+* 创建 `ssh-key`
+* 获取 `ssh-key` (分页获取)
+* 删除 `ssh-key`
+* 更新 `ssh-key`
+
+我们为 `ssh` 专门创建了一张 `t_ssh_key` 表用于管理 `ssh-key`。
+
+在这次提交中，我们开启了事务支持，对所有需要额外操作文件系统的操作进行了事务管理 (例如创建仓库)。
+
+我们将 `git` 相关的一些常量移动到了 `GitConstant` 类中，这样能够更好地管理这些常量。
+
+TODO:
+- [ ] 修改 `E-R` 图
+
