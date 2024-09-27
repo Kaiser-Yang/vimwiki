@@ -368,6 +368,31 @@ END {
 在 `Linux` 中，可以通过 `ls -l` 命令查看文件的硬连接数 (第二列为硬连接数)，硬连接数为 `1` 表示只有一个文件指向该
 `inode`，而硬连接数大于 `1` 表示有多个文件指向该 `inode`。
 
+## `ssh`
+`ssh` 分为 `client` 和 `server` 两部分，`client` 用于连接远程主机，`server` 用于接收远程主机的连接。
+`openssh-client` 和 `openssh-server` 是 `ssh` 的两个主要组件。
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-p` | 指定端口。默认端口是 `22` |
+| `-i` | 指定密钥文件。默认情况下，`ssh` 使用 `~/.ssh/id_rsa` 作为密钥文件 |
+| `-l` | 指定用户名。默认情况下，`ssh` 使用当前用户名作为登录用户名 |
+| `-q` | 静默模式。不显示进度信息 |
+| `-t` | 强制分配终端。默认情况下，`ssh` 会根据是否有终端来决定是否分配终端 |
+| `-v` | 显示详细信息。可以使用多个 `v` 来显示更多的信息 |
+| `-C` | 压缩传输。使用 `-C` 可以压缩传输的数据 |
+| `-X` | 启用 `X11` 受限转发。可以在本地显式远程主机的 `X11` 程序 |
+| `-Y` | 启用 `X11` 信赖转发 |
+| `-f` | 后台运行。 |
+| `-N` | 不执行远程命令。通常在端口转发时使用 |
+| `-L` | 本地端口转发 |
+| `-R` | 远程端口转发 |
+| `-D` | 动态端口转发 |
+
+**注意**：对于 `-l` 选项，也可以不使用 `-l` 而是使用 `user@host` 的形式来指定用户名。
+
+**注意**：关于端口转发可以查看 [`ssh` 端口转发简介](/blog/2024/ssh-port-forwarding)。
+
 ## `scp`
 
 | 选项 | 说明 |
@@ -596,32 +621,33 @@ end in `~` or contain a `.` character.
 * [10 Practical Examples Using Wildcards to Match Filenames in Linux](https://www.tecmint.com/use-wildcards-to-match-filenames-in-linux/)
 * [fish shell wildcards](https://fishshell.com/docs/current/fish_for_bash_users.html#wildcards-globs)
 * [Linux Tutorial - Cheat Sheet - grep](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php)
-* [20 grep command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/grep-command-in-linux/)
+* [20 grep command examples in Linux](https://www.golinuxcloud.com/grep-command-in-linux/)
 * [Linux Handbook: sort Command Examples](https://linuxhandbook.com/sort-command/)
-* [15+ Tips to PROPERLY sort files in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/linux-sort-files/#1_Sort_by_name)
+* [15+ Tips to PROPERLY sort files in Linux](https://www.golinuxcloud.com/linux-sort-files/#1_Sort_by_name)
 * [Linux and Unix sort command tutorial with examples](https://shapeshed.com/unix-sort/)
 * [Linux sort Command](https://www.baeldung.com/linux/sort-command)
 * [How to Use the awk Command on Linux](https://www.howtogeek.com/562941/how-to-use-the-awk-command-on-linux/)
 * [30+ awk examples for beginners / awk command tutorial in Linux/Unix](https://www.golinuxcloud.com/awk-examples-with-command-tutorial-unix-linux/)
 * [8 Powerful Awk Built-in Variables – FS, OFS, RS, ORS, NR, NF, FILENAME, FNR](https://www.thegeekstuff.com/2010/01/8-powerful-awk-built-in-variables-fs-ofs-rs-ors-nr-nf-filename-fnr/)
-* [Getting Started With AWK Command \[Beginner's Guide\]](https://linuxhandbook.com/awk-command-tutorial/)
-* [25+ most used find commands in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/find-command-in-linux/)
+* [Getting Started With AWK Command](https://linuxhandbook.com/awk-command-tutorial/)
+* [25+ most used find commands in Linux](https://www.golinuxcloud.com/find-command-in-linux/)
 * [find Linux Command Cheatsheet](https://onecompiler.com/cheatsheets/find)
 * [Linux Find Cheatsheet](https://linuxtutorials.org/linux-find-cheatsheet/)
 * [Find files and directories on Linux with the find command](https://opensource.com/article/21/9/linux-find-command)
 * [10 ways to use the Linux find command](https://www.redhat.com/sysadmin/linux-find-command)
 * [Find cheatsheet](https://quickref.me/find)
 * [Ignoring files](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files)
-* [cat command examples for beginners \[cheatsheet\]](https://www.golinuxcloud.com/cat-command-examples/)
+* [cat command examples for beginners](https://www.golinuxcloud.com/cat-command-examples/)
 * [Linux Audit: tar cheat sheet](https://linux-audit.com/cheat-sheets/tar/)
-* [15+ tar command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tar-command-in-linux/)
+* [15+ tar command examples in Linux](https://www.golinuxcloud.com/tar-command-in-linux/)
 * [10+ practical examples to create symbolic link in Linux](https://www.golinuxcloud.com/create-symbolic-link-linux/)
-* [15+ scp command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/scp-command-in-linux/)
+* [15+ scp command examples in Linux](https://www.golinuxcloud.com/scp-command-in-linux/)
 * [apropos Linux Command Explained](https://phoenixnap.com/kb/apropos-linux)
-* [10 tee command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/tee-command-in-linux/)
+* [10 tee command examples in Linux](https://www.golinuxcloud.com/tee-command-in-linux/)
 * [How To Use ‘sudo’: The Complete Linux Command Guide](https://raspberrytips.com/sudo-linux-command/)
 * [Linux visudo command](https://www.computerhope.com/unix/visudo.htm)
-* [15 usermod command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/usermod-command-in-linux/)
+* [15 usermod command examples in Linux](https://www.golinuxcloud.com/usermod-command-in-linux/)
 * [Linux mount command to access filesystems, iso image, usb, network drives](https://www.golinuxcloud.com/linux-mount-command-iso-usb-network-drive/)
-* [The “mount” Command in Linux \[15 Practical Examples\]](https://linuxsimply.com/mount-command-in-linux/)
-* [9 su command examples in Linux \[Cheat Sheet\]](https://www.golinuxcloud.com/su-command-in-linux/)
+* [The “mount” Command in Linux](https://linuxsimply.com/mount-command-in-linux/)
+* [9 su command examples in Linux](https://www.golinuxcloud.com/su-command-in-linux/)
+* [15+ SSH command examples in Linux](https://www.golinuxcloud.com/ssh-command-in-linux/)

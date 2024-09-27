@@ -186,6 +186,7 @@ vim.api.nvim_create_autocmd('FileType', {
                 if entry ~= nil then
                     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<f30>', true, true, true),
                         'm', false)
+                    return
                 end
                 entry = cmp.core.view:get_first_entry()
                 if is_rime_entry(entry) then
