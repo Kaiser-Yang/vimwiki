@@ -586,6 +586,43 @@ end in `~` or contain a `.` character.
 `lsof <mount point>` 来查看哪些进程在使用这个文件系统，然后选择是否通过 `kill` 命令杀死这些进程。也
 可以使用 `umount -l <mount point>` 在空闲时自动卸载。
 
+## `lsof`
+`lsof` 是 `list open files` 的缩写，用于列出系统中打开的文件。`lsof` 的输出包含如下几项：
+* `COMMAND`：打开文件所使用的命令
+* `PID`：进程 `ID`
+* `USER`：进程的用户
+* `FD`：文件描述符
+* `TYPE`：文件类型，常见的有 `REG`、`DIR`、`CHR`、`FIFO`、`SOCK`、`LINK`，分别代表普通文件、目录、
+字符设备、管道、套接字、符号链接。
+* `DEVICE`：设备
+* `SIZE/OFF`：文件大小或者偏移量
+* `NODE`：`inode` 号
+* `NAME`：打开的文件名
+
+`lsof` 的可用选项如下：
+| 选项 | 说明 |
+| ---  | --- |
+| `-u` | 指定用户 |
+| `-c` | 指定命令开头 |
+| `-b` | 避免获取结果时调用可能会阻塞的内核函数。可以提升执行效率，但是可能会导致结果不完整 |
+| `+D` | 指定目录。例如 `lsof +D /path/to/dir` 表示递归查看 `/path/to/dir` 目录下的打开文件 |
+| `-i` | 查看网络连接 |
+| `-n` | 禁止显示域名，域名全部显示为 `IP` 地址 |
+| `-P` | 禁止将端口号转换为服务名 |
+| `-p` | 指定进程 `ID` |
+| `-U` | 列出 `UNIX` 域套接字。`TYPE` 为 `unix` 的文件 |
+| `-R` | 同时列出 `PPID` ( 父进程 `ID` ) |
+| `-l` | 显示用户的 `ID` 而不是用户名字 |
+| `-t` | 只输出打开文件的进程 `ID` |
+| `-a` | 逻辑与。例如 `lsof -u user -a -c command` 表示查找用户为 `user` 且命令开头为 `command` 的进程 |
+| `-d` | 指定文件描述符。例如 `lsof -d 1` 表示查找文件描述符为 `1` 的文件 |
+
+**注意**：使用某些选项时可以使用 `^` 来表示排除某个用户，例如 `lsof -u ^root` 表示排除 `root` 用户。
+
+**注意**：`-i` 的完整格式为 `-i[46][protocol][@hostname|@hostaddr][:service|:port]`，其中 `protocol` 可以
+是 `TCP`、`UDP`、`TCP:UDP`，`hostname` 可以是主机名、`IPv4` 地址、`IPv6` 地址，`service` 可以是服务名、
+端口号。
+
 # `git`
 ## `.gitignore`
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
@@ -651,3 +688,4 @@ end in `~` or contain a `.` character.
 * [The “mount” Command in Linux](https://linuxsimply.com/mount-command-in-linux/)
 * [9 su command examples in Linux](https://www.golinuxcloud.com/su-command-in-linux/)
 * [15+ SSH command examples in Linux](https://www.golinuxcloud.com/ssh-command-in-linux/)
+* [15+ lsof command examples in Linux](https://www.golinuxcloud.com/lsof-command-in-linux/)
