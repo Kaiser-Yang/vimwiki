@@ -51,7 +51,7 @@
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241014194759.png){: .img-fluid}
 
 ## 2024-10-15
-今日训练目标：$4 \times 3km$，配速 `5:20`。
+今日训练目标：$$ 4 \times 3km $$，配速 `5:20`。
 
 是否达标：是。
 
@@ -70,3 +70,12 @@
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241015184529.png){: .img-fluid}
 
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241015184612.png){: .img-fluid}
+
+## 2024-10-16
+今日训练目标：十公里慢跑，配速 `6:00`。
+
+是否达标：是。
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/7bba47a3205ef6e174ffe7a334c5c8be.jpeg){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241016201810.png){: .img-fluid}
