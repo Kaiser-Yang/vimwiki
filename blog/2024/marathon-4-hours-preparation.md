@@ -88,3 +88,12 @@
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241017200419.png){: .img-fluid}
 
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241017200454.png){: .img-fluid}
+
+## 2024-10-18
+今日训练目标：十公里慢跑，配速 `6:00`。
+
+是否达标：是。
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/fd64d6f42601dc86046fc677503e9ae7.jpeg){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241019145632.png){: .img-fluid}
