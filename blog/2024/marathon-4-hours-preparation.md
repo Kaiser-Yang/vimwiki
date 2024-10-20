@@ -101,6 +101,17 @@
 ## 2024-10-19
 今日训练目标：六公里节奏跑，配速 `5:40`。
 
+是否达标：是。
+
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/2cb4801f343a880dcb171f4de1dcf1c7.jpeg){: .img-fluid}
 
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241019160224.png){: .img-fluid}
+
+## 2024-10-20
+今日训练目标：半马，配速 `5:40`。
+
+是否达标：是。
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/Screenshot_2024-10-20-17-10-50-88.jpg){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241020191518.png){: .img-fluid}
