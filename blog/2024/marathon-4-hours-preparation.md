@@ -115,3 +115,23 @@
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/Screenshot_2024-10-20-17-10-50-88.jpg){: .img-fluid}
 
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241020191518.png){: .img-fluid}
+
+## 2024-10-21
+今日训练目标：六公里慢跑，配速 `6:00`。
+
+是否达标：是。
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/c8303d05a521b80d1884bd80e75333c4.jpeg){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241022185405.png){: .img-fluid}
+
+## 2024-10-22
+今日训练目标：一公里热身，$$ 6 \times 1km $$，配速 `4:45`，每个一公里后小跑 `500m` 休息，总共 `10km`。
+
+是否达标：是。
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/96b259864c79a14f2f02dc129acb7080.jpeg){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241022185626.png){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241022185711.png){: .img-fluid}
