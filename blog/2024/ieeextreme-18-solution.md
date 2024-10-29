@@ -17,8 +17,9 @@ Not finished yet.
 序列按照可以填入的数从小到大排序。
 现在我们需要计算从这个序列中选出 $$ N $$ 个数的方案数。
 如果我们不考虑每一列是否满足递增关系，那么我们可以很轻松的用动态规划解决这个问题。
-具体的，我们用 $$ dp[i][j][k] $$ 表示前 $$ i $$ 个数中选出 $$ j $$ 个数的方案数，
-其中 $$ k $$ 表示第 $$ i $$ 个是否被选择，那么转移方程为：
+具体的，我们用 $$ dp[i][j][0] $$ 表示前 $$ i $$ 个数中选出 $$ j $$ 个数，
+且第 $$ i $$ 个数不被选择时的方案数；用 $$ dp[i][j][1] $$ 表示前 $$ i $$ 个数中选出 $$ j $$ 个数，
+且第 $$ i $$ 个数被选择时的方案数。
 
 $$
 \begin{aligned}
@@ -51,7 +52,7 @@ dp[i - 1][j][0] + dp[i - 1][j][1]，\text{其他}
 \end{cases} \\
 dp[i][j][1] & = \begin{cases}
 dp[i - 1][j - 1][0] + dp[i - 1][j - 1][1]，\text{当前小于等于} 2i - 1 \\
-0 & \text{其他}
+0，\text{其他}
 \end{cases}
 \end{aligned}
 $$
@@ -155,6 +156,7 @@ Not finished yet.
 代码：
 
 # [Cheap Construction]()
+Not finished yet.
 
 代码：
 
@@ -262,9 +264,40 @@ Not finished yet.
 
 代码：
 
-# [Brick stacks]()
+# [Brick stacks](https://csacademy.com/ieeextreme-practice/task/brick-stacks)
+我们先从小到大排序，然后依次处理每一个元素，对于当前元素，如果已经形成了 $$ pile $$ 堆，
+我们只需要记录形成的堆的最下方的元素，不妨用 $$ pile[i] $$ 表示第 $$ i $$ 堆最下方的元素，
+然后尝试将当前元素放到这些堆中，实际上我们只需要检查当前元素是否可以放到最小的 $$ pile[i] $$ 所在的堆中，
+这是因为：
+* 如果当前的元素不能放入最小的 $$ pile[i] $$ 所在的堆中，那么它一定不能放入其他堆中；
+* 如果设 $$ pile_{min} $$ 表示最小的 $$ pile_[i] $$，$$ pile_j $$ 表示其他任意一个非最小的 $$ pile[i] $$，
+那么不会存在当前元素可以放入 $$ pile_{min} $$ 和 $$ pile_j $$，但在当前元素放入 $$ pile_{min} $$ 后，
+下一个元素不能放入 $$ pile_j $$，且如果当前元素放入 $$ pile_j $$ 后，下一个元素可以放入 $$ pile_{min} $$ 的情况。
 
-代码：
+对于上述的第二点，可以有如下的证明：
+> 首先 $$ pile_{min} + x \gt pile_j $$，否则可以将 $$ pile_j $$ 的最后一块放到 $$ pile_{min} $$ 后面。
+其次如果 $$ A_i + x \le A_{i+1} $$，那么下一个元素一定是能放在 $$ A_i $$ 所在堆的；
+如果 $$ A_i + x \gt A_{i+1} $$，而我们将上面第二点写成不等式与该不等式进行联立：
+>
+> $$
+\begin{cases}
+pile_j > pile_{min} \\
+pile_{min} + x \gt pile_j \\
+A_i + x \gt A_{i+1} \\
+pile_{min} + x \le A_i \\
+pile_{min} + x \le A_{i+1} \\
+pile_j + x \gt A_{i+1} \\
+pile_j + x \le A_i \\
+A_{i+1} \gt A_{i} \\
+\end{cases}
+> $$
+>
+> 上面的最后三个存在矛盾，因此不可能有解。
+
+这就意味着，我们可以用一个小根堆维护形成的堆的最后一个元素，每次尝试将新的数放入到堆顶所形成的堆，
+如果不能放置，则形成一个新的堆加入到堆中。
+
+代码：[brick_stacks.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/brick_stacks.cpp)
 
 # [Stones]()
 Not finished yet.
@@ -292,7 +325,7 @@ Not finished yet.
 因此，
 我们只需要计算出修改 $$ A_i $$ 为 $$ X $$ 后的新的 $$ l1_i, r1_i $$ 即可按照之前的公式进行更新。
 
-实际上对于非 $$ i $$ 位置的变化，显然 $$ l1, l2 $$ 会变成左右两侧第二个比它小的元素的位置。
+实际上对于非 $$ i $$ 位置的变化，显然 $$ l1, r1 $$ 会变成左右两侧第二个比它小的元素的位置。
 为了避免混淆，我们增加以下定义：
 * $$ l2_i $$：表示第 $$ i $$ 个元素左侧第二个比它小的元素的位置，如果不存在则设置为最小下标减一。
 * $$ r2_i $$：表示第 $$ i $$ 个元素右侧第二个比它小的元素的位置，如果不存在则设置为最大下标加一。
@@ -312,7 +345,7 @@ Not finished yet.
 第一个栈与在计算 $$ l1 $$ 时作用一样，而第二个栈用于保存从第一个栈中弹出的元素，由于栈是先进后出的，
 第三个栈用于将从第一个栈中弹出的元素逆序放入到第二个栈中。
 当然也可以将第二个栈换成队列，每次从队首取元素即可。这样操作后当从第二个栈弹出元素的时候，
-也就找到了左侧第二个比栈顶元素小的元素。
+也就找到了左侧第二个比栈顶元素小的元素。代码如下：
 
 ```c++
 for (int i = n; i >= 1; i--) {
@@ -352,7 +385,8 @@ for (int i = 1; i <= n; i++) {
 
 这里以计算 $$ l3 $$ 为例介绍如何计算 $$ l3, r3 $$。计算 $$ l3 $$ 与计算 $$ l1 $$ 类似。
 只是我们需要比较的值从 $$ A_i $$ 变成了 $$ X $$，但是这样会导致后续计算的时候有一些元素被提前弹出了栈，
-实际上，我们可以先将弹出的元素放到一个队列里面，等到计算完 $$ l3[i] $$ 后再将这些元素放回栈中：
+实际上，我们可以先将弹出的元素放到一个队列里面，等到计算完 $$ l3[i] $$ 后再将这些元素放回栈中。
+代码如下：
 
 ```c++
 for (int i = 1; i <= n; i++) {
@@ -374,8 +408,24 @@ for (int i = 1; i <= n; i++) {
 代码：[rectangles_and_arrays.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/rectangles_and_arrays.cpp)
 
 # [Invertible Pairs]()
+我们可以使用动态规划解决这一题，具体的我们用 $$ dp[i][0] $$ 表示前 $$ i $$ 个数，
+以 $$ i $$ 结尾且第 $$ i $$ 个数不发生翻转的最大和，用 $$ dp[i][1] $$ 表示前 $$ i $$ 个数，
+以 $$ i $$ 结尾且第 $$ i $$ 个数发生翻转的最大和。我们可以写出以下的转移方程：
 
-代码：
+$$
+\begin{aligned}
+dp[i][0] &= \begin{cases}
+max(a[i], dp[i - 1][0] + a[i])，i \equiv 0 \pmod{2} \\
+max(a[i], dp[i - 1][0] + a[i], dp[i - 1][1] + a[i])，i \equiv 1 \pmod{2} \\
+\end{cases} \\
+dp[i][1] &= \begin{cases}
+max(-a[i], dp[i - 1][1] - a[i])，i \equiv 0 \pmod{2} \\
+max(-a[i], dp[i - 1][0] - a[i], dp[i - 1][1] - a[i])，i \equiv 1 \pmod{2}
+\end{cases}
+\end{aligned}
+$$
+
+代码：[invertible_pairs.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/invertible_pairs.cpp)
 
 # [Sierpinski]()
 Not finished yet.
