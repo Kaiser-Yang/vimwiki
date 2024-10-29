@@ -1,17 +1,17 @@
 注意：代码将会在后续开放提交后提供。
 
-# Two Fridges
+# [Two Fridges](https://csacademy.com/ieeextreme-practice/task/two-fridges)
 由于题目中的温度范围非常小，我们只需要从小到大枚举温度，对于每个枚举，检查是否所有区间都被覆盖。
 第一个覆盖所有区间的温度对即是答案。如果找不到输出 $$ -1 $$ 即可。
 
-代码：
+代码：[two_fridges.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/two_fridges.cpp)
 
-# Star Road
+# [Star Road]()
 Not finished yet.
 
 代码：
 
-# Increasing table
+# [Increasing table](https://csacademy.com/ieeextreme-practice/task/increasing-table)
 考虑到当第一行的元素确定后，第二行的元素也就确定了，因此我们只需要计算第一行的方案数即可。
 对于输入，我们可以维护一个序列，序列中的元素表示第一行可以填入的数，以及这个数是否一定要填入到第一行，
 序列按照可以填入的数从小到大排序。
@@ -56,14 +56,14 @@ dp[i - 1][j - 1][0] + dp[i - 1][j - 1][1]，\text{当前小于等于} 2i - 1 \\
 \end{aligned}
 $$
 
-代码：
+代码：[increasing_table.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/increasing_table.cpp)
 
-# Bounded tuple
+# [Bounded tuple]()
 Not finished yet.
 
 代码：
 
-# Laser Defense
+# [Laser Defense](https://csacademy.com/ieeextreme-practice/task/laser-defense)
 我们将激光分成四种：
 * $$ a_u $$：$$ a_u[i] $$ 表示 $$ A $$ 点发出的第 $$ i $$ 条与上边界的交点座标。
 * $$ a_r $$：$$ a_r[i] $$ 表示 $$ A $$ 点发出的第 $$ i $$ 条与右边界的交点座标。
@@ -79,9 +79,9 @@ Not finished yet.
 此时我们可以用二分查找在 $$ a_u $$ 中找到有多少个激光出现在其左边，不妨设为 $$ x $$，
 那么此时区域个数会增加 $$ len(a_u) + len(a_r) + 1 - x $$。
 
-代码：
+代码：[laser_defense.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/laser_defense.cpp)
 
-# Another Sliding Window Problem
+# [Another Sliding Window Problem](https://csacademy.com/ieeextreme-practice/task/another-sliding-window-problem)
 首先我们不难发现要获得一个序列的 `optimal cost`，如果序列有偶数个元素，那么最大的要和最小的配对，
 第二大的要和第二小的配对，以此类推；如果序列有奇数个元素，那么最大的元素要单独拎出来，
 而其余元素按照序列有偶数个元素的情况处理。
@@ -128,51 +128,52 @@ Not finished yet.
 
 因此我们只需要按照上面的过程，每次减少 $$ l $$ 后，计算出新的 $$ r $$ 对答案进行统计即可。
 
-代码：
+代码：[another_sliding_window_problem.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/another_sliding_window_problem.cpp)
 
-# IEEE754 Emulator
+# [IEEE754 Emulator]()
 Not finished yet.
 
 代码：
 
-# Triumvirates
+# [Triumvirates]()
 Not finished yet.
 
 代码：
 
-# Stick
+# [Stick](https://csacademy.com/ieeextreme-practice/task/stick)
 除去第一个正方形外，每增加一个正方形，所增加的面积是一个定值，
-其增加值为单个正方形的面积减去两个正方形的公共部分的面积。因此最终答案为 $$ 4NL^2 - (n-1)S $$。
+其增加值为单个正方形的面积减去两个正方形的公共部分的面积。因此最终答案为 $$ 4NL^2 - (N-1)S $$。
 其中 $$ S $$ 为两个连续正方形相交部分的面积。
 
-代码：
+如果直接使用上面的公式，那么乘法的时候可能会溢出，因此我们可以将上面的公式进行变形成 $$ N(4L^2 - S) + S $$。并且最后得使用 `unsigned long long` 才行。当然 `Life is short; you need Python`。
 
-# Increasing-decreasing permutations
+代码：[stick.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/stick.cpp)
+
+# [Increasing-decreasing permutations]()
 Not finished yet.
 
 代码：
 
-# Cheap Construction
+# [Cheap Construction]()
+
+代码：
+
+# [Disparate Date Sets]()
 Not finished yet.
 
 代码：
 
-# Disparate Date Sets
+# [Queries]()
 Not finished yet.
 
 代码：
 
-# Queries
+# [Doubled Sequence]()
 Not finished yet.
 
 代码：
 
-# Doubled Sequence
-Not finished yet.
-
-代码：
-
-# Icarus
+# [Icarus](https://csacademy.com/ieeextreme-practice/task/icarus)
 我们记 $$ l_c $$ 表示 $$ S $$ 中 `L` 的出现次数，$$ r_c $$ 表示 $$ S $$ 中 `R` 的出现次数，$$ u_c $$
 表示 $$ S $$ 中 `U` 的出现次数。
 
@@ -215,9 +216,9 @@ Not finished yet.
 
 其余的情况可以进行类似的讨论。
 
-代码：
+代码：[icarus.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/icarus.cpp)
 
-# Power of three
+# [Power of three](https://csacademy.com/ieeextreme-practice/task/power-of-three/statement/)
 设 $$ M $$ 表示输入 $$ N $$ 的位数，我们计算出 $$ x_{min} = (M - 1) \lfloor \log_3 10 \rfloor $$，
 不难发现如果有解 $$ x $$，那么 $$ x \ge x_{min} $$ 时，且在理论上 $$ x - x_{min} \le 3 $$，
 这是因为 $$ 3^3 = 27 $$，也就是乘以 $$ 3 $$ 个 $$ 3 $$ 之后，位数会增加 $$ 1 $$。
@@ -228,55 +229,155 @@ Not finished yet.
 我们可以大概率认为这个 $$ x $$ 是答案。如果 $$ x $$ 在 $$ 3 $$ 次递增的过程中没有找到答案，
 那么我们输出 $$ -1 $$ 即可。
 
-代码：
+代码：[power_of_three.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/power_of_three.cpp)
 
-# Halving
+# [Halving]()
 Not finished yet.
 
 代码：
 
-# King's Order
+# [King's Order](https://csacademy.com/ieeextreme-practice/task/kings-order)
+直接使用拓扑排序即可，只是在拓扑排序中需要将普通队列替换成优先队列。
+优先队列的比较器设置为题目要求即可。
 
-代码：
+代码：[kings_order.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/kings_order.cpp)
 
-# Balls
+# [Balls]()
 Not finished yet.
 
 代码：
 
-# Corporation
+# [Corporation]()
 Not finished yet.
 
 代码：
 
-# This is not an optimization problem
+# [This is not an optimization problem]()
 Not finished yet.
 
 代码：
 
-# Digits swap
+# [Digits swap]()
 Not finished yet.
 
 代码：
 
-# Brick stacks
+# [Brick stacks]()
 
 代码：
 
-# Stones
+# [Stones]()
 Not finished yet.
 
 代码：
 
-# Rectangles and arrays
+# [Rectangles and arrays](https://csacademy.com/ieeextreme-practice/task/rectangles-and-arrays-ieeextreme-18)
+我们首先考虑不进行修改的情况，那么我们可以使用单调栈来解决这个问题，具体的，我们需要计算出：
+* $$ l1[i] $$：表示第 $$ i $$ 个元素左侧第一个比它小的元素的位置，如果不存在则设置为最小下标减一。
+* $$ r1[i] $$：表示第 $$ i $$ 个元素右侧第一个比它小的元素的位置，如果不存在则设置为最大下标加一。
+
+那么统计不进行修改的部分就是 $$ \max\limits_{1 \le i \le N}(r1[i] - l1[i] - 1)A_i $$，
+这里公式表示以 $$ A_i $$ 为最小值所能形成的最大的正方形。
+
+接下来我们考虑需要修改的情况，首先如果要修改某个元素，
+我们直接将其修改为 $$ X $$ 一定会比修改成一个比 $$ X $$ 小的数更优。
+这意味着对于 $$ A_i \ge X $$ 的元素，我们没有必要修改，
+所有后面的修改将会针对满足 $$ A_i \lt X $$ 的元素。
+
+接下来我们考虑如果将 $$ A_i $$ 修改成 $$ X $$，会对哪些部分产生影响。
+显然对于 $$ l1[j] = i, j \gt i $$ 和 $$ r1[j] = i, j \lt i$$ 的位置 $$ j $$，
+其 $$ l1[j], r1[j] $$ 可能会发生变化。
+对于 $$ i $$ 位置，其 $$ l1[i], r1[i] $$ 也可能会发生变化。
+
+因此，
+我们只需要计算出修改 $$ A_i $$ 为 $$ X $$ 后的新的 $$ l1_i, r1_i $$ 即可按照之前的公式进行更新。
+
+实际上对于非 $$ i $$ 位置的变化，显然 $$ l1, l2 $$ 会变成左右两侧第二个比它小的元素的位置。
+为了避免混淆，我们增加以下定义：
+* $$ l2_i $$：表示第 $$ i $$ 个元素左侧第二个比它小的元素的位置，如果不存在则设置为最小下标减一。
+* $$ r2_i $$：表示第 $$ i $$ 个元素右侧第二个比它小的元素的位置，如果不存在则设置为最大下标加一。
+* $$ l3_i $$: 表示将第 $$ i $$ 个元素修改为 $$ X $$ 后左侧第一个比它小的元素的位置，如果不存在则设置为最小下标减一。
+* $$ r3_i $$: 表示将第 $$ i $$ 个元素修改为 $$ X $$ 后右侧第一个比它小的元素的位置，如果不存在则设置为最大下标加一。
+
+而修改 $$ i $$ 位置对 $$ j $$ 造成影响实际上就是在修改 $$ j $$ 位置左侧或者右侧第一个比它小的元素。
+
+因此这一部分的贡献就是 $$ \max\limits_{1 \le i \le N}\{(r2[i] - l1[i] - 1)A_i, (r1[i] - l2[i] - 1)A_i, (r3[i] - l3[i] - 1)X\} $$。
+
+上面使用 $$ r2[i] - l1[i] - 1 $$ 和 $$ r1[i] - l2[i] - 1$$ 而不直接使用 $$ r2[i] - l2[i] - 1 $$ 是因为我们只能修改一个元素，
+而不能同时将左右两个第一个比当前小的元素修改为 $$ X $$。
+
+下面我们来介绍如何计算 $$ l2, r2, l3, r3 $$。
+
+这里以计算 $$ l2 $$ 为例介绍如何计算 $$ l2, r2 $$。计算这一部分，我们需要用到三个栈，
+第一个栈与在计算 $$ l1 $$ 时作用一样，而第二个栈用于保存从第一个栈中弹出的元素，由于栈是先进后出的，
+第三个栈用于将从第一个栈中弹出的元素逆序放入到第二个栈中。
+当然也可以将第二个栈换成队列，每次从队首取元素即可。这样操作后当从第二个栈弹出元素的时候，
+也就找到了左侧第二个比栈顶元素小的元素。
+
+```c++
+for (int i = n; i >= 1; i--) {
+    while (!s2.empty() && a[s2.top()] > a[i]) {
+        l2[s2.top()] = i;
+        s2.pop();
+    }
+    while (!s1.empty() && a[s1.top()] >= a[i]) {
+        s3.push(s1.top());
+        s1.pop();
+    }
+    s1.push(i);
+    while (!s3.empty()) {
+        s2.push(s3.top());
+        s3.pop();
+    }
+}
+while (!s1.empty()) {
+    l2[s1.top()] = 0;
+    s1.pop();
+}
+while (!s2.empty()) {
+    l2[s2.top()] = 0;
+    s2.pop();
+}
+```
+
+计算完成后不要忘记排除 $$ X < A_i $$ 的情况：
+
+```c++
+for (int i = 1; i <= n; i++) {
+    if (x < a[i]) {
+        l2[i] = l1[i];
+    }
+}
+```
+
+这里以计算 $$ l3 $$ 为例介绍如何计算 $$ l3, r3 $$。计算 $$ l3 $$ 与计算 $$ l1 $$ 类似。
+只是我们需要比较的值从 $$ A_i $$ 变成了 $$ X $$，但是这样会导致后续计算的时候有一些元素被提前弹出了栈，
+实际上，我们可以先将弹出的元素放到一个队列里面，等到计算完 $$ l3[i] $$ 后再将这些元素放回栈中：
+
+```c++
+for (int i = 1; i <= n; i++) {
+    queue<int> now_pop;
+    while (!s.empty() && a[s.top()] >= x) {
+        now_pop.push(s.top());
+        s.pop();
+    }
+    l3[i] = (s.empty() ? 0 : s.top());
+    while (!now_pop.empty()) {
+        s.push(now_pop.front());
+        now_pop.pop();
+    }
+    while (!s.empty() && a[s.top()] >= a[i]) { s.pop(); }
+    s.push(i);
+}
+```
+
+代码：[rectangles_and_arrays.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/rectangles_and_arrays.cpp)
+
+# [Invertible Pairs]()
 
 代码：
 
-# Invertible Pairs
-
-代码：
-
-# Sierpinski
+# [Sierpinski]()
 Not finished yet.
 
 代码：
