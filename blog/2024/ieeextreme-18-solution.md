@@ -289,10 +289,20 @@ Not finished yet.
 
 代码：
 
-# [Digits swap]()
-Not finished yet.
+# [Digits swap](https://csacademy.com/ieeextreme-practice/task/digits-swap)
+直接暴力搜索即可，搜索的时候注意只有当当前这一位与其最大可能性不同时才进行搜索。
+理论时间复杂度为 $$ O(N^K) $$，但实际上跑得飞快。
 
-代码：
+给出几种常见贪心的反例：
+* 每次选靠前最大的和当前位置交换：例如 $$ 12344 2 $$，如果按照这种方法会得到 $$ 44312 $$ ，
+实际最优为 $$ 44321 $$。
+* 每次选靠后最大的和当前位置交换：例如 $$ 21344 2 $$，如果按照这种方法会得到 $$ 44312 $$ ，
+实际最优为 $$ 44321 $$。
+* 每次选靠后最大的和当前位置交换，交换完某种数字后进行一次从大到小的排序：例如 $$ 45366 3 $$，
+选择靠后最大交换两次后 $$ 66345 $$，对 $$ 45 $$ 进行排序得到 $$ 66354 $$，
+再进行一次交换得到 $$ 66534 $$，实际最优为 $$ 66543 $$。
+
+代码：[digits_swap.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/digits_swap.cpp)
 
 # [Brick stacks](https://csacademy.com/ieeextreme-practice/task/brick-stacks)
 我们先从小到大排序，然后依次处理每一个元素，对于当前元素，如果已经形成了 $$ pile $$ 堆，
