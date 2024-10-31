@@ -286,7 +286,7 @@ Not finished yet.
 
 代码：[icarus.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/icarus.cpp)
 
-# [Power of three](https://csacademy.com/ieeextreme-practice/task/power-of-three/statement/)
+# [Power of three](https://csacademy.com/ieeextreme-practice/task/power-of-three)
 设 $$ M $$ 表示输入 $$ N $$ 的位数，我们计算出 $$ x_{min} = (M - 1) \lfloor \log_3 10 \rfloor $$，
 不难发现如果有解 $$ x $$，那么 $$ x \ge x_{min} $$ 时，且在理论上 $$ x - x_{min} \le 3 $$，
 这是因为 $$ 3^3 = 27 $$，也就是乘以 $$ 3 $$ 个 $$ 3 $$ 之后，位数会增加 $$ 1 $$。
@@ -361,7 +361,7 @@ $$
 
 通过观察三部分的方程不难发现我们可以使用滚动数组将空间复杂度从 $$ O(N^3) $$ 优化到 $$ O(N^2) $$。
 
-最后的答案即为 $$ dp[2N][0][0] * 2^k $$，其中 $$ k $$ 表示初始有多少对元素对中的元素同时为 $$ -1 $$。
+最后的答案即为 $$ dp[2N][0][0] \times 2^k $$，其中 $$ k $$ 表示初始有多少对元素对中的元素同时为 $$ -1 $$。
 
 代码：[halving.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/halving.cpp)
 
@@ -544,7 +544,7 @@ for (int i = 1; i <= n; i++) {
 
 代码：[rectangles_and_arrays.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/rectangles_and_arrays.cpp)
 
-# [Invertible Pairs]()
+# [Invertible Pairs](https://csacademy.com/ieeextreme-practice/task/invertible-pairs)
 我们可以使用动态规划解决这一题，具体的我们用 $$ dp[i][0] $$ 表示前 $$ i $$ 个数，
 以 $$ i $$ 结尾且第 $$ i $$ 个数不发生翻转的最大和，用 $$ dp[i][1] $$ 表示前 $$ i $$ 个数，
 以 $$ i $$ 结尾且第 $$ i $$ 个数发生翻转的最大和。我们可以写出以下的转移方程：
