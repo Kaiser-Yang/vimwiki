@@ -6,10 +6,46 @@
 
 代码：[two_fridges.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/two_fridges.cpp)
 
-# [Star Road]()
-Not finished yet.
+# [Star Road](https://csacademy.com/ieeextreme-practice/task/star-road)
+对于本题我们可以使用线段树和线段树的合并来解决这个问题。
 
-代码：
+具体的，我们首先需要将 $$ star $$ 离散化，使得其值在 $$ [1, len] $$ 之间，
+其中 $$ len $$ 是不同的星星的个数。
+然后我们从任意一个结点开始进行 `DFS`，当我们到达一个结点时，我们为这个结点建立一个线段树。
+
+对于线段树的叶子结点 (其表示的区间设为 $$ [l, l] $$ ) ，它会保存两个值：
+* $$ LIS $$：以 $$ l $$ 结尾的最长递增子序列的长度。
+* $$ LDS $$：以 $$ l $$ 结尾的最长递减子序列的长度。
+
+对于线段树的非叶子结点 (其表示的区间为 $$ [l, r] $$ )，它会保存两个值：
+* $$ LIS $$：其子结点的 $$ LIS $$ 的最大值。
+* $$ LDS $$：其子结点的 $$ LDS $$ 的最大值。
+
+当我们开始回溯时，我们可以得到：
+* $$ son[i].LIS $$：子结点 $$ i $$ 所在线段树在区间 $$ [1, star[u] - 1] $$ 的 $$ LIS $$。
+* $$ son[i].LDS $$：子结点 $$ i $$ 所在线段树在区间 $$ [star[u] + 1, len] $$ 的 $$ LDS $$。
+
+我们使用 $$ star[u] - 1 $$ 和 $$ star[u] + 1 $$ 是为了保证 $$ star[u] $$ 可以被选中，
+因此如果我们选中 $$ u $$，
+那么我们可以得到 $$ ans = max(ans, son[i].LIS + 1 + son[j].LDS), i \ne j $$，
+这里可以分别按照 $$ LID $$ 和 $$ LDS $$ 排序来规避掉枚举 $$ i, j $$ 的问题。
+
+那么如果我们不选中 $$ u $$，我们如何得到这部分的答案呢？我们可以在合并线段树的过程中解决这个问题。
+在合并线段树 $$ a $$ 和线段树 $$ b $$ 时，设我们当前处于区间 $$ [l, r] $$，
+我们可以得到 $$ a $$ (或 $$ b $$) 在 $$ [l, mid] $$ 区间的 $$ LIS $$，
+以及 $$ b $$ (或 $$ a $$) 的 $$ [mid + 1, r] $$ 区间的 $$ LDS $$，
+那么这两部分可以合并，这些合并包括了不选中 $$ u $$ 的部分。
+也就是 $$ ans = max(ans, LIS[lc[a]] + LDS[rc[b]], LIS[lc[b]] + LDS[rc[a]]) $$。
+
+当我们完成了所有的结点的合并后，我们需要进行两次单点更新：
+* 如果 $$ max(son[i].LIS + 1) $$ 比线段树 $$ u $$ 在 $$ star[u] $$ 处的 $$ LIS $$ 大，
+我们需要将其更新为 $$ max(son[i].LIS + 1) $$，
+这表示以 $$ star[u] $$ 结尾的最长递增子序列的长度发生了变化。
+* 如果 $$ max(son[i].LDS + 1) $$ 比线段树 $$ u $$ 在 $$ star[u] $$ 处的 $$ LDS $$ 大，
+我们需要将其更新为 $$ max(son[i].LDS + 1) $$，
+这表示以 $$ star[u] $$ 结尾的最长递减子序列的长度发生了变化。
+
+代码：[star_road.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/star_road.cpp)
 
 # [Increasing table](https://csacademy.com/ieeextreme-practice/task/increasing-table)
 考虑到当第一行的元素确定后，第二行的元素也就确定了，因此我们只需要计算第一行的方案数即可。
