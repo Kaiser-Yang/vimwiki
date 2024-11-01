@@ -226,10 +226,39 @@ Not finished yet.
 
 代码：[cheap_construction.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/cheap_construction.cpp)
 
-# [Disparate Date Sets]()
-Not finished yet.
+# [Disparate Date Sets](https://csacademy.com/ieeextreme-practice/task/disparate-datasets)
+本题逻辑实际上没有任何的难点，但是如果我使用以下的方式对输入进行处理，将会出现问题：
 
-代码：
+```cpp
+while (getline(cin, str)) {
+    string tmp;
+    Record tmp_record;
+    int cnt = 0;
+    for (auto &&ch : str) {
+        if (ch == ',' && cnt % 2 == 0) {
+            tmp_record.push_back(tmp);
+            tmp = "";
+            cnt = 0;
+        } else {
+            tmp.push_back(ch);
+            if (ch == '\"') { cnt++; }
+        }
+    }
+    tmp_record.push_back(tmp);
+}
+```
+
+而如果我将上面的读入替换成 `Python` 中的 `csv` 进行处理，就能够得到正确的结果。
+
+我目前仍然没有发现上面的读取方式对于合法的输入会存在什么问题。我们已经确定了输入一定满足以下的情况：
+* `title` 和 `acronyms` 中开头和结尾一定为单个双引号。
+* 除去 `title` 和 `acronyms` 开头和结尾的双引号后，其中不存在奇数个连续的双引号。
+
+如果你发现这段读入会对某些输入产生错误，请告诉我。
+
+代码部分将会提供使用 `csv` 读取数据并处理的 `Python` 代码。
+
+代码：[disparate_datasets.py](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/disparate_datasets.py)
 
 # [Queries]()
 Not finished yet.
@@ -564,7 +593,16 @@ $$
 
 代码：[invertible_pairs.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/invertible_pairs.cpp)
 
-# [Sierpinski]()
-Not finished yet.
+# [Sierpinski](https://csacademy.com/ieeextreme18/task/sierpinski)
+我们可以直接使用递归的方法来解决，我们首先需要确定当前行号，需要经过多少次构建才能构建出来，
+不妨设为 $$ cnt $$，这样的操作是 $$ O(logx) $$ 的，因为每次构建行数为上一次的两倍加一。
 
-代码：
+同时我们也可以获取到 $$ cnt - 1 $$ 次构造后会有多少行，不妨设为 $$ last\_end $$，
+那么第 $$ x $$ 行的 $$ [x - las\_end，las\_end + 1] $$ 列一定全是蓝色，
+因为这一部分对应的是中间的大蓝三角形。因此我们有以下递归操作：
+* 如果 $$ y \in [x - las\_end, las\_end + 1] $$，我们直接返回蓝色；
+* 如果 $$ y \lt x - las\_end $$，不难发现当前颜色与 $$ (x - las\_end - 1, y) $$ 相同，此时递归调用；
+* 如果 $$ y \gt las\_end + 1 $$，不难发现当前颜色与 $$ (x - las\_end - 1, y - las\_end - 1) $$ 相同，
+此时递归调用。
+
+代码：[invertible_pairs.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/sierpinski.cpp)
