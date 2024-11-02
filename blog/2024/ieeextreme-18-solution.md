@@ -400,10 +400,72 @@ $$
 
 代码：[kings_order.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/kings_order.cpp)
 
-# [Balls]()
-Not finished yet.
+# [Balls](https://csacademy.com/ieeextreme-practice/task/balls)
+本题是 `Codeforces` 在十三年前某场比赛的原题，
+原题的链接：[Codeforces 93 E. Lostborn](https://codeforces.com/problemset/problem/93/E)。
 
-代码：
+本题的思路来源于题解：[Codeforces Beta Round 76 - задача Е div 1 глазами ее автора.](https://codeforces.com/blog/entry/2216)
+
+首先我们需要反向考虑问题，具体的，
+我们定义 $$ f_{E_1, E_2, \dots, E_K}(N) $$ 表示给定 $$ N $$ 和 $$ K $$ 个球的情况下有多少个点没有被命中，
+那么命中的点即为 $$ N - f_{E_1, E_2, \dots, E_K}(N) $$。
+
+首先我们考虑 $$ f_{E_1, E_2, \dots, E_K}(N) $$ 是否存在某种递推关系。事实上，由容斥原理我们有以下的递推关系：
+
+$$
+f_{E_1, E_2, \dots, E_K}(N) = f_{E_2, E_3, \dots, E_K}(N) - f_{E_2, E_3, \dots, E_K}(\lfloor \frac{N}{E_1} \rfloor)
+$$
+
+为了理解上面的递推公式，
+我们可以考虑对于给定 $$ N $$ 和 $$ E_2, E_3, \dots, E_K $$ 的情况下增加 $$ E_1 $$ 会有多少个新的点被覆盖。
+
+我们知道如果增加 $$ E_1 $$，
+那么 $$ 1 \times E_1, 2 \times E_1, \dots, \lfloor \frac{N}{E_1} \rfloor \times E_1 $$ 这些点会被覆盖，
+那么这些点里面哪些点是新增的呢？由于 $$ E_1 $$ 与其他的 $$ E_i $$ 互质，在 $$ 1, 2, \dots, \lfloor \frac{N}{E_1} \rfloor $$
+这些数中如果某个数与所有的 $$ E_i $$ 互质，那么这个数一定是新增的点，
+这一部分刚好对应 $$ f_{E_2, E_3, \dots, E_K}(\lfloor \frac{N}{E_1} \rfloor) $$。这也是为什么我们会有以上的递推式。
+
+我们对上面的递推式起个别名：
+
+$$
+dp[i][j] = f_{E_i, E_{i+1}, \dots, E_K}(j)
+$$
+
+那么就有如下的动态转移方程：
+
+$$
+dp[i][j] = dp[i + 1][j] - dp[i + 1][\lfloor \frac{j}{E_i} \rfloor]
+$$
+
+接下来我们来考虑上面式子的复杂度。你可能会说这不是显然的 $$ O(NK) $$ 吗？是的如果使用递推来做的话，
+复杂度确实是 $$ O(NK) $$。但是实际上并不是所有的状态都是有用的状态，
+因此如果我们使用递归来实现，我们的时间复杂度实际上为有用的状态个数。
+
+如何估计有用状态的个数？首先上面式子 $$ i $$ 的取值数一定是 $$ K $$ 种，接下来我们考虑 $$ j $$ 取值种数。
+不难发现对于任何一个可能的 $$ j $$ 其一定可以写成 $$ \lfloor \frac{N}{a} \rfloor $$ 的形式，
+其中 $$ a $$ 是某个正整数。也就是说要估计 $$ j $$ 的种类数，
+我们只需要考虑 $$ \lfloor \frac{N}{a} \rfloor $$ 的种类数，
+而 $$ \lfloor \frac{N}{a} \rfloor $$ 的种类数不会超过 $$ min(a 的种类数, \lfloor \frac{N}{2} \rfloor + 2) $$，
+这里第二部分是因为当 $$ a = \lfloor \frac{N}{2} \rfloor, N \gt 3 $$ 时，$$ \lfloor \frac{N}{a} \rfloor $$ 为 $$ 2 $$，
+就算对于 $$ a \in [1, \lfloor \frac{N}{2} \rfloor] $$，$$ \lfloor \frac{N}{a} \rfloor $$ 均获得了不同的值，
+此时继续增加 $$ a $$ 也只能获得 $$ 1, 0 $$ 两种结果。
+
+考虑到显然有下式成立：
+
+$$
+min(a, \lfloor \frac{N}{a} \rfloor) \le \sqrt{N}
+$$
+
+故 $$ j $$ 的种类数不会超过 $$ 2 \sqrt{N} $$，因此有用状态的个数不会超过 $$ 2K \sqrt{N} $$。
+这对应的时间复杂度为 $$ O(K \sqrt{N}) $$。但实际上如果我们对 $$ E $$ 按照从大到小的顺序排序，
+那么 $$ N $$ 会下降的非常快，这样我们实际上的复杂度会远远小于 $$ O(K \sqrt{N}) $$。
+
+我们当然不能对所有可能的状态都进行记忆化，这样会导致我们不得不使用字典，
+这往往会让我们的时间复杂度变为 $$ O(K \sqrt{N} log(K \sqrt{N})) $$，且常数非常大。
+正确的做法是我们只在 $$ N $$ 较小时进行记忆化的操作。
+这是因为对于递归而言，我们越小的部分被重复计算的次数相较较大的部分会更多。
+
+代码：[balls.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/balls.cpp)
 
 # [Corporation]()
 Not finished yet.
