@@ -167,10 +167,13 @@ Not finished yet.
 
 代码：[another_sliding_window_problem.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/another_sliding_window_problem.cpp)
 
-# [IEEE754 Emulator]()
-Not finished yet.
+# [IEEE754 Emulator](https://csacademy.com/contest/ieeextreme-practice/task/ieee754-emulator/)
+逻辑并不复杂，有几点需要注意的：
+* 不能直接计算 $$ a * b + c $$，应该使用相关的库函数，例如 `C++` 的 `std::fma`，`Python` 的 `Math.fma` 等。
+* 类型之间的转换，例如 `int` 和 `float` 之间的转换，应该使用 `union` 或者 `memcpy` 等方法，
+* 输出要保留前导零，也就是在结果长度小于 `8` 的时候需要在前面补零。
 
-代码：
+代码：[ieee754_emulator.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/ieee754_emulator.cpp)
 
 # [Triumvirates]()
 Not finished yet.
