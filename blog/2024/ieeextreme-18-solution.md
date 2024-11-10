@@ -475,10 +475,65 @@ Not finished yet.
 
 代码：
 
-# [This is not an optimization problem]()
-Not finished yet.
+# [This is not an optimization problem](https://csacademy.com/ieeextreme-practice/task/this-is-not-an-optimization-problem)
+首先感谢 [cancaneed](https://codeforces.com/profile/cancaneed) 提供的思路。
 
-代码：
+首先我们考虑计算大小为 $$ k $$ 时的结果。
+此时我们依次考虑每个结点 $$ u, 1 \le u \le N $$ 的权重对答案的贡献。
+对于结点 $$ u $$ 而言，
+其贡献次数显然为从 $$ N $$ 个结点中选择 $$ k $$ 个结点的方案数减去没有选中 $$ u $$ 的方案数。
+
+对于从 $$ N $$ 个结点中选择出 $$ k $$ 个结点的方案数，我们可以使用组合数的方法计算，
+即为 $$ {N \choose k} $$。
+
+接下来我们考虑什么情况下不会选择 $$ u $$。
+如果选择了 $$ k $$ 个结点并通过增加一些其他结点构成一棵树且没有选择 $$ u $$ 那么所有选择的结点一定在 $$ u $$ 的同一个相邻分支中。
+这是显然的，如果存在两个结点在 $$ u $$ 的不同分支中，那么这两个结点之间一定有一条路径需要经过 $$ u $$ 结点。
+那么这一部分的方案数即为 $$ \sum_{v \in adj(u)} {sz[v] \choose k} $$。
+其中 $$ sz[v] $$ 表示删除 $$ u $$ 结点后，以 $$ v $$ 为根的子树的结点个数。
+
+结合上面两部分那么大小为 $$ k $$ 的答案即为：
+
+$$
+\sum_u w[u]{N \choose k} - \sum_u \sum_{v \in adj(u)} w[u]{sz[v] \choose k}
+$$
+
+接下来我们考虑将所有的相同组合数进行合并，设最后的系数为 $$ b[i] $$，那么我们有：
+
+$$
+\sum_{i = 0}^{N} b[i] {i \choose k} = \sum_{i = 0}^{N} \frac{i!b[i]}{k!(i-k)!} = \frac{1}{k!} \sum_{i = 0}^{N} \frac{i!b[i]}{(i-k)!}
+$$
+
+首先我们考虑如何计算系数 $$ b[i] $$。我们只需要考虑每个结点 $$ u $$ 对其邻居的影响即可。具体的，
+我们在 `DFS` 的过程中，设当前到达的结点为 $$ u $$，$$ u $$ 的父结点为 $$ par $$ 子结点为 $$ v $$，
+那么 $$ u $$ 可以作为一整棵子树与 $$ par $$ 相连，
+也就是我们在计算 $$ par $$ 贡献的时候可以在以 $$ u $$ 为根的子树中选择 $$ k $$ 个结点，
+此时 $$ b[sz[u]] $$ 会减少 $$ w[par] $$ (系数为负)；同时，我们在计算 $$ v $$ 贡献的时候，
+可以在除去以 $$ v $$ 为根的子树后的其他结点中选择 $$ k $$ 个结点，此时对应 $$ b[n - sz[v]] $$ 减少 $$ w[v] $$。
+最后不要忘记 $$ b[n] $$ 还需要增加 $$ w[u] $$ (对应 $$ \sum_u {N \choose k} $$)。
+
+接下来我们考虑如何计算 $$ \frac{1}{k!} \sum_{i = 0}^{N} \frac{i!b[i]}{(i-k)!} $$，
+这里我们考虑计算 $$ \sum_{i = 0}^{N} \frac{i!b[i]}{(i-k)!} $$，
+最后的 $$ \frac{1}{k!} $$ 只需要在最后乘上乘法逆元即可。
+
+我们构造两个 $$ N $$ 次多项式：
+
+$$
+\begin{aligned}
+P_1(x) &= n!b[n] + (n - 1)!b[n-1]x + (n - 2)!b[n-2]x^2 + \dots + 0!b[0]x^n \\
+P_2(x) &= \frac{1}{0!} + \frac{1}{1!}x + \frac{1}{2!}x^2 + \dots + \frac{1}{n!}x^n
+\end{aligned}
+$$
+
+我们考虑求 $$ P_1(x)P_2(X) $$ 的 $$ x^(n-k) $$ 的系数：
+
+$$
+Coef(x^{n-k}, P_1(x)P_2(x)) = \frac{n!b[n]}{(n-k)!} + \frac{(n-1)!b[n-1]}{(n-k-1)!} + \dots + \frac{(n-k)!b[n-k]}{(0)!} = \sum_{i = 0}^{n} \frac{i!b[i]}{(i-k)!}
+$$
+
+这意味着我们只需要计算 $$ P_1(x)P_2(x) $$ 的 $$ x^{n-k} $$ 的系数再乘上 $$ {1 \over k!} $$ 即为答案，此过程通过任意模数的 `NTT` 算法即可完成。
+
+代码：[this_is_not_an_optimization_problem.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/this_is_not_an_optimization_problem.cpp)
 
 # [Digits swap](https://csacademy.com/ieeextreme-practice/task/digits-swap)
 直接暴力搜索即可，搜索的时候注意只有当当前这一位与其最大可能性不同时才进行搜索。
@@ -530,10 +585,41 @@ A_{i+1} \gt A_{i} \\
 
 代码：[brick_stacks.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/brick_stacks.cpp)
 
-# [Stones]()
-Not finished yet.
+# [Stones](https://csacademy.com/ieeextreme-practice/task/stones)
+首先感谢 [cancaneed](https://codeforces.com/profile/cancaneed) 提供的思路。
 
-代码：
+我们记 $$ (R1, B1, R2, B2) $$ 为藏球方红球有 $$ R1 $$ 个，蓝球有 $$ B1 $$ 个；
+猜球方红球有 $$ R2 $$ 个，蓝球有 $$ B2 $$ 个的状态时猜球方的最优策略下的最大获胜概率。
+
+如果我们设 $$ p $$ 为藏红球的概率，$$ q $$ 为猜红球的概率，
+同时我们设 $$ rr := 1 - (R2, B2, R1-1, B1), rb := 1 - (R2, B2-1, R1, B1), br := 1 - (R2-1, B2, R1, B1), bb := 1 - (R2, B2, R1, B1 - 1) $$，
+我们不难写出以下的转移方程：
+
+$$
+(R1, B1, R2, B2) = p \cdot q \cdot rr \cdot + p \cdot (1-q) \cdot rb + (1-p) \cdot q \cdot br + (1-p) \cdot (1-q) \cdot bb
+$$
+
+由于双方均追求最大化获胜结果，所以我们需要对上面的式子分别关于 $$ p, q $$ 求导并令其为 $$ 0 $$：
+
+$$
+\begin{cases}
+\frac{\partial (R1, B1, R2, B2)}{\partial p} = q \cdot rr + (1-q) \cdot rb - q \cdot br - (1-q) \cdot bb = 0 \\
+\frac{\partial (R1, B1, R2, B2)}{\partial q} = p \cdot rr - p \cdot rb + (1-p) \cdot br - (1-p) \cdot bb = 0
+\end{cases}
+$$
+
+解上面的方程可以得到：
+
+$$
+\begin{cases}
+p = \frac{bb - br}{rr - rb - br + br} \\
+q = \frac{bb - rb}{rr - rb - br + bb} \\
+\end{cases}
+$$
+
+最后带入 $$ (R1, B1, R2, B2) $$ 即可。
+
+代码：[stones.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/stones.cpp)
 
 # [Rectangles and arrays](https://csacademy.com/ieeextreme-practice/task/rectangles-and-arrays-ieeextreme-18)
 我们首先考虑不进行修改的情况，那么我们可以使用单调栈来解决这个问题，具体的，我们需要计算出：
