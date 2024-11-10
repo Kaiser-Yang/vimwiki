@@ -291,3 +291,25 @@
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/aa70d6b2e612a3147242ddd056a4d523.jpeg){: .img-fluid}
 
 ![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241107184254.png){: .img-fluid}
+
+## 2024-11-8
+今日训练目标：十公里，配速 `5:00`。
+
+是否达标：否。
+
+平均心率：`169`。
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/c7b546a3f7225c118e8eb182cc6a685c.jpeg){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241110160334.png){: .img-fluid}
+
+## 2024-11-9
+今日训练目标：二点五公里，配速 `4:20`。
+
+是否达标：是。
+
+平均心率：`155`。
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/c544afcbd6cf1a406b518a0fdfa52af2.jpeg){: .img-fluid}
+
+![](https://raw.githubusercontent.com/Kaiser-Yang/image-hosting-site/main/20240421-20250421/20241110160201.png){: .img-fluid}
