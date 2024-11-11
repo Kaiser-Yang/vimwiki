@@ -470,10 +470,47 @@ $$
 
 代码：[balls.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/balls.cpp)
 
-# [Corporation]()
-Not finished yet.
+# [Corporation](https://csacademy.com/ieeextreme-practice/task/corporation)
+首先感谢 [yanire](https://codeforces.com/profile/yanire) 提供的思路。
 
-代码：
+我们可以使用分块来解决这个问题，具体的我们将整个工资序列分成大小为 $$ \sqrt{N} $$ 的块，
+最后一块的大小可能小于 $$ \sqrt{N} $$。每块维护以下信息：
+* `sum_salary`：块内所有工资的和。
+* `sum_happiness`：块内幸福值的和。
+* `lazy_salary`：块内每个员工的工资增量。
+* `lazy_happiness`：块内每个员工的幸福值增量。
+* `all_same`：块内每个员工的工资值是否相同。
+
+对于增加操作：
+* 如果覆盖整个块，那么可以在 $$ O(1) $$ 的时间内完成更新，最多重复 $$ O(\sqrt{N}) $$ 次，
+时间复杂度为 $$ O(\sqrt{N}) $$。
+* 如果覆盖部分块，那么需要遍历当前被覆盖的块，然后重新计算块内的信息，
+最多会出现两次 (两个边界块) 这种情况，时间复杂度为 $$ O(\sqrt{N}) $$。
+
+对于设置操作：
+* 如果覆盖整个块且整个块的每个员工工资值相同，那么可以在 $$ O(1) $$ 的时间内完成更新，
+最多出现 $$ O(\sqrt{N}) $$ 次，时间复杂度为 $$ O(\sqrt{N}) $$。
+* 如果覆盖整个块但整个块的每个员工工资值不同，那么需要遍历整个块，然后重新计算块内的信息，
+时间复杂度为 $$ O(\sqrt{N}) $$。对于这种情况下，
+我们考虑一开始最多有 $$ O(\sqrt{N}) $$ 个 `all_same` 为 `false` 的块，
+我们每次通过设置操作遍历一整个块的时候，`all_same` 为 `false` 的块的数量会减少一，
+而每次增加操作最多可能会让 `all_same` 为 `false` 的块数量增加二，
+这意味着 $$ Q $$ 次操作中最多会执行 $$ O(\sqrt{N} + Q) $$ 次遍历整个块的操作，
+均摊下来每次操作只会执行 $$ O(1) $$ 次。
+* 如果覆盖部分块，那么需要遍历当前被覆盖的块，然后重新计算块内的信息，
+最多会出现两次 (两个边界块) 这种情况，时间复杂度为 $$ O(\sqrt{N}) $$。
+
+对于查询操作：
+* 如果覆盖整个块，那么可以在 $$ O(1) $$ 的时间内完成查询，最多重复 $$ O(\sqrt{N}) $$ 次，
+时间复杂度为 $$ O(\sqrt{N}) $$。
+* 如果覆盖部分块，那么需要遍历当前被覆盖的块，
+最多会出现两次 (两个边界块) 这种情况，时间复杂度为 $$ O(\sqrt{N}) $$。
+
+综上我们可以发现上述方法的时间复杂度为 $$ O(\sqrt{N}N+\sqrt{N}Q) $$。
+
+最后需要使用快速读写减少常数的影响。
+
+代码：[corporation.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/corporation.cpp)
 
 # [This is not an optimization problem](https://csacademy.com/ieeextreme-practice/task/this-is-not-an-optimization-problem)
 首先感谢 [cancaneed](https://codeforces.com/profile/cancaneed) 提供的思路。
@@ -525,7 +562,7 @@ P_2(x) &= \frac{1}{0!} + \frac{1}{1!}x + \frac{1}{2!}x^2 + \dots + \frac{1}{n!}x
 \end{aligned}
 $$
 
-我们考虑求 $$ P_1(x)P_2(X) $$ 的 $$ x^(n-k) $$ 的系数：
+我们考虑求 $$ P_1(x)P_2(X) $$ 的 $$ x^{n-k} $$ 的系数：
 
 $$
 Coef(x^{n-k}, P_1(x)P_2(x)) = \frac{n!b[n]}{(n-k)!} + \frac{(n-1)!b[n-1]}{(n-k-1)!} + \dots + \frac{(n-k)!b[n-k]}{(0)!} = \sum_{i = 0}^{n} \frac{i!b[i]}{(i-k)!}
