@@ -263,10 +263,60 @@ while (getline(cin, str)) {
 
 代码：[disparate_datasets.py](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/disparate_datasets.py)
 
-# [Queries]()
-Not finished yet.
+# [Queries](https://csacademy.com/ieeextreme-practice/task/queries)
+首先感谢 [cancaneed](https://codeforces.com/profile/cancaneed) 提供的思路。
 
-代码：
+本题我们可以采用两次分块来进行实现。分块维护区间和。
+
+其中第一个分块用于处理在原始区间上面的更新，我们记为 $$ ori $$，
+第二个分块用于维护在 $$ p $$ 上面的更新，我们记为 $$ perm $$。
+
+对于在原始区间上的更新，我们在 $$ ori $$ 上更新后 ($$ ori.update(l, r, c) $$)，
+还需要考虑其对 $$ p $$ 上查询的影响。例如，
+如果之前存在 $$ [l, r] $$ 区间上的更新增加 $$ c $$，此时我们查询索引为 $$ p_{l'}, p_{l'+1}, \cdots, p_{r'} $$
+的和，那么我们需要知道 $$ [l, r] $$ 中有多少个下标在集合 $$ \{p_{l'}, p_{l'+1}, \cdots, p_{r'}\} $$ 中，
+如果我们将这个数字记为 $$ cnt $$，那么此次查询就需要增加 $$ c \times cnt $$。
+所以在执行原始区间的更新时，我们还需要更新此次操作对 $$ perm $$ 的影响，
+我们将这一部分记为 $$ perm\_sum $$，
+其中 $$ perm\_sum[i] $$ 表示对原始区间上的更新会使 $$ perm $$ 的第 $$ i $$ 块增加 $$ perm\_sum[i] $$。
+具体的, 对于更新 $$ (l, r, c) $$，
+我们需要进行如下更新：
+
+$$
+perm\_sum[i] = perm\_sum[i] + c \times (perm\_cnt[i][r] - perm\_cnt[i][l - 1]), 0 \le i \le BLOCK\_CNT
+$$
+
+这里的 $$ perm\_cnt[i][j] $$ 表示在 $$ ori $$ 的第 $$ i $$ 块维护的下标对应到 $$ p $$ 后，有多少是小于等于 $$ j $$ 的。
+
+对于在 $$ p $$ 上的更新，同理我们需要考虑其对 $$ ori $$ 的影响。我们将这一部分记为 $$ ori\_sum $$，
+其中 $$ ori\_sum[i] $$ 表示对 $$ p $$ 上的更新会使 $$ ori $$ 的第 $$ i $$ 块增加 $$ ori\_sum[i] $$。
+具体的，对于更新 $$ (l, r, c) $$，
+我们需要进行如下更新：
+
+$$
+ori\_sum[i] = ori\_sum[i] + c \times (ori\_cnt[i][r] - ori\_cnt[i][l - 1]), 0 \le i \le BLOCK\_CNT
+$$
+
+这里的 $$ ori\_cnt[i][j] $$ 表示在 $$ perm $$ 的第 $$ i $$ 块维护的下标对应到 $$ ori $$ 后，有多少是小于等于 $$ j $$ 的。
+
+对于原始区间上的查询操作，首先需要查询 $$ ori.query(l, r) $$，
+对于覆盖到整个块 $$ id $$ 的部分，我们需要累加 $$ ori\_sum[id] $$，对于部分块，
+我们必须依次在 $$ perm $$ 上进行单点查询，
+因此我们需要维护 $$ inv\_p[i] $$ 表示原始下标 $$ i $$ 在 $$ perm $$ 上的位置，即 $$ inv\_p[p[i]] = i $$。
+
+对于 $$ p $$ 上的查询操作，首先需要查询 $$ perm.query(l, r) $$，
+对于覆盖到整个块 $$ i $$ 的部分，我们需要累加 $$ perm\_sum[i] $$，对于部分块，
+我们必须依次在 $$ ori $$ 上进行单点查询，也就是去查询 $$ ori $$ 中 $$ p[i] $$ 处的值。
+
+上面的操作时间复杂度均为 $$ O({N \over BLOCK\_SIZE} + BLOCK\_SIZE) $$ 的。
+
+最后我们还要考虑计算 $$ perm\_cnt $$ 和 $$ ori\_cnt $$ 的时间复杂度，这一部分，
+我们预处理的时候枚举块数量以及下标即可，因此时间复杂度为 $$ O({N^2 \over BLOCK\_SIZE}) $$。
+
+由于空间的限制，我们的 $$ BLOCK\_SIZE $$ 不能太小，既不能选择理论最优值 $$ BLOCK\_SIZE = \sqrt{N} $$，
+此时我们可以选择 $$ BLOCK\_SIZE = 600 $$，能够保证通过。
+
+代码：[queries.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/queries.cpp)
 
 # [Doubled Sequence]()
 Not finished yet.
