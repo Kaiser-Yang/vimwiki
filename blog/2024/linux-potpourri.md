@@ -429,10 +429,14 @@ awk 'NR > 1 { print sep $NF; sep="+" }' OFS="" ORS="" | bc
 | `-L` | 本地端口转发 |
 | `-R` | 远程端口转发 |
 | `-D` | 动态端口转发 |
+| `-o` | 指定配置选项 |
 
 **注意**：对于 `-l` 选项，也可以不使用 `-l` 而是使用 `user@host` 的形式来指定用户名。
 
 **注意**：关于端口转发可以查看 [`ssh` 端口转发简介](/blog/2024/ssh-port-forwarding)。
+
+**注意**：`-o` 选项常常用于覆盖 `~/.ssh/config` 文件中的配置。
+例如 `ssh -o "Port=2222" host_name` 将会使用 `2222` 端口连接 `host_name`，其余配置不变。
 
 ### `ssh-keygen`
 
@@ -466,6 +470,53 @@ awk 'NR > 1 { print sep $NF; sep="+" }' OFS="" ORS="" | bc
 这样当 `known_hosts` 文件泄露的时候，攻击者可以直接获取到远程主机的地址与对应的公钥，
 而使用 `ssh-keygen -H` 可以对 `known_hosts` 的远程地址进行哈希处理，
 这样在 `known_hosts` 文件泄露的时候，攻击者无法直接获取到远程主机的地址与公钥的对应关系。
+
+### `~/.ssh/config` 文件
+
+`~/.ssh/config` 文件可以用来配置 `ssh` 的一些选项，例如：
+
+```shell
+Host host_name
+    HostName host_ip
+    Port port
+    User user_name
+    IdentityFile ~/.ssh/id_rsa
+
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    Compression yes
+    CompressionLevel 9
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    TCPKeepAlive yes
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h:%p
+    ControlPersist 600
+    UserKnownHostsFile ~/.ssh/known_hosts
+    StrictHostKeyChecking yes
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    GSSAPITrustDNS yes
+    PasswordAuthentication no
+    PubkeyAuthentication yes
+    PreferredAuthentications publickey
+    KexAlgorithms
+    ProxyCommand ssh -W %h:%p proxy_address
+```
+
+当你拥有上面的配置后，你可以通过 `ssh host_name` 来连接远程主机，
+而不需要指定远程主机的 `ip`、`port`、`user` 和 `identity file`。
+
+使用 `*` 可以对所有主机生效，可以达到修改默认配置的目的。
+
+`~/.ssh/config` 中也支持通配符：
+
+* `*`：匹配所有主机
+* `?`：匹配一个字符
+* `!`：排除主机
 
 ## `scp`
 
@@ -763,3 +814,8 @@ end in `~` or contain a `.` character.
 * [9 su command examples in Linux](https://www.golinuxcloud.com/su-command-in-linux/)
 * [15+ SSH command examples in Linux](https://www.golinuxcloud.com/ssh-command-in-linux/)
 * [15+ lsof command examples in Linux](https://www.golinuxcloud.com/lsof-command-in-linux/)
+* [OpenSSH 9.5: A User-Friendly Guide to the Latest Update](https://stilia-johny.medium.com/openssh-9-5-a-user-friendly-guide-to-the-latest-update-840a09886a5a)
+* [How to generate and manage ssh keys on Linux](https://linuxconfig.org/how-to-generate-and-manage-ssh-keys-on-linux)
+* [10 examples to generate SSH key in Linux (ssh-keygen)](https://www.golinuxcloud.com/generate-ssh-key-linux/)
+* [The Complete Guide to SSH Config Files](https://thelinuxcode.com/ssh-config-file/)
+* [Beginners guide to use ssh config file with examples](https://www.golinuxcloud.com/ssh-config/)
