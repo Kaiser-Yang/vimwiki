@@ -518,24 +518,92 @@ Host *
 * `?`：匹配一个字符
 * `!`：排除主机
 
-## `scp`
+### `ssh-copy-id`
 
 | 选项 | 说明 |
 | ---  | --- |
-| `-r` | 递归复制。如果复制的是目录，需要使用 `-r` 选项 |
-| `-P` | 指定端口。默认端口是 `22` |
-| `-p` | 保留文件属性 (例如修改时间等)。默认情况下，`scp` 不会保留文件的属性，使用 `-p` 可以保留文件的属性 |
-| `-q` | 静默模式。不显示进度信息 |
+| `-i` | 指定密钥文件 |
+| `-p` | 指定端口 |
+
+### `ssh-agent`
+
+`ssh-agent` 用来管理用户的密钥，如果密钥被添加到 `ssh-agent` 后，
+用户在后续登录过程中可以不输入密钥的密码。
+
+要在当前的 `shell` 中启动 `ssh-agent`，可以使用 `eval $(ssh-agent)`。
+
+### `ssh-add`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-l` | 列出所有已加载密钥的指纹 |
+| `-L` | 列出所有已加载密钥的公钥 |
+| `-d` | 删除某个密钥 |
+| `-D` | 删除所有密钥 |
+| `-x` | 锁定 `ssh-agent` |
+| `-X` | 解锁 `ssh-agent` |
+
+**注意**：如果命令执行过程中提示 `Could not open a connection to your authentication agent`，
+那么可能是因为没有启动 `ssh-agent`，可以使用 `eval $(ssh-agent)` 启动 `ssh-agent`。
+
+### `sftp`
+
+`sftp` 是一个交互式的文件传输工具，其通过 `ssh` 保证文件传输的安全性。
+
+`sftp` 的启动与 `ssh` 类似，例如 `sftp user@host`。
+启动后我们可以通过 `help` 或者 `?` 列出可以使用的命令。大多 `Linux` 的命令都可以在 `sftp` 中使用。
+除此之外，我们在通常的命令前面增加 `l` (或 `!`) 表示在本定执行，
+例如 `pwd` 可以查看远程主机的当前目录，
+而 `lpwd` 可以查看本地主机的当前目录；`cd` 可以切换远程主机的目录，
+而 `lcd` 可以切换本地主机的目录。
+
+如果你需要多次在本地执行某修操作，你可以使用 `!` 来切换到本地的 `shell`，
+这样就可以不用在命令前面加 `l` 了。执行完本地操作后想要回到 `sftp` 中，只需要执行 `exit` 即可。
+
+使用 `get` 命令可以下载文件，例如 `get file` 表示下载 `file` 文件到本地主机，
+而 `put` 命令可以上传文件，例如 `put file` 表示上传 `file` 文件到远程主机。
+两个命令的使用方式与 `cp` 类似，对于目录需要增加 `-r` 选项。
+
+### `sshfs`
+
+直接使用 `sftp` 可以完成一些简单的文件传输，但是如果我们并不只是希望直接传输远程的文件，
+而且还需要对远程文件进行修改，例如我们希望直接使用我们本地配置丰富的编辑器来编辑远程文件，
+那么此时我们就可以使用 `sshfs` 来实现。
+
+`sshfs` 的原理就是利用 `sftp` 协议将远程主机的文件挂载到本地主机上，
+相信使用过类似于 `NFS` 的用户对这种操作并不陌生。
+
+使用 `sshfs` 进行挂载：
+
+```shell
+sshfs user@host:/path/to/dir /path/to/mount_point
+```
+
+**注意**：挂载点的拥有者必须是当前用户。
+
+如果要进行卸载，可以使用 `fusermount -u /path/to/mount_point` 或者 `umount /path/to/mount_point`。
+
+**注意**：不建议将挂载放入到 `/etc/fstab` 中，因为当网络不稳定时可能会进行很长时间的重试，
+这样会导致系统启动时间非常漫长。
+
+### `scp`
+
+| 选项 | 说明 |
+| ---  | --- |
+| `-r` | 递归复制 |
+| `-P` | 指定端口 |
+| `-p` | 保留文件属性 (例如修改时间等) |
+| `-q` | 静默模式 |
 | `-v` | 显示详细信息。可以使用多个 `-v` 来显示更多的信息 |
-| `-C` | 压缩传输。使用 `-C` 可以压缩传输的数据 |
-| `-i` | 指定密钥文件。默认情况下，`scp` 使用 `~/.ssh/id_rsa` 作为密钥文件 |
-| `-l` | 限制带宽。单位是 `Kb/s` |
+| `-C` | 压缩传输 |
+| `-i` | 指定密钥文件 |
+| `-l` | 限制带宽, 单位是 `Kb/s` |
 | `-3` | 通过本机在两个远端之间传输文件 |
 | `-4` | 强制使用 `IPv4` |
 | `-6` | 强制使用 `IPv6` |
 
-使用 `scp` 的时候，如果在 `~/.ssh/config` 中配置了主机信息，可以直接使用主机名进行传输，例如
-`scp file host_name:/path/to/file`。
+使用 `scp` 的时候，如果在 `~/.ssh/config` 中配置了主机信息，可以直接使用主机名进行传输，
+例如 `scp file host_name:/path/to/file`。
 
 `scp` 可以一次拷贝多个文件，例如 `scp file1 file2 host_name:/path/to/`。
 
@@ -551,6 +619,7 @@ Host *
 | `-s` | 指定 `man` 手册的节。例如 `apropos -s 3 keyword` 表示查找第 `3` 节的手册 |
 
 `man` 手册的节有以下几个：
+
 * `1`：命令或程序
 * `2`：系统调用
 * `3`：库函数
@@ -819,3 +888,7 @@ end in `~` or contain a `.` character.
 * [10 examples to generate SSH key in Linux (ssh-keygen)](https://www.golinuxcloud.com/generate-ssh-key-linux/)
 * [The Complete Guide to SSH Config Files](https://thelinuxcode.com/ssh-config-file/)
 * [Beginners guide to use ssh config file with examples](https://www.golinuxcloud.com/ssh-config/)
+* [How to use the command `ssh-add` (with examples)](https://commandmasters.com/commands/ssh-add-common/)
+* [5 Unix / Linux ssh-add Command Examples to Add SSH Key to Agent](https://linux.101hacks.com/unix/ssh-add/)
+* [How To Use SFTP to Securely Transfer Files with a Remote Server](https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server)
+* [libfuse/sshfs](https://github.com/libfuse/sshfs)
