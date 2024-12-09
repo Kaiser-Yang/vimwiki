@@ -620,25 +620,27 @@ sshfs user@host:/path/to/dir /path/to/mount_point
 
 `man` 手册的节有以下几个：
 
-* `1`：命令或程序
-* `2`：系统调用
-* `3`：库函数
-* `4`：特殊文件
-* `5`：文件格式和约定
-* `6`：游戏
-* `7`：杂项
-* `8`：系统管理命令
-* `9`：内核相关
+* `1`：命令或程序。
+* `2`：系统调用。
+* `3`：库函数。
+* `4`：特殊文件。
+* `5`：文件格式和约定。
+* `6`：游戏。
+* `7`：杂项。
+* `8`：系统管理命令。
+* `9`：内核相关。
 
 ## `tee`
 
 | 选项 | 说明 |
 | ---  | --- |
-| `-a` | 追加到文件。默认情况下，`tee` 会覆盖文件内容，使用 `-a` 可以追加到文件末尾 |
+| `-a` | 追加 |
 | `-i` | 忽略中断信号 |
 
-管道在进行传递的时候可能会遇到需要 `root` 权限的时候，这时候就需要使用 `sudo tee` 从管道中读取信息
-并写入到文件中。例如 `echo "content" | sudo tee file`。
+`tee` 的作用是将标准输入的内容输出到标准输出和文件，其通常在管道中使用：
+管道在进行传递的时候可能会遇到需要 `root` 权限的时候，
+这时候就需要使用 `sudo tee` 从管道中读取信息并写入到文件中。
+例如 `echo "content" | sudo tee file`。
 
 ## `usermod`
 
@@ -646,13 +648,13 @@ sshfs user@host:/path/to/dir /path/to/mount_point
 | ---  | --- |
 | `-l` | 修改用户名。例如 `usermod -l new_name old_name` 表示将 `old_name` 修改为 `new_name` |
 | `-u` | 修改用户 `UID`。例如 `usermod -u 1000 user` 表示将 `user` 的 `UID` 修改为 `1000` |
-| `-o` | 允许重复的 `UID`。默认情况下，`usermod` 不允许重复的 `UID`，使用 `-o` 可以允许重复的 `UID` |
+| `-o` | 允许重复的 `UID` |
 | `-g` | 修改基本用户组。例如 `usermod -g group user` 表示将 `user` 的基本用户组修改为 `group` |
 | `-G` | 修改附加用户组。例如 `usermod -G group1,group2 user` 表示将 `user` 的附加用户组修改为 `group1` 和 `group2` |
-| `-a` | 添加用户到附加用户组。默认情况下 `-G` 会覆盖用户的附加用户组，使用 `-a` 可以进行追加 |
+| `-a` | 与 `-G` 同时使用，表示追加附加用户组 |
 | `-c` | 修改用户描述 |
 | `-d` | 修改用户主目录 |
-| `-m` | 移动用户主目录。默认情况下，`usermod -d dir` 不会移动用户主目录，使用 `-m` 可以移动用户主目录 |
+| `-m` | 与 `-d` 同时使用，表示同时移动用户主目录 |
 | `-s` | 修改用户登录 `shell` |
 | `-e` | 修改用户过期时间。例如 `usermod -e 2025-12-31 user` 表示将 `user` 的过期时间修改为 `2025-12-31` |
 | `-p` | 设置新的密码。注意新的密码应该是加密后的密码，可以使用 `openssl passwd` 来生成加密后的密码，更加推荐使用 `passwd` 命令进行密码修改 |
@@ -660,6 +662,7 @@ sshfs user@host:/path/to/dir /path/to/mount_point
 | `-U` | 解锁用户。 |
 
 **注意**：创建出来的用户默认是不会过期的。如果设置了过期时间后，可以通过 `chmod -e ""` 来取消。
+当用户过期后，用户将无法登录，但是用户依然存在，`root` 可以解锁用户。
 
 ## `su`
 
@@ -673,10 +676,11 @@ sshfs user@host:/path/to/dir /path/to/mount_point
 **注意**：使用 `su` 切换用户时，如果不指定用户，会默认切换到 `root` 用户。
 
 **注意**：如果不使用 `-l` 选项，`su` 不会切换用户的环境变量，而使用 `-l` 的时候，以下会被依次执行：
-> * clears all the environment variables except `TERM` and variables specified by `--whitelist-environment`
-> * initializes the environment variables `HOME`, `SHELL`, `USER`, `LOGNAME`, and `PATH`
-> * changes to the target user’s home directory
-> * sets `argv[0]` of the shell to `-` in order to make the shell a login shell
+
+> 1. clears all the environment variables except `TERM` and variables specified by `--whitelist-environment`
+> 1. initializes the environment variables `HOME`, `SHELL`, `USER`, `LOGNAME`, and `PATH`
+> 1. changes to the target user’s home directory
+> 1. sets `argv[0]` of the shell to `-` in order to make the shell a login shell
 
 ## `sudo`
 
@@ -686,12 +690,14 @@ sshfs user@host:/path/to/dir /path/to/mount_point
 | `-U` | 与 `-l` 一同使用，指定列出的用户而不是执行 `sudo` 的用户 |
 | `-u` | 指定用户执行命令。例如 `sudo -u user command` 表示以 `user` 用户的身份执行 `command` |
 | `-g` | 指定用户组。例如 `sudo -g group command` 表示以 `group` 用户组的身份执行 `command` |
-| `-s` | 指定 `shell`。默认情况下，`sudo` 会使用 `root` 用户的 `shell`，使用 `-s` 可以指定其他的 `shell` |
-| `-k` | 使 `sudo` 忘记密码。默认情况下，`sudo` 会记住密码一段时间，使用 `-k` 可以使 `sudo` 忘记密码 |
+| `-s` | 指定 `shell` |
+| `-k` | 删除缓存的密码 |
 | `-v` | 更新记住密码时间的时间戳为当前时刻 |
 
-### `/etc/sudoers`
+### `/etc/sudoers` 文件
+
 `/etc/sudoers` 文件用于配置 `sudo` 的权限，只有拥有 `root` 权限的用户可以修改这个文件。
+
 `/etc/sudoers` 文件的格式如下：
 
 ```bash
@@ -704,14 +710,16 @@ user host=(runas[:runasgroup]) [NOPASSWD:] command
 ```
 
 对于上述的规则，方括号中代表可选项，这里给出几个实例：
-* `user ALL=(ALL) ALL`：允许 `user` 用户在任何主机上以任何用户的身份执行任何命令
-* `%group ALL=(ALL) NOPASSWD: ALL`：允许 `group` 组下的所有用户在任何主机上以任何用户的身份执行任何
-命令，且不需要输入密码
-* `@includedir /etc/sudoers.d` 表示引入 `/etc/sudoers.d` 目录下的所有文件，这是默认添加的配置，这
-意味着我们对于其他用户的配置可以放在 `/etc/sudoers.d` 目录下，并以用户名命名文件方便管理。
 
-**注意**：在 `@includedir` 目录下的文件不能以 `~` 结尾并且不能含有 `.`。这是在
-`/etc/sudoers.d/README` 中明确指出的：
+* `user ALL=(ALL) ALL`：允许 `user` 用户在任何主机上以任何用户的身份执行任何命令。
+* `%group ALL=(ALL) NOPASSWD: ALL`：允许 `group` 组下的所有用户在任何主机上以任何用户的身份执行任何命令，
+且不需要输入密码。
+* `@includedir /etc/sudoers.d` 表示引入 `/etc/sudoers.d` 目录下的所有文件，这是默认添加的配置，
+这意味着我们对于其他用户的配置可以放在 `/etc/sudoers.d` 目录下，并以用户名命名文件方便管理。
+
+**注意**：在 `@includedir` 目录下的文件不能以 `~` 结尾并且不能含有 `.`。
+这是在 `/etc/sudoers.d/README` 中明确指出的：
+
 > This will cause `sudo` to read and parse any files in the `/etc/sudoers.d` directory that do not
 end in `~` or contain a `.` character.
 
@@ -719,136 +727,166 @@ end in `~` or contain a `.` character.
 
 ## `visudo`
 
-推荐使用 `visudo` 对 `/etc/sudoers` 文件进行修改 (即通过命令 `sudo visudo`)，`visudo` 会检查语法
-错误并在保存之前进行检查。
+推荐使用 `visudo` 对 `/etc/sudoers` 文件进行修改 (即通过命令 `sudo visudo`)，
+`visudo` 会在修改后检查是否存在语法错误。
 
 `visudo` 还有一些选项：
 
 | 选项 | 说明 |
 | ---  | --- |
-| `-c` | 检查语法错误。例如 `sudo visudo -c` 表示检查 `/etc/sudoers` 文件的语法错误 |
-| `-f` | 指定文件。例如 `sudo visudo -f /path/to/file` 表示编辑 `/path/to/file` 文件 |
+| `-c` | 检查语法错误 |
+| `-f` | 指定文件 |
 
 ## `mount`
 
-| 选项       | 说明 |
-| ---        | --- |
-| `-a`       | 挂载所有在 `/etc/fstab` 中配置的文件系统 |
-| `-t`       | 指定文件系统类型。例如 `mount -t ext4 /dev/sda1 /mnt` 表示将 `/dev/sda1` 挂载到 `/mnt` 目录上，并且文件系统类型是 `ext4` |
-| `-o`       | 指定挂载选项。例如 `mount -o ro /dev/sda1 /mnt` 表示将 `/dev/sda1` 以只读模式挂载到 `/mnt` 目录上 |
-| `-r`       | 以只读模式挂载。等价于 `-o ro` |
-| `-w`       | 以读写模式挂载。等价于 `-o rw` |
-| `--move`   | 移动挂载点。例如 `mount --move /mnt /mnt2` 表示将 `/mnt` 移动到 `/mnt2` 上 |
-| `--fake`   | 模拟挂载。例如 `mount --fake /mnt` 表示模拟挂载 `/mnt` 目录上的文件系统，但是不会真正挂载 |
+| 选项     | 说明 |
+| ---      | --- |
+| `-a`     | 挂载所有在 `/etc/fstab` 中配置的文件系统 |
+| `-t`     | 指定文件系统类型 |
+| `-o`     | 指定挂载选项 |
+| `-r`     | 以只读模式挂载 |
+| `-w`     | 以读写模式挂载 |
+| `--move` | 移动挂载点。例如 `mount --move /mnt1 /mnt2` 表示将 `/mnt1` 移动到 `/mnt2` 上 |
+| `--fake` | 模拟挂载 |
 
 常见的文件系统类型：
-* `ext4`：`Linux` 文件系统
-* `ntfs`：`Windows` 文件系统, 使用 `mount -t ntfs-3g` 进行挂载
-* `FAT32`：`FAT32` 文件系统，使用 `mount -t vfat` 进行挂载
-* `exFAT`：需要安装 `exfat-fuse` 和 `exfat-utils` 包，使用 `mount -t exfat` 进行挂载
-* `ISO`：`ISO` 文件系统，使用 `mount -t iso9660` 进行挂载
-* `nfs`：网络文件系统，使用 `mount -t nfs -o vers=num` 可以指定版本
 
-**注意**：直接使用 `mount` 可以列出所有已经挂载的文件系统。也可以使用 `mount -t type` 来列出指定类型
-的文件系统。
+* `ext4`：`Linux` 文件系统。
+* `ntfs`：`Windows` 文件系统, 使用 `mount -t ntfs-3g` 进行挂载。
+* `FAT32`：`FAT32` 文件系统，使用 `mount -t vfat` 进行挂载。
+* `exFAT`：需要安装 `exfat-fuse` 和 `exfat-utils` 包，使用 `mount -t exfat` 进行挂载。
+* `ISO`：`ISO` 文件系统，使用 `mount -t iso9660` 进行挂载。
+* `nfs`：网络文件系统，使用 `mount -t nfs -o vers=num` 可以指定版本。
+
+**注意**：直接使用 `mount` 可以列出所有已经挂载的文件系统。
+也可以使用 `mount -t type` 来列出指定类型的文件系统。
 
 ### 获取设备的文件系统类型及 `UUID`
+
 可以使用 `blkid` 命令来获取设备的文件系统类型及 `UUID`，例如 `blkid /dev/sda1`。
 
-### `fstab`
-直接通过 `mount` 命令挂载的文件系统在系统重启后会失效，为了让文件系统在系统重启后自动挂载，我们可以
-将文件系统的信息写入 `/etc/fstab` 文件中。`/etc/fstab` 文件的格式如下：
+### `/etc/fstab` 文件
+
+直接通过 `mount` 命令挂载的文件系统在系统重启后会失效，为了让文件系统在系统重启后自动挂载，
+我们可以将文件系统的信息写入 `/etc/fstab` 文件中。`/etc/fstab` 文件的格式如下：
 
 ```
-# device <mount point>   <type>  <options>     <dump>  <pass>
-/dev/sda1       /mnt        ext4    defaults       0       2
+# device <mount_point>   <type>  <options>     <dump>  <pass>
+/dev/sda1       /mnt      ext4    defaults       0       2
 ```
 
 其中各个字段的含义如下：
-* `<device>`：设备文件
-* `<mount point>`：挂载点
-* `<type>`：文件系统类型
-* `<options>`：挂载选项，多个选项通过 `,` 进行分隔
-* `<dump>`：备份标志。`0` 表示不备份，`1` 表示备份 (需要 `dump` 工具，通常设置为 `0`)
-* `<pass>`：文件系统检查顺序。`0` 表示不检查，`1` 表示第一个检查，`2` 表示第二个检查 (根文件系统通常
-设置为 `1`，其他文件系统设置为 `2`)
+
+* `<device>`：设备文件。
+* `<mount_point>`：挂载点。
+* `<type>`：文件系统类型。
+* `<options>`：挂载选项，多个选项通过 `,` 进行分隔。
+* `<dump>`：备份标志。`0` 表示不备份，`1` 表示备份 (需要 `dump` 工具，通常设置为 `0`)。
+* `<pass>`：文件系统检查顺序。`0` 表示不检查，`1` 表示第一个检查，
+`2` 表示第二个检查 (根文件系统通常设置为 `1`，其他文件系统设置为 `2`)。
 
 ## `umount`
-`umount` 用于卸载文件系统，使用方式为 `umount <mount point>`，例如 `umount /mnt`。
 
-**注意**：卸载文件系统的时候，如果文件系统正在被使用，会提示 `device is busy`，这时候可以使用
-`lsof <mount point>` 来查看哪些进程在使用这个文件系统，然后选择是否通过 `kill` 命令杀死这些进程。也
-可以使用 `umount -l <mount point>` 在空闲时自动卸载。
+`umount` 用于卸载文件系统，使用方式为 `umount <mount_point>`，例如 `umount /mnt`。
+
+**注意**：卸载文件系统的时候，如果文件系统正在被使用，会提示 `device is busy`，
+这时候可以使用 `lsof <mount_point>` 来查看哪些进程在使用这个文件系统，
+然后选择是否通过 `kill` 命令杀死这些进程。
+也可以使用 `umount -l <mount_point>` 在空闲时自动卸载或者使用 `umount -f <mount_point>` 强制卸载。
 
 ## `lsof`
+
 `lsof` 是 `list open files` 的缩写，用于列出系统中打开的文件。`lsof` 的输出包含如下几项：
-* `COMMAND`：打开文件所使用的命令
-* `PID`：进程 `ID`
-* `USER`：进程的用户
-* `FD`：文件描述符
+
+* `COMMAND`：打开文件所使用的命令。
+* `PID`：进程 `ID`。
+* `USER`：进程的用户。
+* `FD`：文件描述符。
 * `TYPE`：文件类型，常见的有 `REG`、`DIR`、`CHR`、`FIFO`、`SOCK`、`LINK`，分别代表普通文件、目录、
 字符设备、管道、套接字、符号链接。
-* `DEVICE`：设备
-* `SIZE/OFF`：文件大小或者偏移量
-* `NODE`：`inode` 号
-* `NAME`：打开的文件名
+* `DEVICE`：设备。
+* `SIZE/OFF`：文件大小或者偏移量。
+* `NODE`：`inode` 号。
+* `NAME`：打开的文件名。
 
 `lsof` 的可用选项如下：
+
 | 选项 | 说明 |
 | ---  | --- |
 | `-u` | 指定用户 |
 | `-c` | 指定命令开头 |
-| `-b` | 避免获取结果时调用可能会阻塞的内核函数。可以提升执行效率，但是可能会导致结果不完整 |
-| `+D` | 指定目录。例如 `lsof +D /path/to/dir` 表示递归查看 `/path/to/dir` 目录下的打开文件 |
+| `-b` | 避免获取结果时调用可能会阻塞的内核函数 |
+| `+D` | 指定目录 |
 | `-i` | 查看网络连接 |
 | `-n` | 禁止显示域名，域名全部显示为 `IP` 地址 |
 | `-P` | 禁止将端口号转换为服务名 |
 | `-p` | 指定进程 `ID` |
 | `-U` | 列出 `UNIX` 域套接字。`TYPE` 为 `unix` 的文件 |
-| `-R` | 同时列出 `PPID` ( 父进程 `ID` ) |
-| `-l` | 显示用户的 `ID` 而不是用户名字 |
+| `-R` | 同时列出父进程 `ID` |
+| `-l` | 显示用户的 `ID` |
 | `-t` | 只输出打开文件的进程 `ID` |
 | `-a` | 逻辑与。例如 `lsof -u user -a -c command` 表示查找用户为 `user` 且命令开头为 `command` 的进程 |
 | `-d` | 指定文件描述符。例如 `lsof -d 1` 表示查找文件描述符为 `1` 的文件 |
 
 **注意**：使用某些选项时可以使用 `^` 来表示排除某个用户，例如 `lsof -u ^root` 表示排除 `root` 用户。
 
-**注意**：`-i` 的完整格式为 `-i[46][protocol][@hostname|@hostaddr][:service|:port]`，其中 `protocol` 可以
-是 `TCP`、`UDP`、`TCP:UDP`，`hostname` 可以是主机名、`IPv4` 地址、`IPv6` 地址，`service` 可以是服务名、
-端口号。
+**注意**：`-i` 的完整格式为：
+
+```shell
+-i[46][protocol][@hostname|@hostaddr][:service|:port]，
+```
+
+其中 `protocol` 可以是 `TCP`、`UDP`、`TCP:UDP`，`hostname` 可以是主机名、`IPv4` 地址、`IPv6` 地址，
+`service` 可以是服务名、端口号。
 
 # `git`
-## `.gitignore`
+
+## `.gitignore` 文件
+
 `.gitignore` 文件用于指定不需要被 `git` 追踪的文件或目录，这些文件或目录不会被提交到版本库中。在
 `.gitignore` 文件中可以使用 `wildcards` 来指定不需要被追踪的文件或目录。
 
+`.gitignore` 文件还可以用于防止后续的修改被提交，例如某个文件已经被提交到版本库中，
+但是后续不希望这个文件被追踪，可以将这个文件加入到 `.gitignore` 文件中。
+这种方式常常用于设置 `DEBUG` 相关文件。
+
 ### `wildcards`
-`.gitignore` 中的 `wildcards` 与 `bash` 中基本一致，可以查看 [Wildcards in Linux](#wildcards-in-linux) 来
-了解更多关于 `wildcards` 的内容。
+
+`.gitignore` 中的 `wildcards` 与 `bash` 中基本一致，
+可以查看 [Wildcards in Linux](#wildcards-in-linux) 来了解更多关于 `wildcards` 的内容。
 
 ### 基本用法
-默认情况下，`.gitignore` 中的条目会进行递归的忽略，如果不想进行递归忽略，可以在条目前加上 `/` 表示只对
-当前目录生效。例如 `/foo` 表示只忽略当前目录下的 `foo` 文件或目录，而 `foo` 表示忽略所有的 `foo` 文件或
-目录。
 
-默认情况下，`.gitignore` 中的条目会匹配目录和文件，如果只想匹配目录则可以在条目末尾加上 `/` 表示只匹配
-目录。例如 `foo/` 表示只匹配目录 `foo`，而 `foo` 表示匹配所有的 `foo` 文件或目录。你可能会有疑惑：
-在 `Linux` 中，同一目录下的文件和目录不能够重名，这样做的意义是什么？其实如果不进行递归匹配，确实是
-没有意义的，但是 `build/` 和 `build` 表示的意义是不同的，前者表示忽略所有 `build` 目录，而后者表示
-忽略所有 `build` 文件或目录。前者可以保留某个子目录下面的名为 `build` 的文件，而后者却做不到这一点。
+默认情况下，`.gitignore` 中的条目会进行递归的忽略，如果不想进行递归忽略，
+可以在条目前加上 `/` 表示只对当前目录生效。例如 `/foo` 表示只忽略当前目录下的 `foo` 文件或目录，
+而 `foo` 表示忽略所有的 `foo` 文件或目录。
+
+默认情况下，`.gitignore` 中的条目会匹配目录和文件，
+如果只想匹配目录则可以在条目末尾加上 `/` 表示只匹配目录。例如 `foo/` 表示只匹配目录 `foo`，
+而 `foo` 表示匹配所有的 `foo` 文件或目录。你可能会有疑惑：
+
+> 在 `Linux` 中，同一目录下的文件和目录不能够重名，这样做的意义是什么？
+
+其实如果不进行递归匹配，确实是没有意义的，但是 `build/` 和 `build` 表示的意义是不同的，
+前者表示忽略所有 `build` 目录，而后者表示忽略所有 `build` 文件或目录。
+前者可以保留某个子目录下面的名为 `build` 的文件，而后者却做不到这一点。
 当然如前面所言，我们可以使用 `/build/` 只忽略当前目录下的 `build` 目录。
 
 ### 全局忽略
-在 `git` 中可以配置全局忽略文件，通常使用 `.git` 管理的仓库不需要追踪一些特定的文件，例如 `*.pyc`、
-`*.o` 等，这时候我们可以配置全局忽略文件。全局忽略文件的配置文件是 `~/.config/git/ignore`。
+
+在 `git` 中可以配置全局忽略文件，通常使用 `.git` 管理的仓库不需要追踪一些特定的文件，
+例如 `*.pyc`、`*.o` 等，这时候我们可以配置全局忽略文件。
+全局忽略文件的配置文件是 `~/.config/git/ignore`。
 
 ### 忽略文件优先级
-在 `git` 中任何一个目录下都可以有一个 `.gitignore` 文件，这个文件会对当前目录下的文件和目录生效。如果
-在父目录下有一个 `.gitignore` 文件，那么这个文件会对当前目录下的文件和目录生效，但是如果当前目录下有
-一个 `.gitignore` 文件，那么这个文件会覆盖父目录下的文件。也就是说，`.gitignore` 文件的优先级是从
-子目录到父目录逐渐降低的。全局忽略文件的优先级最低。
+
+在 `git` 中任何一个目录下都可以有一个 `.gitignore` 文件，这个文件会对当前目录下的文件和目录生效。
+如果在父目录下有一个 `.gitignore` 文件，那么这个文件会对当前目录下的文件和目录生效，
+但是如果当前目录下有一个 `.gitignore` 文件，那么这个文件会覆盖父目录下的文件。
+也就是说，`.gitignore` 文件的优先级是从子目录到父目录逐渐降低的。全局忽略文件的优先级最低。
 
 # 巨人的肩膀
+
 * [10 Practical Examples Using Wildcards to Match Filenames in Linux](https://www.tecmint.com/use-wildcards-to-match-filenames-in-linux/)
 * [fish shell wildcards](https://fishshell.com/docs/current/fish_for_bash_users.html#wildcards-globs)
 * [Linux Tutorial - Cheat Sheet - grep](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php)
