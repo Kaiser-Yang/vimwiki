@@ -176,7 +176,7 @@ require('blink.cmp.completion.list').show_emitter:on(function(event)
     if event.context.line:sub(col, col):match('%d') == nil then return end
     local rime_item_index = require('plugins.rime_ls').get_n_rime_item_index(2, event.items)
     if #rime_item_index ~= 1 then return end
-    require('blink.cmp').accept({ index = rime_item_index[1] })
+    vim.schedule(function() require('blink.cmp').accept({ index = rime_item_index[1] }) end)
 end)
 ```
 
