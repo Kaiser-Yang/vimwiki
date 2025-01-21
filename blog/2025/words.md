@@ -6,6 +6,12 @@ Arthritis is a disease that causes the joints of the body to become painful and 
 
 She suffers from arthritis in her knees.
 
+## astronomical
+
+If something is astronomical, it is extremely large.
+
+It's an astronomical distance between the Milky Way galaxy and the nearest galaxy.
+
 ## attorney,
 
 An attorney is a lawyer.
@@ -27,6 +33,12 @@ Cholesterol is a substance in fat, tissues and blood of all animals.
 
 When people have too much cholesterol, they are at a high risk for heart problems.
 
+## coalition
+
+A coalition is a group of people or organizations working for a common purpose.
+
+The companies formed a coalition to make trade less expensive.
+
 ## complement
 
 To complement something means to completes it or make it perfect.
@@ -34,6 +46,12 @@ To complement something means to completes it or make it perfect.
 The wool scarf complemented her lovely eyes.
 
 # d/D
+
+## deceptive
+
+When something is deceptive, it encourages one to believe something that is not true.
+
+The advertisement was deceptive, and the product was not as good as they claimed.
 
 ## discipline
 
@@ -53,6 +71,14 @@ The hospital is appealing for blood donors.
 To distort something means to change something so that it is false or wrong.
 
 The mirror distorted her reflection.
+
+# e/E
+
+## ethics
+
+Ethics are moral beliefs or rules about right or wrong.
+
+The act of stealing certainly doesn't go against some people's ethics.
 
 # f/F
 
@@ -100,6 +126,14 @@ If you implicate someone in a crime or a dishonest act,
 you show or claim that they were involved in it.
 
 The evidence implicates him in the robbery.
+
+# n/N
+
+## nectar
+
+Nectar is a sweet liquid produced by flowers that bees and other insects collect.
+
+Bees use nectar to make their honey.
 
 # p/P
 
