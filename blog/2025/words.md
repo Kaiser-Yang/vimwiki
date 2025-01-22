@@ -1,5 +1,11 @@
 # a/A
 
+## advent
+
+An advent is the arrival beginning of an important person, thing, or event.
+
+During the advent of radio, very few programs actually played music.
+
 ## arthritis
 
 Arthritis is a disease that causes the joints of the body to become painful and swollen.
@@ -45,6 +51,12 @@ To complement something means to completes it or make it perfect.
 
 The wool scarf complemented her lovely eyes.
 
+## constellation
+
+A constellation is a group of stars with a recognizable shape.
+
+The constellation in the shape of a square is named after a flying horse.
+
 # d/D
 
 ## deceptive
@@ -59,6 +71,12 @@ The discipline is the practice of training people to obey rules or a code of beh
 using punishment to correct disobedience.
 
 The school has a reputation for strict discipline.
+
+## definitive
+
+If something is definitive, then it is the most official.
+
+This library has the definitive collection of books on ancient Egypt.
 
 ## donor
 
@@ -135,7 +153,21 @@ Nectar is a sweet liquid produced by flowers that bees and other insects collect
 
 Bees use nectar to make their honey.
 
+# o/O
+
+## outmoded
+
+If something is outmoded, then it is no longer in fashion or use.
+
+Black and white television sets are outmoded.
+
 # p/P
+
+## pertain
+
+To pertain to something means to be related or connected to it.
+
+All of the lawyer's questions pertained to events around the night of the crime.
 
 ## plausible
 
@@ -171,3 +203,11 @@ The staircase spiraled up to the top of the tower.
 Tissue consists of the cells of a particular type of animal or plant.
 
 The tissue of the heart is made up of muscle cells.
+
+# v/V
+
+## vivacious
+
+If someone is vivacious, they are talkative and cheerful.
+
+Everyone at the party was very vivacious and having a good time.
