@@ -51,13 +51,31 @@ To complement something means to completes it or make it perfect.
 
 The wool scarf complemented her lovely eyes.
 
+## concerto
+
+A concerto is music for a solo instrument and played with an orchestra.
+
+The piano concerto has a section in which only the piano plays.
+
 ## constellation
 
 A constellation is a group of stars with a recognizable shape.
 
 The constellation in the shape of a square is named after a flying horse.
 
+## cove
+
+A cove is a part of land where it curves inward around the sea.
+
+They hid the boat in a small cove on the south side of the island.
+
 # d/D
+
+## defect
+
+A defect is a part of something that is wrong or missing.
+
+All these bottles have a defect and must be sent back to the warehouse.
 
 ## deceptive
 
@@ -77,6 +95,12 @@ The school has a reputation for strict discipline.
 If something is definitive, then it is the most official.
 
 This library has the definitive collection of books on ancient Egypt.
+
+## deteriorate
+
+To deteriorate means to become steadily worse.
+
+The nation's economy continued to deteriorate despite the government's efforts.
 
 ## donor
 
@@ -195,6 +219,12 @@ If something spirals, it moves in
 a shape which winds round and round in larger and larger circles.
 
 The staircase spiraled up to the top of the tower.
+
+## spur
+
+To spur someone means to encourage them to do something.
+
+The coach's speech spurred the team into playing the bast game of their lives.
 
 # t/T
 
