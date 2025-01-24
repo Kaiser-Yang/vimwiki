@@ -26,6 +26,24 @@ The attorney was very good at defending his clients.
 
 # c/C
 
+## contend
+
+To contend with something means to struggle to overcome it.
+
+Stacy had to contend with a learning disability throughout her school years.
+
+## cot
+
+A cot is a small portable bed.
+
+At the camp, the boys' cabin was lined with cots.
+
+## camouflage
+
+Camouflage is something used to hide people and things.
+
+The green and brown camouflage was best used for hiding in forests and jungles.
+
 ## chronic
 
 If you describe an illness as chronic, you mean that it continues for a long time or
@@ -116,6 +134,12 @@ The mirror distorted her reflection.
 
 # e/E
 
+## enlist
+
+To enlist means to join the military.
+
+In their final year at school, the students were asked to enlist in the military.
+
 ## ethics
 
 Ethics are moral beliefs or rules about right or wrong.
@@ -123,6 +147,12 @@ Ethics are moral beliefs or rules about right or wrong.
 The act of stealing certainly doesn't go against some people's ethics.
 
 # f/F
+
+## frontier
+
+A frontier is a border between two countries or regions.
+
+A fence was built along the frontier to keep out invaders.
 
 ## fore
 
@@ -169,6 +199,28 @@ you show or claim that they were involved in it.
 
 The evidence implicates him in the robbery.
 
+# l/L
+
+## lush
+
+If something is lush, then it is full of a variety of large, healthy plants.
+
+The lush jungle was full of interesting wildlife.
+
+## lobby
+
+A lobby is a large open area just inside the entrance of a public building.
+
+The lobby of the hotel was very impressive.
+
+# m/M
+
+## marrow
+
+Marrow is the soft substance in the center of bones.
+
+Dissolved marrow is a common ingredient in soups.
+
 # n/N
 
 ## nectar
@@ -198,6 +250,12 @@ All of the lawyer's questions pertained to events around the night of the crime.
 If something is plausible, it is reasonable and likely to be true.
 
 It is plausible that that Jack isn't here today because he is sick.
+
+## practitioner
+
+A practitioner is a doctor or lawyer.
+
+The practitioner has been working in this field for over 20 years.
 
 ## prevalent
 
@@ -234,7 +292,19 @@ Tissue consists of the cells of a particular type of animal or plant.
 
 The tissue of the heart is made up of muscle cells.
 
+## tract
+
+A tract is a large area of land.
+
+On the other side of the mountains was a vast tract of forest.
+
 # v/V
+
+## vigil
+
+A vigil is a period of watchful attention at night for a specific purpose.
+
+He had a vigil in front of the tomb for three days.
 
 ## vivacious
 
