@@ -134,6 +134,12 @@ The mirror distorted her reflection.
 
 # e/E
 
+## enact
+
+To enact something means to make it into a law.
+
+The council enacted a law that would only allow buses to drive downtown
+
 ## enlist
 
 To enlist means to join the military.
@@ -161,6 +167,12 @@ The fore of something is the front part of it.
 The fore of the ship was badly damaged.
 
 # g/G
+
+## gross
+
+If something is gross, then it is disgusting.
+
+The food was so gross that the dog couldn't eat it without feeling sick.
 
 ## gossip
 
@@ -215,6 +227,12 @@ The lobby of the hotel was very impressive.
 
 # m/M
 
+## mound
+
+A mound of something is a large pile of it.
+
+There was a mound of clothes on the messy teenager's floor.
+
 ## marrow
 
 Marrow is the soft substance in the center of bones.
@@ -265,6 +283,12 @@ Growling a beard is more prevalent behavior in men than women.
 
 # s/S
 
+## slate
+
+Slate is a dark grey rock that can easily be split into thin layers.
+
+The roof was made of slate.
+
 ## shock
 
 If someone is shocked by electrical equipment, they are injured or killed by an electric shock.
@@ -299,6 +323,12 @@ A tract is a large area of land.
 On the other side of the mountains was a vast tract of forest.
 
 # v/V
+
+## valve
+
+A valve is a device attached to a pipe that controls the flow of liquid or air.
+
+The mechanic removed the dirt to clear the engine valve.
 
 ## vigil
 
