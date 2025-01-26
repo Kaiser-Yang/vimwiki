@@ -89,6 +89,12 @@ They hid the boat in a small cove on the south side of the island.
 
 # d/D
 
+## dilapidated
+
+When a building is dilapidated, it is old and in poor condition.
+
+Paint peeled off of the old dilapidated apartment building.
+
 ## defect
 
 A defect is a part of something that is wrong or missing.
@@ -154,6 +160,12 @@ The act of stealing certainly doesn't go against some people's ethics.
 
 # f/F
 
+## filth
+
+Filth is a large amount of dirt or dirty things that disgust you.
+
+There was tons of filth and trash on the shore of the river.
+
 ## frontier
 
 A frontier is a border between two countries or regions.
@@ -213,6 +225,12 @@ The evidence implicates him in the robbery.
 
 # l/L
 
+## lentil
+
+Lentils are very small beans that people cook and eat.
+
+Danni made her special soup with lentils when her husband was sick.
+
 ## lush
 
 If something is lush, then it is full of a variety of large, healthy plants.
@@ -226,6 +244,12 @@ A lobby is a large open area just inside the entrance of a public building.
 The lobby of the hotel was very impressive.
 
 # m/M
+
+## marshal
+
+To marshal a group means to assemble them in order.
+
+The students were marshaled outside and put into groups.
 
 ## mound
 
@@ -283,6 +307,12 @@ Growling a beard is more prevalent behavior in men than women.
 
 # s/S
 
+## sentiment
+
+A sentiment is an opinion based on your feeling.
+
+Tess told everyone at the table her sentiments about eating meat.
+
 ## slate
 
 Slate is a dark grey rock that can easily be split into thin layers.
@@ -321,6 +351,14 @@ The tissue of the heart is made up of muscle cells.
 A tract is a large area of land.
 
 On the other side of the mountains was a vast tract of forest.
+
+# u/U
+
+## unrest
+
+Unrest is a state of anger about something among the people in a place.
+
+High taxes caused much of the unrest that led to the Revolutionary War.
 
 # v/V
 
