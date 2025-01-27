@@ -26,6 +26,12 @@ The attorney was very good at defending his clients.
 
 # c/C
 
+## conquest
+
+A conquest is an event by which one country takes over another country.
+
+After the conquest, the people of the small city had no freedom.
+
 ## contend
 
 To contend with something means to struggle to overcome it.
@@ -281,6 +287,12 @@ Black and white television sets are outmoded.
 
 # p/P
 
+## poignant
+
+When something is poignant, it causes a very strong feeling of sadness.
+
+The girls cried at the end of the poignant movie.
+
 ## pertain
 
 To pertain to something means to be related or connected to it.
@@ -305,7 +317,45 @@ If something is prevalent, it is very common.
 
 Growling a beard is more prevalent behavior in men than women.
 
+# r/R
+
+## ranger
+
+A ranger is a person who protects the forest or parks.
+
+Peter wanted to be a ranger because he liked spending time outside.
+
+## rubble
+
+Rubble is piles of broken and wood created after a building is destroyed.
+
+There was rubble all over the city after the earthquake.
+
 # s/S
+
+## seclude
+
+To seclude someone means to keep them away from other people.
+
+She was secluded on an island for over a year.
+
+## speck
+
+A speck is a very small mark or amount.
+
+A speck of blood appeared where the mosquito bit him.
+
+## sober
+
+When something or someone is sober, they are serious and calm.
+
+After the funeral, everyone felt very sober.
+
+## sideways
+
+If something moves sideways, then it moves to or from the side.
+
+Jim turned sideways in order to slow down and stop his snowboard.
 
 ## sentiment
 
@@ -353,6 +403,12 @@ A tract is a large area of land.
 On the other side of the mountains was a vast tract of forest.
 
 # u/U
+
+## upbringing
+
+An upbringing is the way that someone is taught to behave by their parents.
+
+He had a strict upbringing and was never allowed to watch television while eating.
 
 ## unrest
 
