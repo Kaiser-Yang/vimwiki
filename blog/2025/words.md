@@ -146,6 +146,12 @@ The mirror distorted her reflection.
 
 # e/E
 
+## elusive
+
+If something or someone is elusive, they are hard to find.
+
+The elusive fish only came out at night.
+
 ## enact
 
 To enact something means to make it into a law.
@@ -251,6 +257,12 @@ The lobby of the hotel was very impressive.
 
 # m/M
 
+## microbe
+
+A microbe is a very small living thing that often makes people sick.
+
+The first step in curing a disease is finding the microbe that causes the disease.
+
 ## marshal
 
 To marshal a group means to assemble them in order.
@@ -331,7 +343,19 @@ Rubble is piles of broken and wood created after a building is destroyed.
 
 There was rubble all over the city after the earthquake.
 
+## rupture
+
+To rupture means to tear or burst open.
+
+Sarah put too much water into the balloon, and it ruptured.
+
 # s/S
+
+## savage
+
+If something or someone is savage, they are very violent or cruel.
+
+Wild animals are very savage when defending their babies.
 
 ## seclude
 
@@ -404,6 +428,12 @@ On the other side of the mountains was a vast tract of forest.
 
 # u/U
 
+## unsettle
+
+To unsettle someone means to make them anxious or worried.
+
+The dark clouds in the sky unsettled Beth.
+
 ## upbringing
 
 An upbringing is the way that someone is taught to behave by their parents.
@@ -435,3 +465,11 @@ He had a vigil in front of the tomb for three days.
 If someone is vivacious, they are talkative and cheerful.
 
 Everyone at the party was very vivacious and having a good time.
+
+# w/W
+
+## warp
+
+To warp means to become bent into the wrong shape.
+
+The woman put the clock above the fireplace, and the heat warped it.
