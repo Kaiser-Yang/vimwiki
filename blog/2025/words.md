@@ -26,6 +26,12 @@ The attorney was very good at defending his clients.
 
 # c/C
 
+## courier
+
+A courier is someone who takes and delivers mail or packages.
+
+Before trains, most couriers used horses to deliver mail.
+
 ## conquest
 
 A conquest is an event by which one country takes over another country.
@@ -146,6 +152,12 @@ The mirror distorted her reflection.
 
 # e/E
 
+## etiquette
+
+Etiquette is the group of rules about how to be polite.
+
+When in Asian countries, bowing is a form of etiquette.
+
 ## elusive
 
 If something or someone is elusive, they are hard to find.
@@ -237,6 +249,12 @@ The evidence implicates him in the robbery.
 
 # l/L
 
+## liable
+
+If something is liable to happen, it is very likely that it will happen.
+
+During the summer months, hikers in the forest are liable to see deer and elk.
+
 ## lentil
 
 Lentils are very small beans that people cook and eat.
@@ -291,6 +309,12 @@ Bees use nectar to make their honey.
 
 # o/O
 
+## obsess
+
+To obsess about something means to think about it all of the time.
+
+After watching the Star Wars movies, Ike obsessed about becoming a Jedi.
+
 ## outmoded
 
 If something is outmoded, then it is no longer in fashion or use.
@@ -298,6 +322,12 @@ If something is outmoded, then it is no longer in fashion or use.
 Black and white television sets are outmoded.
 
 # p/P
+
+## premium
+
+A premium is a payment that is higher than average.
+
+Tony paid for premium gas because it made his car run the best.
 
 ## poignant
 
