@@ -1,5 +1,11 @@
 # a/A
 
+## altar
+
+An altar is a table used in churches.
+
+The altar had many lit candles on it.
+
 ## advent
 
 An advent is the arrival beginning of an important person, thing, or event.
@@ -101,6 +107,12 @@ They hid the boat in a small cove on the south side of the island.
 
 # d/D
 
+## dung
+
+Dung is solid waste material produced by animals.
+
+There was cow dung all over the field.
+
 ## dilapidated
 
 When a building is dilapidated, it is old and in poor condition.
@@ -151,6 +163,12 @@ To distort something means to change something so that it is false or wrong.
 The mirror distorted her reflection.
 
 # e/E
+
+## elk
+
+An elk is a large deer with big antlers.
+
+The elk was the largest animal in the forest.
 
 ## etiquette
 
@@ -232,6 +250,12 @@ There has been a gulf between the two communities for years.
 
 # h/H
 
+## hone
+
+To hone something is to improve it and make it perfect.
+
+Lisa honed her singing skills by practicing every day.
+
 ## humanities
 
 Humanities are subjects which analyze human ideas, such as history and literature.
@@ -309,6 +333,18 @@ Bees use nectar to make their honey.
 
 # o/O
 
+## obstruct
+
+To obstruct something means to get in its way.
+
+The car broke down on the road and obstructed traffic for hours.
+
+## ornate
+
+If something is ornate, it is decorated with a lot fancy things.
+
+Kim's prom dress was very expensive since it was so ornate.
+
 ## obsess
 
 To obsess about something means to think about it all of the time.
@@ -322,6 +358,12 @@ If something is outmoded, then it is no longer in fashion or use.
 Black and white television sets are outmoded.
 
 # p/P
+
+## pneumonia
+
+Pneumonia is a dangerous illness causing the lungs to fill with liquid.
+
+Elaine got pneumonia after playing outside in the rain without a coat.
 
 ## premium
 
