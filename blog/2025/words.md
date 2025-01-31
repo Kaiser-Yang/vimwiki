@@ -32,6 +32,18 @@ The attorney was very good at defending his clients.
 
 # c/C
 
+## char
+
+To char means to burn something so that it turns black.
+
+While Frank went inside to get the mustard, he accidentally charred the hot dogs.
+
+## contradict
+
+To contradict means to state the opposite of what someone else has.
+
+Ken was always fighting with his little sister because she kept contradicting him.
+
 ## courier
 
 A courier is someone who takes and delivers mail or packages.
@@ -202,6 +214,12 @@ The act of stealing certainly doesn't go against some people's ethics.
 
 # f/F
 
+## fend
+
+To fend off something means to push it away and avoid it.
+
+Dave spent all night fending off bugs instead of sleeping.
+
 ## filth
 
 Filth is a large amount of dirt or dirty things that disgust you.
@@ -221,6 +239,12 @@ The fore of something is the front part of it.
 The fore of the ship was badly damaged.
 
 # g/G
+
+## gazette
+
+A gazette is a newspaper.
+
+Alice wants to write for a gazette when she's older.
 
 ## gross
 
@@ -358,6 +382,12 @@ If something is outmoded, then it is no longer in fashion or use.
 Black and white television sets are outmoded.
 
 # p/P
+
+## prom
+
+A prom is a formal dance for high school or college students at the end of the year.
+
+The prom was the most exciting event of the school year.
 
 ## pneumonia
 
