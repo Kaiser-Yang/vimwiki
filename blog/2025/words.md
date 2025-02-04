@@ -1,5 +1,11 @@
 # a/A
 
+## arduous
+
+When something is arduous, it demands great effort or labor.
+
+The explorers began their arduous hike up the steep mountain.
+
 ## attic
 
 An attic is a room just below the roof of a house.
@@ -188,6 +194,24 @@ The mirror distorted her reflection.
 
 # e/E
 
+## erroneous
+
+When something is erroneous, it is incorrect or only partly correct.
+
+The child held the erroneous belief that time machines were real.
+
+## excavate
+
+To excavate means to dig on land and remove dirt to look for something.
+
+The team wishes to excavate the site in hopes of finding fossils.
+
+## ego
+
+An ego is a person's sense of their own worth.
+
+Kelly's ego made her think that she was some kind of a superstar.
+
 ## elk
 
 An elk is a large deer with big antlers.
@@ -291,6 +315,12 @@ A gulf is a gap between people, groups, or things that are not able to understan
 There has been a gulf between the two communities for years.
 
 # h/H
+
+## hallmark
+
+A hallmark is a unique characteristic of something.
+
+Different types of pasta and tomato sauces are hallmarks of Italian cuisine.
 
 ## hone
 
@@ -476,6 +506,12 @@ To rupture means to tear or burst open.
 Sarah put too much water into the balloon, and it ruptured.
 
 # s/S
+
+## stranded
+
+If someone is stranded, they are prevented from leaving a place.
+
+When the plane left, my sister and I were stranded in China.
 
 ## soundly
 
