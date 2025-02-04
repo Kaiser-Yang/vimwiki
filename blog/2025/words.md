@@ -1,5 +1,11 @@
 # a/A
 
+## attic
+
+An attic is a room just below the roof of a house.
+
+There are two windows in the attic.
+
 ## altar
 
 An altar is a table used in churches.
@@ -31,6 +37,12 @@ An attorney is a lawyer.
 The attorney was very good at defending his clients.
 
 # c/C
+
+## craze
+
+A craze is a brief and popular activity or object.
+
+Wearing bright red socks was a craze when I was in high school.
 
 ## char
 
@@ -240,6 +252,12 @@ The fore of the ship was badly damaged.
 
 # g/G
 
+## gourmet
+
+If food is gourmet, then it is nicer and more expensive than regular food.
+
+In order to get a gourmet meal, you have to eat at an expensive restaurant.
+
 ## gazette
 
 A gazette is a newspaper.
@@ -357,6 +375,12 @@ Bees use nectar to make their honey.
 
 # o/O
 
+## ordeal
+
+An ordeal is a bad experience.
+
+Driving in the snowstorm was an ordeal she'd never forget.
+
 ## obstruct
 
 To obstruct something means to get in its way.
@@ -452,6 +476,18 @@ To rupture means to tear or burst open.
 Sarah put too much water into the balloon, and it ruptured.
 
 # s/S
+
+## soundly
+
+If something is done soundly, then it is done in the best or most complete way.
+
+The nearest opponent was ten meters behind. She won the race soundly.
+
+## superintendent
+
+A superintendent is a person who runs a certain department of building.
+
+The superintendent decided to close the schools because of the weather.
 
 ## savage
 
