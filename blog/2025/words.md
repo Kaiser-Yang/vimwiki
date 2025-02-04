@@ -137,6 +137,12 @@ They hid the boat in a small cove on the south side of the island.
 
 # d/D
 
+## disrupt
+
+To disrupt something or someone means to prevent them from working.
+
+The loud crash disrupted the class lecture.
+
 ## dung
 
 Dung is solid waste material produced by animals.
@@ -250,6 +256,12 @@ The act of stealing certainly doesn't go against some people's ethics.
 
 # f/F
 
+## frantic
+
+If people or things are frantic, they behave in a wild way because they are frightened.
+
+The cat became frantic when I tried to give it a bath.
+
 ## fend
 
 To fend off something means to push it away and avoid it.
@@ -316,6 +328,12 @@ There has been a gulf between the two communities for years.
 
 # h/H
 
+## hull
+
+The hull of a boat or tank is the main body of it.
+
+After the wreck at sea, the hull of the ship was the last part to sink.
+
 ## hallmark
 
 A hallmark is a unique characteristic of something.
@@ -335,6 +353,12 @@ Humanities are subjects which analyze human ideas, such as history and literatur
 She studied humanities at university.
 
 # i/I
+
+## inadvertent
+
+When an action is inadvertent, it is done without realizing it.
+
+She made an inadvertent error when she knocked over the nail polish.
 
 ## implicate
 
@@ -587,6 +611,18 @@ To spur someone means to encourage them to do something.
 The coach's speech spurred the team into playing the bast game of their lives.
 
 # t/T
+
+## tow
+
+To tow something is to pull it.
+
+The truck towed the car to the auto shop.
+
+## tramp
+
+To tramp is to put your feed down in a loud, heavy way as you walk.
+
+The baby tramped across the floor as he was learning to walk.
 
 ## tissue
 
