@@ -1,12 +1,14 @@
 注意：代码将会在后续开放提交后提供。
 
 # [Two Fridges](https://csacademy.com/ieeextreme-practice/task/two-fridges)
+
 由于题目中的温度范围非常小，我们只需要从小到大枚举温度，对于每个枚举，检查是否所有区间都被覆盖。
 第一个覆盖所有区间的温度对即是答案。如果找不到输出 $$ -1 $$ 即可。
 
 代码：[two_fridges.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/two_fridges.cpp)
 
 # [Star Road](https://csacademy.com/ieeextreme-practice/task/star-road)
+
 对于本题我们可以使用线段树和线段树的合并来解决这个问题。
 
 具体的，我们首先需要将 $$ star $$ 离散化，使得其值在 $$ [1, len] $$ 之间，
@@ -48,6 +50,7 @@
 代码：[star_road.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/star_road.cpp)
 
 # [Increasing table](https://csacademy.com/ieeextreme-practice/task/increasing-table)
+
 考虑到当第一行的元素确定后，第二行的元素也就确定了，因此我们只需要计算第一行的方案数即可。
 对于输入，我们可以维护一个序列，序列中的元素表示第一行可以填入的数，以及这个数是否一定要填入到第一行，
 序列按照可以填入的数从小到大排序。
@@ -96,11 +99,13 @@ $$
 代码：[increasing_table.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/increasing_table.cpp)
 
 # [Bounded tuple]()
+
 Not finished yet.
 
 代码：
 
 # [Laser Defense](https://csacademy.com/ieeextreme-practice/task/laser-defense)
+
 我们将激光分成四种：
 * $$ a_u $$：$$ a_u[i] $$ 表示 $$ A $$ 点发出的第 $$ i $$ 条与上边界的交点座标。
 * $$ a_r $$：$$ a_r[i] $$ 表示 $$ A $$ 点发出的第 $$ i $$ 条与右边界的交点座标。
@@ -119,6 +124,7 @@ Not finished yet.
 代码：[laser_defense.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/laser_defense.cpp)
 
 # [Another Sliding Window Problem](https://csacademy.com/ieeextreme-practice/task/another-sliding-window-problem)
+
 首先我们不难发现要获得一个序列的 `optimal cost`，如果序列有偶数个元素，那么最大的要和最小的配对，
 第二大的要和第二小的配对，以此类推；如果序列有奇数个元素，那么最大的元素要单独拎出来，
 而其余元素按照序列有偶数个元素的情况处理。
@@ -168,6 +174,7 @@ Not finished yet.
 代码：[another_sliding_window_problem.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/another_sliding_window_problem.cpp)
 
 # [IEEE754 Emulator](https://csacademy.com/contest/ieeextreme-practice/task/ieee754-emulator/)
+
 逻辑并不复杂，有几点需要注意的：
 * 不能直接计算 $$ a * b + c $$，应该使用相关的库函数，例如 `C++` 的 `std::fma`，`Python` 的 `Math.fma` 等。
 * 类型之间的转换，例如 `int` 和 `float` 之间的转换，应该使用 `union` 或者 `memcpy` 等方法，
@@ -176,11 +183,13 @@ Not finished yet.
 代码：[ieee754_emulator.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/ieee754_emulator.cpp)
 
 # [Triumvirates]()
+
 Not finished yet.
 
 代码：
 
 # [Stick](https://csacademy.com/ieeextreme-practice/task/stick)
+
 除去第一个正方形外，每增加一个正方形，所增加的面积是一个定值，
 其增加值为单个正方形的面积减去两个正方形的公共部分的面积。因此最终答案为 $$ 4NL^2 - (N-1)S $$。
 其中 $$ S $$ 为两个连续正方形相交部分的面积。
@@ -190,11 +199,13 @@ Not finished yet.
 代码：[stick.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/stick.cpp)
 
 # [Increasing-decreasing permutations]()
+
 Not finished yet.
 
 代码：
 
 # [Cheap Construction](https://csacademy.com/ieeextreme-practice/task/cheap-construction)
+
 首先，对于本题，答案中所选的字符串一定可以是原始串的子串。这是因为如果我们不选择原始串的子串，
 那么最终的联通块一定是 $$ N $$，所以对于联通块个数小于 $$ N $$ 情况我们一定要选择原始串的子串。
 而对于要让联通块个数为 $$ N $$ 的情况，我们可以选择一个长度为 $$ 1 $$ 的子串。
@@ -230,6 +241,7 @@ Not finished yet.
 代码：[cheap_construction.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/cheap_construction.cpp)
 
 # [Disparate Date Sets](https://csacademy.com/ieeextreme-practice/task/disparate-datasets)
+
 本题逻辑实际上没有任何的难点，但是如果我使用以下的方式对输入进行处理，将会出现问题：
 
 ```cpp
@@ -264,6 +276,7 @@ while (getline(cin, str)) {
 代码：[disparate_datasets.py](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/disparate_datasets.py)
 
 # [Queries](https://csacademy.com/ieeextreme-practice/task/queries)
+
 首先感谢 [cancaneed](https://codeforces.com/profile/cancaneed) 提供的思路。
 
 本题我们可以采用两次分块来进行实现。分块维护区间和。
@@ -319,11 +332,13 @@ $$
 代码：[queries.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/queries.cpp)
 
 # [Doubled Sequence]()
+
 Not finished yet.
 
 代码：
 
 # [Icarus](https://csacademy.com/ieeextreme-practice/task/icarus)
+
 我们记 $$ l_c $$ 表示 $$ S $$ 中 `L` 的出现次数，$$ r_c $$ 表示 $$ S $$ 中 `R` 的出现次数，$$ u_c $$
 表示 $$ S $$ 中 `U` 的出现次数。
 
@@ -369,6 +384,7 @@ Not finished yet.
 代码：[icarus.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/icarus.cpp)
 
 # [Power of three](https://csacademy.com/ieeextreme-practice/task/power-of-three)
+
 设 $$ M $$ 表示输入 $$ N $$ 的位数，我们计算出 $$ x_{min} = (M - 1) \lfloor \log_3 10 \rfloor $$，
 不难发现如果有解 $$ x $$，那么 $$ x \ge x_{min} $$ 时，且在理论上 $$ x - x_{min} \le 3 $$，
 这是因为 $$ 3^3 = 27 $$，也就是乘以 $$ 3 $$ 个 $$ 3 $$ 之后，位数会增加 $$ 1 $$。
@@ -382,6 +398,7 @@ Not finished yet.
 代码：[power_of_three.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/power_of_three.cpp)
 
 # [Halving](https://csacademy.com/ieeextreme-practice/task/halving)
+
 我们先考虑什么情况下无解。首先我们先尝试将能确定的元素进行确定，因为这些元素对方案数没有贡献。
 哪些元素能够被确定下来？一共有两种：
 * 已经给定的元素。
@@ -448,12 +465,14 @@ $$
 代码：[halving.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/halving.cpp)
 
 # [King's Order](https://csacademy.com/ieeextreme-practice/task/kings-order)
+
 直接使用拓扑排序即可，只是在拓扑排序中需要将普通队列替换成优先队列。
 优先队列的比较器设置为题目要求即可。
 
 代码：[kings_order.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/kings_order.cpp)
 
 # [Balls](https://csacademy.com/ieeextreme-practice/task/balls)
+
 本题是 `Codeforces` 在十三年前某场比赛的原题，
 原题的链接：[Codeforces 93 E. Lostborn](https://codeforces.com/problemset/problem/93/E)。
 
@@ -521,6 +540,7 @@ $$
 代码：[balls.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/balls.cpp)
 
 # [Corporation](https://csacademy.com/ieeextreme-practice/task/corporation)
+
 首先感谢 [yanire](https://codeforces.com/profile/yanire) 提供的思路。
 
 我们可以使用分块来解决这个问题，具体的我们将整个工资序列分成大小为 $$ \sqrt{N} $$ 的块，
@@ -563,6 +583,7 @@ $$
 代码：[corporation.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/corporation.cpp)
 
 # [This is not an optimization problem](https://csacademy.com/ieeextreme-practice/task/this-is-not-an-optimization-problem)
+
 首先感谢 [cancaneed](https://codeforces.com/profile/cancaneed) 提供的思路。
 
 首先我们考虑计算大小为 $$ k $$ 时的结果。
@@ -623,6 +644,7 @@ $$
 代码：[this_is_not_an_optimization_problem.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/this_is_not_an_optimization_problem.cpp)
 
 # [Digits swap](https://csacademy.com/ieeextreme-practice/task/digits-swap)
+
 直接暴力搜索即可，搜索的时候注意只有当当前这一位与其最大可能性不同时才进行搜索。
 理论时间复杂度为 $$ O(N^K) $$，但实际上跑得飞快。
 
@@ -638,6 +660,7 @@ $$
 代码：[digits_swap.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/digits_swap.cpp)
 
 # [Brick stacks](https://csacademy.com/ieeextreme-practice/task/brick-stacks)
+
 我们先从小到大排序，然后依次处理每一个元素，对于当前元素，如果已经形成了 $$ pile $$ 堆，
 我们只需要记录形成的堆的最下方的元素，不妨用 $$ pile[i] $$ 表示第 $$ i $$ 堆最下方的元素，
 然后尝试将当前元素放到这些堆中，实际上我们只需要检查当前元素是否可以放到最小的 $$ pile[i] $$ 所在的堆中，
@@ -673,13 +696,22 @@ A_{i+1} \gt A_{i} \\
 代码：[brick_stacks.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/brick_stacks.cpp)
 
 # [Stones](https://csacademy.com/ieeextreme-practice/task/stones)
+
 首先感谢 [cancaneed](https://codeforces.com/profile/cancaneed) 提供的思路。
 
 我们记 $$ (R1, B1, R2, B2) $$ 为藏球方红球有 $$ R1 $$ 个，蓝球有 $$ B1 $$ 个；
 猜球方红球有 $$ R2 $$ 个，蓝球有 $$ B2 $$ 个的状态时猜球方的最优策略下的最大获胜概率。
 
 如果我们设 $$ p $$ 为藏红球的概率，$$ q $$ 为猜红球的概率，
-同时我们设 $$ rr := 1 - (R2, B2, R1-1, B1), rb := 1 - (R2, B2-1, R1, B1), br := 1 - (R2-1, B2, R1, B1), bb := 1 - (R2, B2, R1, B1 - 1) $$，
+同时我们设
+
+$$
+rr := 1 - (R2, B2, R1-1, B1) \\
+rb := 1 - (R2, B2-1, R1, B1) \\
+br := 1 - (R2-1, B2, R1, B1) \\
+bb := 1 - (R2, B2, R1, B1 - 1) \\
+$$
+
 我们不难写出以下的转移方程：
 
 $$
@@ -709,6 +741,7 @@ $$
 代码：[stones.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/stones.cpp)
 
 # [Rectangles and arrays](https://csacademy.com/ieeextreme-practice/task/rectangles-and-arrays-ieeextreme-18)
+
 我们首先考虑不进行修改的情况，那么我们可以使用单调栈来解决这个问题，具体的，我们需要计算出：
 * $$ l1[i] $$：表示第 $$ i $$ 个元素左侧第一个比它小的元素的位置，如果不存在则设置为最小下标减一。
 * $$ r1[i] $$：表示第 $$ i $$ 个元素右侧第一个比它小的元素的位置，如果不存在则设置为最大下标加一。
@@ -812,6 +845,7 @@ for (int i = 1; i <= n; i++) {
 代码：[rectangles_and_arrays.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/rectangles_and_arrays.cpp)
 
 # [Invertible Pairs](https://csacademy.com/ieeextreme-practice/task/invertible-pairs)
+
 我们可以使用动态规划解决这一题，具体的我们用 $$ dp[i][0] $$ 表示前 $$ i $$ 个数，
 以 $$ i $$ 结尾且第 $$ i $$ 个数不发生翻转的最大和，用 $$ dp[i][1] $$ 表示前 $$ i $$ 个数，
 以 $$ i $$ 结尾且第 $$ i $$ 个数发生翻转的最大和。我们可以写出以下的转移方程：
@@ -832,6 +866,7 @@ $$
 代码：[invertible_pairs.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/invertible_pairs.cpp)
 
 # [Sierpinski](https://csacademy.com/ieeextreme18/task/sierpinski)
+
 我们可以直接使用递归的方法来解决，我们首先需要确定当前行号，需要经过多少次构建才能构建出来，
 不妨设为 $$ cnt $$，这样的操作是 $$ O(logx) $$ 的，因为每次构建行数为上一次的两倍加一。
 
@@ -843,4 +878,4 @@ $$
 * 如果 $$ y \gt las\_end + 1 $$，不难发现当前颜色与 $$ (x - las\_end - 1, y - las\_end - 1) $$ 相同，
 此时递归调用。
 
-代码：[invertible_pairs.cpp](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/sierpinski.cpp)
+代码：[sierpinski](https://github.com/Kaiser-Yang/OJProblems/blob/main/IEEExtreme/18/sierpinski.cpp)
