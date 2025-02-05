@@ -44,6 +44,12 @@ The attorney was very good at defending his clients.
 
 # c/C
 
+## craft
+
+To craft something is to make it using skill.
+
+She crafted the bookcase out of solid pine wood and then painted it.
+
 ## craze
 
 A craze is a brief and popular activity or object.
@@ -199,6 +205,12 @@ To distort something means to change something so that it is false or wrong.
 The mirror distorted her reflection.
 
 # e/E
+
+## enigma
+
+An enigma is someone or something that is mysterious or hard to understand.
+
+The theft of the painting is an enigma to the investigators.
 
 ## erroneous
 
@@ -511,6 +523,18 @@ Growling a beard is more prevalent behavior in men than women.
 
 # r/R
 
+## crook
+
+A crook is someone who is not honest or who commits crimes.
+
+The manager was arrested by the police for being a crook.
+
+## rig
+
+To rig something means to dishonestly arrange it.
+
+The bad politician rigged the election so that he would win.
+
 ## ranger
 
 A ranger is a person who protects the forest or parks.
@@ -611,6 +635,12 @@ To spur someone means to encourage them to do something.
 The coach's speech spurred the team into playing the bast game of their lives.
 
 # t/T
+
+## tusk
+
+A tusk is a long, curved, pointed tooth of an elephant, boar, or walrus.
+
+Sadly, some people hunt elephants and remove their tusks to sell them.
 
 ## tow
 
