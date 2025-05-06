@@ -44,6 +44,14 @@ The attorney was very good at defending his clients.
 
 # c/C
 
+## conundrum
+
+A conundrum is a difficult problem or question.
+
+## Conquistador
+
+Conquistadors are Spanish conquerors who came to the Americas in the 16th century.
+
 ## craft
 
 To craft something is to make it using skill.
@@ -268,6 +276,10 @@ The act of stealing certainly doesn't go against some people's ethics.
 
 # f/F
 
+## forebear
+
+Your forebears are your ancestors.
+
 ## frantic
 
 If people or things are frantic, they behave in a wild way because they are frightened.
@@ -300,6 +312,10 @@ The fore of the ship was badly damaged.
 
 # g/G
 
+## gawk
+
+To gawk means to stare at something in a rude, stupid, or unthinking way.
+
 ## gourmet
 
 If food is gourmet, then it is nicer and more expensive than regular food.
@@ -317,6 +333,10 @@ Alice wants to write for a gazette when she's older.
 If something is gross, then it is disgusting.
 
 The food was so gross that the dog couldn't eat it without feeling sick.
+
+## gorse
+
+Gorse is a type of bush with yellow flowers that grows in Europe and North America.
 
 ## gossip
 
@@ -372,6 +392,10 @@ When an action is inadvertent, it is done without realizing it.
 
 She made an inadvertent error when she knocked over the nail polish.
 
+## indecorous
+
+If something is indecorous, it is not proper or polite.
+
 ## implicate
 
 If you implicate someone in a crime or a dishonest act,
@@ -380,6 +404,10 @@ you show or claim that they were involved in it.
 The evidence implicates him in the robbery.
 
 # l/L
+
+## leery
+
+If someone is leery of something, they are cautious and suspicious about it.
 
 ## liable
 
@@ -392,6 +420,10 @@ During the summer months, hikers in the forest are liable to see deer and elk.
 Lentils are very small beans that people cook and eat.
 
 Danni made her special soup with lentils when her husband was sick.
+
+## lugubrious
+
+If someone is lugubrious, they are very sad and serious.
 
 ## lush
 
@@ -406,6 +438,10 @@ A lobby is a large open area just inside the entrance of a public building.
 The lobby of the hotel was very impressive.
 
 # m/M
+
+## mellifluous
+
+If a sound is mellifluous, it is smooth gentle and pleasant to hear.
 
 ## microbe
 
