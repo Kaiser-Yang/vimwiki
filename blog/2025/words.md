@@ -44,6 +44,10 @@ The attorney was very good at defending his clients.
 
 # c/C
 
+## cupidity
+
+Cupidity is a strong desire for money or possessions.
+
 ## conundrum
 
 A conundrum is a difficult problem or question.
@@ -312,6 +316,11 @@ The fore of the ship was badly damaged.
 
 # g/G
 
+## garrulous
+
+If you describe someone as garrulous, they are very talkative and chatty. Usually, this is
+in a way that is annoying.
+
 ## gawk
 
 To gawk means to stare at something in a rude, stupid, or unthinking way.
@@ -439,6 +448,10 @@ The lobby of the hotel was very impressive.
 
 # m/M
 
+## menace
+
+A menace is a person or thing that is likely to cause harm.
+
 ## mellifluous
 
 If a sound is mellifluous, it is smooth gentle and pleasant to hear.
@@ -468,6 +481,10 @@ Marrow is the soft substance in the center of bones.
 Dissolved marrow is a common ingredient in soups.
 
 # n/N
+
+## nefarious
+
+If someone is nefarious, they are very wicked or evil.
 
 ## nectar
 
@@ -508,6 +525,10 @@ If something is outmoded, then it is no longer in fashion or use.
 Black and white television sets are outmoded.
 
 # p/P
+
+## plethora
+
+A plethora is a large amount of something. Especially when there is more than is needed.
 
 ## prom
 
@@ -590,6 +611,18 @@ To rupture means to tear or burst open.
 Sarah put too much water into the balloon, and it ruptured.
 
 # s/S
+
+## solecism
+
+A solecism is a mistake in the way that someone speaks or writes.
+
+## supplication
+
+A supplication is a prayer to god or a respectful request to someone.
+
+## solemnize
+
+To solemnize means to celebrate or observe with rites or formal ceremonies.
 
 ## stranded
 
