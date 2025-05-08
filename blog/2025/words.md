@@ -42,7 +42,27 @@ An attorney is a lawyer.
 
 The attorney was very good at defending his clients.
 
+# b/B
+
+## burlesque
+
+A burlesque is a type of entertainment that makes fun of something by copying it in an exaggerated
+way.
+
+## berserk
+
+If someone is berserk, they are very angry and out of control.
+
 # c/C
+
+## clairvoyant
+
+A clairvoyant is a person who claims to be able to see the future.
+
+## cavalier
+
+If someone is cavalier, they are not concerned about important matters or do not consider others'
+feelings.
 
 ## cupidity
 
@@ -482,6 +502,10 @@ Dissolved marrow is a common ingredient in soups.
 
 # n/N
 
+## nondescript
+
+If something is nondescript, it is dull and uninteresting.
+
 ## nefarious
 
 If someone is nefarious, they are very wicked or evil.
@@ -579,6 +603,11 @@ If something is prevalent, it is very common.
 Growling a beard is more prevalent behavior in men than women.
 
 # r/R
+
+## rave
+
+To rave means to talk or write about something in an excited way. If you rave about something, you
+are very enthusiastic about it.
 
 ## crook
 
@@ -735,6 +764,10 @@ A tract is a large area of land.
 
 On the other side of the mountains was a vast tract of forest.
 
+## truculent
+
+If someone is truculent, they are very aggressive and eager to fight.
+
 # u/U
 
 ## unsettle
@@ -756,6 +789,11 @@ Unrest is a state of anger about something among the people in a place.
 High taxes caused much of the unrest that led to the Revolutionary War.
 
 # v/V
+
+## vaudeville
+
+Vaudeville is a type of entertainment that includes many different acts, such as singing and
+dancing.
 
 ## valve
 
