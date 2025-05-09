@@ -1,5 +1,10 @@
 # a/A
 
+## atavism
+
+Atavism is the reappearance of a trait or characteristic that had disappeared in previous
+generations.
+
 ## arduous
 
 When something is arduous, it demands great effort or labor.
@@ -389,6 +394,10 @@ There has been a gulf between the two communities for years.
 
 # h/H
 
+## Hobo
+
+A hobo is a homeless person who travels from place to place.
+
 ## hull
 
 The hull of a boat or tank is the main body of it.
@@ -468,6 +477,10 @@ The lobby of the hotel was very impressive.
 
 # m/M
 
+## mutinous
+
+If someone is mutinous, they are rebellious and refuse to obey orders.
+
 ## menace
 
 A menace is a person or thing that is likely to cause harm.
@@ -518,6 +531,10 @@ Bees use nectar to make their honey.
 
 # o/O
 
+## opprobrium
+
+Opprobrium is strong and open criticism of someone or something.
+
 ## ordeal
 
 An ordeal is a bad experience.
@@ -549,6 +566,14 @@ If something is outmoded, then it is no longer in fashion or use.
 Black and white television sets are outmoded.
 
 # p/P
+
+## prattle
+
+To prattle means to talk a lot about unimportant things.
+
+## pulverize
+
+To pulverize something means to crush it into a powder.
 
 ## plethora
 
@@ -604,6 +629,10 @@ Growling a beard is more prevalent behavior in men than women.
 
 # r/R
 
+## roil
+
+To roil means to make something cloudy or muddy.
+
 ## rave
 
 To rave means to talk or write about something in an excited way. If you rave about something, you
@@ -640,6 +669,10 @@ To rupture means to tear or burst open.
 Sarah put too much water into the balloon, and it ruptured.
 
 # s/S
+
+## scathe
+
+To scathe means to attack with severe criticism.
 
 ## solecism
 
